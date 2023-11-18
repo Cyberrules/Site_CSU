@@ -5,6 +5,7 @@ Backend
 - SpringFramework (v3.1.5 or higher)
 - Maven
 - Jsoup (v1.16.2)
+- PostgreSQL JDBC Driver (v42.6.0) 
 - IDE used: IntelliJ IDEA 2022.2.3
 
 Database
