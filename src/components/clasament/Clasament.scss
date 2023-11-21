@@ -1,0 +1,197 @@
+.meciuri-container{
+    margin:50px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
+    
+}
+
+.meci-trecut, .meci-urmator
+{   
+    height:350px;
+    background-color: #D9D9D9; 
+    margin-top:50px;
+    position: relative;
+} 
+
+.clasament {
+    height:400px;
+    background-color: #1E1E1E;
+}
+.ultimul-meci {
+    font-size: 34px;
+    margin:0px;
+    margin-top:3px;
+    margin-bottom: -10px; 
+     
+      
+}
+.liga-text{
+    font-size: 14px;
+    margin:0px;
+    color:gray;
+
+}
+.title-container{
+    margin-top: 20px;
+    margin-left: 35px;
+}
+
+.data-container{
+    margin-top: 60px;
+    background-color:#3F3F95;
+    width:94%;
+    height:55%;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    position: absolute;
+    left: 15px;
+    z-index: 1;
+}
+
+.logo-liga{
+    width:120px; 
+    
+}
+.header-data{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.middle-data p {
+    color:white;    
+}
+.data-meci{
+color:#D9D9D9;   
+font-size: 14px;
+margin-right: 10px;
+}
+.echipaAcasa , .echipaDeplasare{
+display:flex;
+justify-content: space-between;
+margin: 10px 10px;
+font-size: 18px;
+font-weight: bold;
+}
+.echipaAcasa p, .echipaDeplasare p{
+    margin:0px;
+}
+.bottom-data{
+    margin-top: 20px;
+    padding: 0px;
+}
+.meci-urmator .bottom-data{
+    margin-top: 10px;
+    padding: 0px;
+}
+.galerie-meci,.meci-live
+{  display: inline-block;
+    color:white;
+    margin-left: 10px;
+
+}
+
+.arrow{
+    font-size: 20px;
+}
+
+.meci-urmator .middle-data{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ora-meci{
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.clasament .title-container{
+    margin-top: 70px;
+    margin-left: 50px;
+}
+
+.clasament .title-container .ultimul-meci{
+    color:white;
+}
+
+.clasament-echipe{
+    height: 60%;
+    width: 85%;
+    background-color: white;
+margin-left: 50px;
+margin-top: 12px;
+margin-bottom: 20px;
+}
+
+@media screen and (max-width:1100px)
+{
+   
+    .meciuri-container{
+      
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        
+    }
+ 
+.data-container{
+    margin-top: 60px;
+    background-color:#3F3F95;
+    width:83%;
+    height:55%;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+
+.clasament {
+    
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 30px 100px;
+    
+  }
+ 
+.clasament-echipe{
+    height: 60%;
+    width: 90%;
+    background-color: white;
+    margin-left: 0px;
+    margin-top: 12px;
+    margin-bottom: 20px;
+
+}
+.clasament .title-container{
+    margin-top: 40px;
+    margin-left: 0px;
+}
+
+
+}
+
+@media screen and (max-width:680px)
+{
+    .meciuri-container{
+      
+        display:block;
+       
+        
+    }
+   
+    
+
+    .clasament {
+    
+        grid-column: span 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 30px 0px;
+        margin-bottom: 40px;
+        
+      }
+}

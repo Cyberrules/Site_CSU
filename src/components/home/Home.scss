@@ -1,0 +1,92 @@
+.centered-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagineHome{
+    width: 35%;
+    height: 100%;;
+}
+
+
+
+
+.despre_noi{
+    margin:50px;
+    height: 100%; 
+    background-color:rgb(235, 235, 239);
+    border: 2px outset #3F3F95;
+    border-radius:10x;
+}
+
+.despre_text{
+     padding: 40px;
+     padding-top:0px;
+}
+  
+.adauga_mai_multe {
+    border: none;
+    cursor: pointer;
+}
+
+a:hover {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.link{
+    float:right;
+    color:rgb(0, 0, 0);
+    font-size:22px;
+}
+
+
+ .noutati{
+    background: linear-gradient(270deg, #3F3F95 45.23%, rgba(65, 45, 45, 0.00) 99.14%);
+    margin:50px;
+   
+}
+
+.carduri{
+  display: inline-flex;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.sliderEchipa{
+    margin-left:50px;
+    margin-right:50px;
+    height: 360px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    background-color: #3F3F95;
+    padding-bottom:10px;
+    
+}
+  
+.jucatori {
+    display: flex;
+    text-align: center;
+    background-color: #3F3F95;
+    color: #fff;
+    justify-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    align-items: center;
+    height: 70px;
+}
+
+.sponsori {
+    display: flex;
+    text-align: center;
+    color: #413c3c;;
+    justify-content: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    align-items: center;
+    height: 70px;
+}

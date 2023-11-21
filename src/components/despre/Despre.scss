@@ -1,0 +1,77 @@
+.despre {
+    padding-top: 90px;
+    max-width: 100%;
+    color:black;
+}
+.titlu {
+    text-align: center;
+    background-color: #D9D9D9;
+    padding: 10px;
+  }
+  
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 15px; 
+    margin: 10px;
+  }
+
+.image {
+  width: 600px;
+  height: 337px;
+}
+.viziune{
+    color:black;
+    display:flex-end;
+    justify-content: center;
+    text-align: center;
+    margin-left:10%;
+    margin-right:10%;
+}
+.istoric{
+    display:flex;
+    text-align: center;
+    background-color: #3F3F95;
+    justify-content: center;
+}
+.trofee{
+    display:flex;
+    justify-content:center;
+    text-align:center;
+    background-color: #3F3F95;
+}
+.palmares {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.coluna {
+    flex: 1;
+    margin: 8px; 
+    box-sizing: border-box;
+}
+
+.cardContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+    gap: 10px; 
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .year, .trophyName, .separator {
+    margin-right: 10px;
+  }
+  
+  .separator {
+    border-right: 1px solid #ccc; 
+    height: 1em; 
+    display: inline-block; 
+  }
