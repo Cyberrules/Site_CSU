@@ -100,4 +100,27 @@ public class SponsorService {
         }
         return null;
     }
+
+    public String putSponsor(Sponsor sponsor) {
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement("UPDATE Sponsori SET CaleImagine = ?, NumeComplet = ?, LinkSiteExtern = ?, Editia = ?, isDeleted = ? " +
+                     "WHERE SponsorID = ?")){
+             ps.setString(1, sponsor.getCaleImagine());
+             ps.setString(2, sponsor.getNumeComplet());
+             ps.setString(3, sponsor.getLinkSiteExtern());
+             ps.setString(4, sponsor.getEditia());
+             ps.setBoolean(5, sponsor.isDeleted());
+             ps.setLong(6, sponsor.getSponsorId());
+             int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                return "No sponsor found with ID: "+sponsor.getSponsorId();
+            }
+            else{
+                return "Sponsor with ID " + sponsor.getSponsorId() + " updated successfully";
+            }
+
+        } catch (SQLException e) {
+            return "Failed to update sponsor - " + e.getMessage();
+        }
+    }
 }

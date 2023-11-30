@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/sponsor")
-@CrossOrigin(origins = "*",allowedHeaders = "*",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE})
+@CrossOrigin(origins = "*",allowedHeaders = "*",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE, RequestMethod.PUT})
 public class SponsorController {
     private SponsorService sponsorService;
     @Autowired
@@ -34,5 +34,10 @@ public class SponsorController {
     @GetMapping("/{sponsorID}")
     public Sponsor getSponsor(@PathVariable Long sponsorID){
         return sponsorService.getSponsor(sponsorID);
+    }
+    @PutMapping("/{sponsorID}")
+    public String putSponsor(@RequestBody Sponsor sponsor)
+    {
+        return sponsorService.putSponsor(sponsor);
     }
 }

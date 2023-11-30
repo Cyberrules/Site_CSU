@@ -29,7 +29,7 @@ public class ClasamentController {
                     Elements rows = table.select("tr");
                     for (Element row : rows) {
                         Elements columns = row.select("td");
-                        if (columns.size() >= 15) { // Ensure there are enough columns to create an Cyberrules.demo.controller.Echipa object
+                        if (columns.size() >= 15) {
                             int pos = Integer.parseInt(columns.get(0).text());
                             String numeEchipa = columns.get(1).text();
                             int meciuri = Integer.parseInt(columns.get(2).text());
