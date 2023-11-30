@@ -31,4 +31,8 @@ public class SponsorController {
     {
         return sponsorService.deleteSponsor(sponsorID);
     }
+    @GetMapping("/{sponsorID}")
+    public Sponsor getSponsor(@PathVariable Long sponsorID){
+        return sponsorService.getSponsor(sponsorID);
+    }
 }

@@ -79,4 +79,25 @@ public class SponsorService {
             return "Failed to delete sponsor - " + e.getMessage();
         }
     }
+    public Sponsor getSponsor(Long sponsorID) {
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Sponsori WHERE SponsorID = ?")) {
+             ps.setLong(1, sponsorID);
+             ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Sponsor sponsor = new Sponsor(
+                        rs.getLong("SponsorID"),
+                        rs.getString("CaleImagine"),
+                        rs.getString("NumeComplet"),
+                        rs.getString("LinkSiteExtern"),
+                        rs.getString("Editia"),
+                        rs.getBoolean("isDeleted")
+                );
+                return sponsor;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
