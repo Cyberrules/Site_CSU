@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SponsorService {
-    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String URL = "jdbc:postgresql://localhost:5432/cyberrules";
     private static final String USER = "postgres";
     private static final String PASSWORD = "cyberrules";
     public List<Sponsor> getSponsors() {

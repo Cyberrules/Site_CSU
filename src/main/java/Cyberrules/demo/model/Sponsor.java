@@ -63,7 +63,7 @@ public class Sponsor {
     public void setEditia(String editia) {
         this.editia = editia;
     }
-
+    @JsonProperty("isDeleted")
     public boolean isDeleted() {
         return isDeleted;
     }
