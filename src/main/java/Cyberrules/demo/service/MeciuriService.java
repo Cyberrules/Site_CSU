@@ -3,6 +3,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import Cyberrules.demo.model.Jucator;
 import Cyberrules.demo.model.Meci;
 import org.springframework.stereotype.Service;
 
@@ -117,6 +118,60 @@ public class MeciuriService {
             e.printStackTrace();
         }
         return null;
+    }
+    public List<Meci> getMeciEditie(String editie) {
+        List<Meci> meciuri  = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Meciuri WHERE editia = ?")) {
+            ps.setString(1, editie);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Meci meci = new Meci(
+                        rs.getLong("meciid"),
+                        rs.getDate("datameci"),
+                        rs.getLong("echipaid"),
+                        rs.getLong("adversarid"),
+                        rs.getString("locatie"),
+                        rs.getInt("scorechipa"),
+                        rs.getInt("scoradversar"),
+                        rs.getString("Editia"),
+                        rs.getString("TipCampionat"),
+                        rs.getString("LinkMeci"),
+                        rs.getBoolean("isDeleted")
+                );
+                meciuri.add(meci);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return meciuri;
+    }
+    public List<Meci> getMeciTipCampionat(String tipcampionat) {
+        List<Meci> meciuri  = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Meciuri WHERE tipcampionat = ?")) {
+            ps.setString(1, tipcampionat);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Meci meci = new Meci(
+                        rs.getLong("meciid"),
+                        rs.getDate("datameci"),
+                        rs.getLong("echipaid"),
+                        rs.getLong("adversarid"),
+                        rs.getString("locatie"),
+                        rs.getInt("scorechipa"),
+                        rs.getInt("scoradversar"),
+                        rs.getString("Editia"),
+                        rs.getString("TipCampionat"),
+                        rs.getString("LinkMeci"),
+                        rs.getBoolean("isDeleted")
+                );
+                meciuri.add(meci);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return meciuri;
     }
     public String updateMeci(Long meciID, Meci meci) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {

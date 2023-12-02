@@ -40,6 +40,16 @@ public class MeciController {
     public Meci getMeci(@PathVariable Long meciID){
         return meciService.getMeci(meciID);
     }
+
+    @GetMapping("editia/{editie}")
+    public List<Meci> getMeciEditie(@PathVariable String editie){
+        return meciService.getMeciEditie(editie);
+    }
+
+    @GetMapping("tip/{tipcampionat}")
+    public List<Meci> getMeciTipCampionat(@PathVariable String tipcampionat){
+        return meciService.getMeciTipCampionat(tipcampionat);
+    }
     @PutMapping("/{meciID}")
     public String updateMeci(@PathVariable Long meciID,@RequestBody Meci meci){
         return meciService.updateMeci(meciID,meci);
