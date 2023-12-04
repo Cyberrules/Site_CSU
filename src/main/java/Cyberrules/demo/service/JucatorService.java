@@ -13,6 +13,23 @@ public class JucatorService {
     private static final String URL = "jdbc:postgresql://localhost:5432/cyberrules";
     private static final String USER = "postgres";
     private static final String PASSWORD = "cyberrules";
+    private Jucator buildJucatorFromResultSet(ResultSet rs) throws SQLException {
+        return new Jucator(
+                rs.getLong("JucatorID"),
+                rs.getString("Nume"),
+                rs.getString("Prenume"),
+                rs.getString("Post"),
+                rs.getInt("Numar"),
+                rs.getString("DataNasterii"),
+                rs.getString("Nationalitate"),
+                rs.getDouble("Inaltime"),
+                rs.getString("Descriere"),
+                rs.getString("CaleImagine"),
+                rs.getLong("EchipaID"),
+                rs.getBoolean("isDeleted")
+        );
+    }
+
     public List<Jucator> getJucatori() {
         List<Jucator> jucatori = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -20,20 +37,7 @@ public class JucatorService {
              ResultSet rs = st.executeQuery("SELECT * FROM Jucatori")){
             while(rs.next())
             {
-                Jucator jucator = new Jucator(
-                        rs.getLong("JucatorID"),
-                        rs.getString("Nume"),
-                        rs.getString("Prenume"),
-                        rs.getString("Post"),
-                        rs.getInt("Numar"),
-                        rs.getString("DataNasterii"),
-                        rs.getString("Nationalitate"),
-                        rs.getInt("Inaltime"),
-                        rs.getString("Descriere"),
-                        rs.getString("CaleImagine"),
-                        rs.getLong("EchipaID"),
-                        rs.getBoolean("isDeleted")
-                );
+                Jucator jucator = buildJucatorFromResultSet(rs);
                 jucatori.add(jucator);
             }
 
@@ -48,20 +52,7 @@ public class JucatorService {
             ps.setLong(1,jucatorID);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                Jucator jucator = new Jucator(
-                        rs.getLong("JucatorID"),
-                        rs.getString("Nume"),
-                        rs.getString("Prenume"),
-                        rs.getString("Post"),
-                        rs.getInt("Numar"),
-                        rs.getString("DataNasterii"),
-                        rs.getString("Nationalitate"),
-                        rs.getInt("Inaltime"),
-                        rs.getString("Descriere"),
-                        rs.getString("CaleImagine"),
-                        rs.getLong("EchipaID"),
-                        rs.getBoolean("isDeleted")
-                );
+                Jucator jucator = buildJucatorFromResultSet(rs);
                 return jucator;
             }
         } catch (SQLException e){
@@ -76,20 +67,7 @@ public class JucatorService {
             ps.setLong(1,echipaID);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                Jucator jucator = new Jucator(
-                        rs.getLong("JucatorID"),
-                        rs.getString("Nume"),
-                        rs.getString("Prenume"),
-                        rs.getString("Post"),
-                        rs.getInt("Numar"),
-                        rs.getString("DataNasterii"),
-                        rs.getString("Nationalitate"),
-                        rs.getInt("Inaltime"),
-                        rs.getString("Descriere"),
-                        rs.getString("CaleImagine"),
-                        rs.getLong("EchipaID"),
-                        rs.getBoolean("isDeleted")
-                );
+                Jucator jucator = buildJucatorFromResultSet(rs);
                 jucatori.add(jucator);
             }
         } catch (SQLException e){
@@ -105,20 +83,7 @@ public class JucatorService {
             ps.setString(1,numeJucator);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                Jucator jucator = new Jucator(
-                        rs.getLong("JucatorID"),
-                        rs.getString("Nume"),
-                        rs.getString("Prenume"),
-                        rs.getString("Post"),
-                        rs.getInt("Numar"),
-                        rs.getString("DataNasterii"),
-                        rs.getString("Nationalitate"),
-                        rs.getInt("Inaltime"),
-                        rs.getString("Descriere"),
-                        rs.getString("CaleImagine"),
-                        rs.getLong("EchipaID"),
-                        rs.getBoolean("isDeleted")
-                );
+                Jucator jucator = buildJucatorFromResultSet(rs);
                 jucatori.add(jucator);
             }
         } catch (SQLException e){
@@ -134,20 +99,7 @@ public class JucatorService {
             ps.setString(1,prenumeJucator);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                Jucator jucator = new Jucator(
-                        rs.getLong("JucatorID"),
-                        rs.getString("Nume"),
-                        rs.getString("Prenume"),
-                        rs.getString("Post"),
-                        rs.getInt("Numar"),
-                        rs.getString("DataNasterii"),
-                        rs.getString("Nationalitate"),
-                        rs.getInt("Inaltime"),
-                        rs.getString("Descriere"),
-                        rs.getString("CaleImagine"),
-                        rs.getLong("EchipaID"),
-                        rs.getBoolean("isDeleted")
-                );
+                Jucator jucator = buildJucatorFromResultSet(rs);
                 jucatori.add(jucator);
             }
         } catch (SQLException e){
@@ -164,14 +116,14 @@ public class JucatorService {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             java.util.Date parsedDate = dateFormat.parse(jucator.getDataNasterii());
             Date sqlDate = new Date(parsedDate.getTime());
-
+            System.out.println(jucator.getNationaliate());
             ps.setString(1,jucator.getNume());
             ps.setString(2,jucator.getPrenume());
             ps.setString(3,jucator.getPozitie());
             ps.setInt(4,jucator.getNumar());
             ps.setDate(5,sqlDate);
             ps.setString(6,jucator.getNationaliate());
-            ps.setInt(7,jucator.getInaltime());
+            ps.setDouble(7,jucator.getInaltime());
             ps.setString(8,jucator.getDescriere());
             ps.setString(9,jucator.getCaleImagine());
             ps.setLong(10,jucator.getEchipaID());
@@ -222,7 +174,7 @@ public class JucatorService {
             ps.setInt(4,jucator.getNumar());
             ps.setDate(5,sqlDate);
             ps.setString(6,jucator.getNationaliate());
-            ps.setInt(7,jucator.getInaltime());
+            ps.setDouble(7,jucator.getInaltime());
             ps.setString(8,jucator.getDescriere());
             ps.setString(9,jucator.getCaleImagine());
             ps.setLong(10,jucator.getEchipaID());
