@@ -1,3 +1,5 @@
 # Database design
 
-![image](https://github.com/Cyberrules/Site_CSU/assets/74990176/1fcde0ff-4553-45e0-af43-76105d3ed474)
+![image](https://github.com/Cyberrules/Site_CSU/assets/74990176/9dca8e3b-5e19-47f3-98b7-7fd657b51c9a)
+
+
