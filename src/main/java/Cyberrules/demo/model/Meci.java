@@ -39,7 +39,7 @@ public class Meci {
     public void setMeciId(Long meciId) {
         this.meciId = meciId;
     }
-
+    @JsonProperty("datameci")
     public Date getDatameci() {
         return  datameci;
     }
@@ -48,6 +48,7 @@ public class Meci {
         this.datameci = datameci;
     }
 
+    @JsonProperty("echipaid")
     public Long getEchipaid() {
         return echipaid;
     }
@@ -56,6 +57,7 @@ public class Meci {
         this.echipaid = echipaid;
     }
 
+    @JsonProperty("adversarid")
     public Long getAdversarid() {
         return adversarid;
     }
@@ -64,6 +66,7 @@ public class Meci {
         this.adversarid = adversarid;
     }
 
+    @JsonProperty("locatie")
     public String getLocatie() {
         return locatie;
     }
@@ -72,6 +75,7 @@ public class Meci {
         this.locatie = locatie;
     }
 
+    @JsonProperty("scorechipa")
     public Integer getScorechipa() {
         return scorechipa;
     }
@@ -80,6 +84,7 @@ public class Meci {
         this.scorechipa = scorechipa;
     }
 
+    @JsonProperty("scoradversar")
     public Integer getScoradversar() {
         return scoradversar;
     }
@@ -97,6 +102,7 @@ public class Meci {
         this.editia = editia;
     }
 
+    @JsonProperty("tipcampionat")
     public String getTipcampionat() {
         return tipcampionat;
     }
@@ -114,6 +120,7 @@ public class Meci {
         this.linkmeci = linkmeci;
     }
 
+    @JsonProperty("isDeleted")
     public boolean isDeleted() {
         return isDeleted;
     }

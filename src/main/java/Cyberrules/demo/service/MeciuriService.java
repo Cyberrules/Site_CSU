@@ -2,8 +2,6 @@ package Cyberrules.demo.service;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import Cyberrules.demo.model.Jucator;
 import Cyberrules.demo.model.Meci;
 import org.springframework.stereotype.Service;
 
@@ -90,7 +88,7 @@ public class MeciuriService {
             }
 
         } catch (SQLException e) {
-            return "Failed to delete medci - " + e.getMessage();
+            return "Failed to delete meci - " + e.getMessage();
         }
     }
     public Meci getMeci(Long meciID) {
