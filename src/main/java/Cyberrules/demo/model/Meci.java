@@ -15,8 +15,9 @@ public class Meci {
     private String tipcampionat;
     private String linkmeci;
     private boolean isDeleted;
+    public Meci(){
 
-
+    }
     public Meci(Long meciId, Date datameci, Long echipaid, Long adversarid, String locatie, Integer scorechipa, Integer scoradversar, String editia, String tipcampionat, String linkmeci, boolean isDeleted) {
         this.meciId = meciId;
         this.datameci = datameci;

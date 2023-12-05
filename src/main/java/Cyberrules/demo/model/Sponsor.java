@@ -10,6 +10,9 @@ public class Sponsor {
     private String editia;
     private boolean isDeleted;
 
+    public Sponsor(){
+
+    }
     public Sponsor(Long sponsorId, String caleImagine, String numeComplet, String linkSiteExtern, String editia, boolean isDeleted) {
         this.sponsorId = sponsorId;
         this.caleImagine = caleImagine;

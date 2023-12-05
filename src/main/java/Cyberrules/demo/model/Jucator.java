@@ -2,8 +2,6 @@ package Cyberrules.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.sql.Date;
-
 public class Jucator {
     private Long JucatorID;
     private String Nume;
@@ -11,21 +9,24 @@ public class Jucator {
     private String Pozitie;
     private Integer Numar;
     private String DataNasterii;
-    private String Nationaliate;
-    private Integer Inaltime;
+    private String Nationalitate;
+    private Double Inaltime;
     private String Descriere;
     private String caleImagine;
     private Long EchipaID;
     private boolean isDeleted;
 
-    public Jucator(Long jucatorID, String nume, String prenume, String pozitie, Integer numar, String dataNasterii, String nationaliate, Integer inaltime, String descriere, String caleImagine, Long echipaID, boolean isDeleted) {
+    public Jucator() {
+    }
+
+    public Jucator(Long jucatorID, String nume, String prenume, String pozitie, Integer numar, String dataNasterii, String nationalitate, Double inaltime, String descriere, String caleImagine, Long echipaID, boolean isDeleted) {
         JucatorID = jucatorID;
         Nume = nume;
         Prenume = prenume;
         Pozitie = pozitie;
         Numar = numar;
         DataNasterii = dataNasterii;
-        Nationaliate = nationaliate;
+        Nationalitate = nationalitate;
         Inaltime = inaltime;
         Descriere = descriere;
         this.caleImagine = caleImagine;
@@ -81,18 +82,17 @@ public class Jucator {
     }
     @JsonProperty("nationalitate")
     public String getNationaliate() {
-        return Nationaliate;
+        return Nationalitate;
     }
-
-    public void setNationaliate(String nationaliate) {
-        Nationaliate = nationaliate;
+    public void setNationaliate(String nationalitate) {
+        Nationalitate = nationalitate;
     }
     @JsonProperty("inaltime")
-    public Integer getInaltime() {
+    public Double getInaltime() {
         return Inaltime;
     }
 
-    public void setInaltime(Integer inaltime) {
+    public void setInaltime(Double inaltime) {
         Inaltime = inaltime;
     }
     @JsonProperty("descriere")
