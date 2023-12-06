@@ -73,7 +73,7 @@ public class MeciuriService {
 
     public String deleteMeci(Long meciID) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = conn.prepareStatement("DELETE FROM Meciuri WHERE MeciId = ?")) {
+             PreparedStatement ps = conn.prepareStatement("DELETE FROM Meciuri WHERE meciId = ?")) {
 
             ps.setLong(1, meciID);
 

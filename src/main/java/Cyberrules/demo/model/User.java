@@ -24,7 +24,7 @@ public class User {
         this.isDeleted = isDeleted;
     }
 
-    @JsonProperty("Userid")
+    @JsonProperty("userid")
     public Long getUserid() {
         return Userid;
     }
@@ -67,7 +67,7 @@ public class User {
         Passwordhash = passwordhash;
     }
 
-    @JsonProperty("usertype")
+    @JsonProperty("type")
     public String getUsertype() {
         return Usertype;
     }
