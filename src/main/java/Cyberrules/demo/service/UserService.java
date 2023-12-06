@@ -1,7 +1,6 @@
 package Cyberrules.demo.service;
 
 import Cyberrules.demo.model.BCrypt;
-import Cyberrules.demo.model.Meci;
 import Cyberrules.demo.model.User;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +43,107 @@ public class UserService {
                 );
 
                 users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+    public User getUser(Long userid) {
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Users WHERE userid = ?")) {
+            ps.setLong(1, userid);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User(
+                        rs.getLong("userid"),
+                        rs.getString("username"),
+                        rs.getString("nume"),
+                        rs.getString("prenume"),
+                        rs.getString("passwordhash"),
+                        rs.getString("usertype"),
+                        rs.getBoolean("isDeleted")
+                );
+
+                return user;
+            }
+
+        }
+
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public List<User> getUserNume(String nume) {
+        List<User> users  = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Users WHERE nume = ?")) {
+            ps.setString(1, nume);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User(
+                        rs.getLong("userid"),
+                        rs.getString("username"),
+                        rs.getString("nume"),
+                        rs.getString("prenume"),
+                        rs.getString("passwordhash"),
+                        rs.getString("usertype"),
+                        rs.getBoolean("isDeleted")
+                );
+                users.add(user);
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+    public List<User> getUserPrenume(String prenume) {
+        List<User> users  = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Users WHERE Prenume = ?")) {
+            ps.setString(1, prenume);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User(
+                        rs.getLong("userid"),
+                        rs.getString("username"),
+                        rs.getString("nume"),
+                        rs.getString("prenume"),
+                        rs.getString("passwordhash"),
+                        rs.getString("usertype"),
+                        rs.getBoolean("isDeleted")
+                );
+                users.add(user);
+
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+    public List<User> getUserType(String usertype) {
+        List<User> users  = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Users WHERE Usertype = ?")) {
+            ps.setString(1, usertype);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User(
+                        rs.getLong("userid"),
+                        rs.getString("username"),
+                        rs.getString("nume"),
+                        rs.getString("prenume"),
+                        rs.getString("passwordhash"),
+                        rs.getString("usertype"),
+                        rs.getBoolean("isDeleted")
+                );
+                users.add(user);
+
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

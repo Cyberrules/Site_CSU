@@ -24,6 +24,22 @@ public class UserController {
     {
         return userService.getUsers();
     }
+    @GetMapping("{userID}")
+    public User getUser(@PathVariable Long userID){
+        return userService.getUser(userID);
+    }
+    @GetMapping("nume/{nume}")
+    public List<User> getUserNume(@PathVariable String nume){
+        return userService.getUserNume(nume);
+    }
+    @GetMapping("prenume/{prenume}")
+    public List<User> getUserPrenume(@PathVariable String prenume){
+        return userService.getUserPrenume(prenume);
+    }
+    @GetMapping("type/{usertype}")
+    public List<User> getUserType(@PathVariable String usertype){
+        return userService.getUserType(usertype);
+    }
 
     @PostMapping
     public String postUsers(@RequestBody User user)
