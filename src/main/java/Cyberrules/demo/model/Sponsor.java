@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Sponsor {
     private Long sponsorId;
-    private String caleImagine;
+    private byte[] Imagine;
     private String numeComplet;
     private String linkSiteExtern;
     private String editia;
@@ -13,9 +13,9 @@ public class Sponsor {
     public Sponsor(){
 
     }
-    public Sponsor(Long sponsorId, String caleImagine, String numeComplet, String linkSiteExtern, String editia, boolean isDeleted) {
+    public Sponsor(Long sponsorId, byte[] Imagine, String numeComplet, String linkSiteExtern, String editia, boolean isDeleted) {
         this.sponsorId = sponsorId;
-        this.caleImagine = caleImagine;
+        this.Imagine = Imagine;
         this.numeComplet = numeComplet;
         this.linkSiteExtern = linkSiteExtern;
         this.editia = editia;
@@ -31,13 +31,13 @@ public class Sponsor {
         this.sponsorId = sponsorId;
     }
 
-    @JsonProperty("caleImagine")
-    public String getCaleImagine() {
-        return caleImagine;
+    @JsonProperty("Imagine")
+    public byte[] getImagine() {
+        return Imagine;
     }
 
-    public void setCaleImagine(String caleImagine) {
-        this.caleImagine = caleImagine;
+    public void setImagine(byte[] Imagine) {
+        this.Imagine = Imagine;
     }
 
     @JsonProperty("numeComplet")

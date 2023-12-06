@@ -20,7 +20,7 @@ public class SponsorService {
             while (rs.next()) {
                 Sponsor sponsor = new Sponsor(
                         rs.getLong("SponsorID"),
-                        rs.getString("CaleImagine"),
+                        rs.getBytes("Imagine"),
                         rs.getString("NumeComplet"),
                         rs.getString("LinkSiteExtern"),
                         rs.getString("Editia"),
@@ -37,10 +37,10 @@ public class SponsorService {
     {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement(
-                     "INSERT INTO Sponsori (CaleImagine, NumeComplet, LinkSiteExtern, Editia, isDeleted) VALUES (?, ?, ?, ?, ?)",
+                     "INSERT INTO Sponsori (Imagine, NumeComplet, LinkSiteExtern, Editia, isDeleted) VALUES (?, ?, ?, ?, ?)",
                      Statement.RETURN_GENERATED_KEYS)) {
 
-            ps.setString(1, sponsor.getCaleImagine());
+            ps.setBytes(1, sponsor.getImagine());
             ps.setString(2, sponsor.getNumeComplet());
             ps.setString(3, sponsor.getLinkSiteExtern());
             ps.setString(4, sponsor.getEditia());
@@ -87,7 +87,7 @@ public class SponsorService {
             while (rs.next()) {
                 Sponsor sponsor = new Sponsor(
                         rs.getLong("SponsorID"),
-                        rs.getString("CaleImagine"),
+                        rs.getBytes("Imagine"),
                         rs.getString("NumeComplet"),
                         rs.getString("LinkSiteExtern"),
                         rs.getString("Editia"),
@@ -103,9 +103,9 @@ public class SponsorService {
 
     public String putSponsor(Sponsor sponsor) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = conn.prepareStatement("UPDATE Sponsori SET CaleImagine = ?, NumeComplet = ?, LinkSiteExtern = ?, Editia = ?, isDeleted = ? " +
+             PreparedStatement ps = conn.prepareStatement("UPDATE Sponsori SET Imagine = ?, NumeComplet = ?, LinkSiteExtern = ?, Editia = ?, isDeleted = ? " +
                      "WHERE SponsorID = ?")){
-             ps.setString(1, sponsor.getCaleImagine());
+             ps.setBytes(1, sponsor.getImagine());
              ps.setString(2, sponsor.getNumeComplet());
              ps.setString(3, sponsor.getLinkSiteExtern());
              ps.setString(4, sponsor.getEditia());
