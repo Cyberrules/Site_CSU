@@ -1,6 +1,7 @@
 import React from 'react';
 import './SliderEchipa.scss';
 import { MdChevronLeft,MdChevronRight } from 'react-icons/md';
+
 const SliderEchipa =(props)=>{
     const slideLeft =()=>{
         var slider = document.getElementById("slider");

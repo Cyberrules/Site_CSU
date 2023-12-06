@@ -9,8 +9,8 @@ const TimeLine = () => {
 			</div>
 
 			<div class="cd-timeline-content">
-				<h2>Penta Consulting</h2>
-				<p>Working alongside the designer team implementing the designs, also developing custom solutions to address team necessities.</p>
+				<h2>2002</h2>
+				<p>Echipa denumită CS Universitatea Suceava este înființată.</p>
 			</div> 
 		</div> 
 
@@ -19,8 +19,8 @@ const TimeLine = () => {
 			</div> 
 
 			<div class="cd-timeline-content">
-				<h2>Title of section 2</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
+				<h2>2006</h2>
+				<p>Echipa CSU Suceava promovează pentru prima dată de la înființare în primul eșalon al ligii profesioniste de handbal românesc.</p>
 			</div> 
 		</div> 
 
@@ -29,8 +29,8 @@ const TimeLine = () => {
 			</div> 
 
 			<div class="cd-timeline-content">
-				<h2>Title of section 3</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, obcaecati, quisquam id molestias eaque asperiores voluptatibus cupiditate error assumenda delectus odit similique earum voluptatem doloremque dolorem ipsam quae rerum quis. Odit, itaque, deserunt corporis vero ipsum nisi eius odio natus ullam provident pariatur temporibus quia eos repellat consequuntur perferendis enim amet quae quasi repudiandae sed quod veniam dolore possimus rem voluptatum eveniet eligendi quis fugiat aliquam sunt similique aut adipisci.</p>
+				<h2>2011</h2>
+				<p>Echipa se clasează pentru prima dată în istorie pe podium ocupând locul 3 în Liga Națională</p>
 			</div> 
 		</div> 
 
@@ -39,8 +39,8 @@ const TimeLine = () => {
 			</div> 
 
 			<div class="cd-timeline-content">
-				<h2>Title of section 4</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+				<h2>2012</h2>
+				<p>CSU Suceava se clasează din nou sus. Locul 5 în prima divizie.</p>
 			</div> 
 		</div> 
 
@@ -49,8 +49,8 @@ const TimeLine = () => {
 			</div> 
 
 			<div class="cd-timeline-content">
-				<h2>Title of section 5</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum.</p>
+				<h2>2023</h2>
+				<p>CSU Suceava câștigă medalia de bronz, terminând pe podium în Cupa României</p>
 			</div> 
 		</div> 
 

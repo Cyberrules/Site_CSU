@@ -2,11 +2,45 @@ import React, { useState } from 'react';
 import CardNoutati from '../cardNoutati/CardNoutati';
 import './Noutati.scss';
 import ImagineEchipa from '../assets/imgEchipa.png';
+import { CDropdown, CDropdownToggle, CDropdownMenu, CDropdownItem } from '@coreui/react';
 
+const stireObject = {
+  index: 1,
+  imagine: 'URL_of_the_image',
+  titlu: 'Title of the news',
+  continut: 'Content of the news',
+};
+<CardNoutati stire={stireObject} />
 
+/*   PT API
+ return (
+    <div className="simple-slider">
+      <button className={`control-button prev ${currentIndex === 0 ? 'hidden' : ''}`} onClick={goToPrevSlide}>
+        Inapoi
+      </button>
+      <div className="slider-wrapper">
+        <div className="slider-container" style={{ transform: `translateX(-${currentIndex * 33.33}%)` }}>
+        {cardData.map((card, index) => (
+            <div key={index} className="slide">
+              <CardNoutati
+                key={index}
+                title={card.title}
+                image={card.image}
+                desc={card.desc}
+              />
+              
 
-
-
+            
+            </div>
+          ))}
+        </div>
+      </div>
+      <button className={`control-button next ${currentIndex >= totalCards - cardsPerPage ? 'hidden' : ''}`} onClick={goToNextSlide}>
+        Inainte
+      </button>
+    </div>
+  );
+*/
 
 const SimpleSlider = ({ cardData, currentIndex, totalCards, cardsPerPage, goToNextSlide, goToPrevSlide, visibleCards }) => {
   return (
@@ -16,14 +50,9 @@ const SimpleSlider = ({ cardData, currentIndex, totalCards, cardsPerPage, goToNe
       </button>
       <div className="slider-wrapper">
         <div className="slider-container" style={{ transform: `translateX(-${currentIndex * 33.33}%)` }}>
-          {visibleCards.map((card, index) => (
-            <div key={index} className="slide">
-              <CardNoutati
-                key={index}
-                title={card.title}
-                image={card.image}
-                desc={card.desc}
-              />
+        {cardData.map((stireObject, index) => (
+            <div className="slide">
+              <CardNoutati stire={stireObject} /> 
             </div>
           ))}
         </div>
@@ -84,7 +113,6 @@ const Noutati = () => {
       desc: 'Descriere imaginii 6',
     },
   
-   
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -109,10 +137,13 @@ const Noutati = () => {
     }
   };
 
- 
-
   const visibleCards = cardData.slice(currentIndex, currentIndex + cardsPerPage);
- 
+
+  const vars = {
+    'color': 'black',
+    'background': '#F4EBEB',
+    'height': '5%',
+  }
   return (
 
     <div>
@@ -131,49 +162,64 @@ const Noutati = () => {
         />
       </div>
     </div>
-    
 
-   
     <div class="container-stiri">
-
-<div class="div1">
-<div className='stire'>
-        <button className='buton-dreapta'>Share</button>
-        <h4>
-          Titlu Stire
-        </h4>
-        <p>
-          Contrary to popular belief, Lorem Ipsum is not simply random text.
-          It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-          Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
-          Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-          This book is a treatise on the theory of ethics, very popular during the Renaissance.
-          The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-          The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
-          Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
-          It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
-          Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-          Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-        </p>
-        <div className="centered-image">
-          <img className='imagineHome' src={ImagineEchipa} alt="imgEchipa" />
+      <div class="coloanastanga">
+        <div className='stire'>
+          <button className='buton-dreapta'>Share</button>
+          <h4>
+            Titlu Stire
+          </h4>
+          <p>
+            Contrary to popular belief, Lorem Ipsum is not simply random text.
+            It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
+            Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.
+            Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+            This book is a treatise on the theory of ethics, very popular during the Renaissance.
+            The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.
+            Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+            Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
+            Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+          </p>
+          <div className="centered-image">
+            <img className='imagineHome' src={ImagineEchipa} alt="imgEchipa" />
+          </div>
         </div>
       </div>
-</div>
+      <div class="coloanadreapta ">
+        <div className="calendarstire">
+          <CDropdown dark>
+            <CDropdownToggle style={vars} color="secondary">Calendar stire</CDropdownToggle>
+            <CDropdownMenu>
+              <CDropdownItem href="#">Ieri</CDropdownItem>
+              <CDropdownItem href="#">Ultimele 7 zile</CDropdownItem>
+              <CDropdownItem href="#">Ultimele 30 zile</CDropdownItem>
+              <CDropdownItem href="#">Luna curenta</CDropdownItem>
+              <CDropdownItem href="#">Anul trecut</CDropdownItem>
+              <CDropdownItem href="#">Calendar</CDropdownItem>
+            </CDropdownMenu>
+          </CDropdown>
+        </div>
+        <hr
+          style={{
+            borderColor: 'black',
+            height: '1px',
+            marginBottom: '10%'
+          }}
+        />
+        <div className='carduri'>
+          <div className='data'>
+            <p>2.09</p>
+            <p> 2023</p>
+          </div>
+          <div class="vl"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+  )
+}
 
-<div class="div2">
-  <button class="button1">Tip Stire</button>
-  <button class="button2">Calendar Stire</button>
-</div>
-</div>
-  </div>
-   
-
-
-
-
-  );
-};
-
-
-export default Noutati;
+export default Noutati

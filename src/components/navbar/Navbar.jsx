@@ -49,17 +49,18 @@ function Navbar() {
 
 
         <div className="searchBox">
-          <input type="text" className="searchInput" placeholder="Search" />
-          <button className="searchButton">
-            <FaSearch />
-          </button>
-        </div>
+  <input type="text" className="searchInput" id="searchInput" name="searchInput" placeholder="Search" />
+  <button className="searchButton">
+    <FaSearch />
+  </button>
+</div>
 
+<div className="login">
+  <button id="loginButton" name="loginButton">
+    <FaUser />
+  </button>
+</div>
 
-      <div className="login">
-        <button><FaUser /></button>
-      </div>
-     
    
      
 

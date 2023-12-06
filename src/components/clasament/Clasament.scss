@@ -6,6 +6,43 @@
     
 }
 
+
+.csu-suceava-row {
+    background-color: rgba(127, 92, 223, 0.669)
+  }
+
+
+  .tableClasament {
+    width: 100%;
+    height: 90%;
+    border-collapse: collapse;
+    margin-top: 4%;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: Arial, sans-serif;
+    background-color: rgb(255, 255, 255);
+    outline: 15px solid #1E1E1E;
+}
+  
+  .thClasament, .tdClasament { //border
+    
+    text-align: center;
+    padding: 8px;
+  }
+  
+  .thClasament {  // cap de tabel
+    background-color: rgb(255, 255, 255);
+    font-weight: bold;
+  }
+  
+  .trClasament:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .trClasament:hover {
+    background-color: rgba(118, 84, 197, 0.836);
+  }
+
 .meci-trecut, .meci-urmator
 {   
     height:350px;
@@ -106,7 +143,7 @@ font-weight: bold;
 }
 
 .clasament .title-container{
-    margin-top: 70px;
+    margin-top: 55px;
     margin-left: 50px;
 }
 
@@ -157,7 +194,7 @@ margin-bottom: 20px;
  
 .clasament-echipe{
     height: 60%;
-    width: 90%;
+    width: 95%;
     background-color: white;
     margin-left: 0px;
     margin-top: 12px;

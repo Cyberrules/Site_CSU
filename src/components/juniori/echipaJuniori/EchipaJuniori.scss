@@ -1,0 +1,40 @@
+  .drop-section{
+    background-color: #5c5cbe;
+    color:rgb(0, 0, 0);
+    font-size: 20px;
+    padding:3px;
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 50px;
+    padding:2px 20px;
+    cursor:pointer;
+  }
+
+  .drop-arrow{
+    width:15px;
+  }
+
+  .nume-echipa{
+    color:  #000;
+    font-family: Electrolize;
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: 1.5px;
+ 
+    .categorie{
+      font-size: 25px;
+    }
+
+    .lista-jucatori{
+      font-size: 18px;
+    }
+  }
+
+
+  .info-jucatori{
+    display: flex;
+    justify-content: space-between;
+    gap:20px
+    }
+
+  

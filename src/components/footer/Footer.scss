@@ -1,11 +1,19 @@
-footer {
+.footer {
+  position: relative;
+  bottom: 0px;
+  left: 0;
   width: 100%;
+
+  z-index: 1000;
 }
 
+
+
 .column {
-  
+
   margin-left: 300px;
   margin-right: 300px;
+
 
   display: flex;
   justify-content: center;
@@ -13,6 +21,7 @@ footer {
   flex-direction: column;
   text-align: center;
 }
+
 
 .two-column-footer {
   padding: 20px;
@@ -104,3 +113,5 @@ footer {
     margin-bottom: 20px; 
   }
 }
+
+

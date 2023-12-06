@@ -52,22 +52,25 @@
 
 /*Dan*/
 
-.noutati {
-  display: flex;
-  background-color: linear-gradient(270deg, #3F3F95 45.23%, rgba(65, 45, 45, 0.00) 99.14%);
+.container-stiri {
+  margin-top:50px;
+  display:flex;
+  width:100%;
 }
 
 .stire {
   display: flex-end;
+  background: linear-gradient(180deg, #F9F9FE 9.8%, #3F3F95 100%);
   padding-top: 1.5%;
   justify-content: center;
   text-align: center;
   border-radius: 10px;
+  margin: 1%;
+  margin-left:13%;
   border: 1px solid #000;
-  background: rgba(99, 95, 95, 0.18);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
   width: 70%;
-  margin-bottom:10%
+  margin-bottom: 10%;
 }
 
 .stire p {
@@ -80,17 +83,17 @@
 .buton-dreapta {
   top: 0;
   float: right;
-  font-weight: 8px;
   margin-right: 2%;
   border-radius: 5px;
   border: 1px solid #615CCF;
-  background: rgba(57, 71, 68, 1);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
   padding-left: 2.5%;
   padding-right: 2.5%;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
 
+/*          Text                 */
+  color: #615CCF;
   text-align: center;
   font-family: Arial;
   font-size: 20px;
@@ -103,54 +106,56 @@
 .centered-image {
   justify-content: center;
   align-items: center;
-  width: 100%; 
-  height: 100%; 
+  width: 100%;
+  height: 100%;
 }
 
-
-.container-stiri {
-  padding-top: 90px;
-  display: flex;
-  justify-content: space-between;
+.coloanastanga {
+  width:80%;
 }
 
-
-.div1 {
-  margin-left:10%;
-  width: 80%;
-  /*background-color: aqua;*/
-}
-
-.div2 {
-  width: 15%;
-    background-color: lightgreen;
-    display: flex;
-    gap:2px;
-    align-items: flex-start;
-}
-
-.button1 {
+.coloanadreapta {
   border-radius: 5px;
-  border:none;
-  background: #F4EBEB;
-  margin-left:5%;
-  margin-top:5%;
+  height:fit-content;
+  margin-top: 0.5%;
+  width:18%;
+  background: #D9D9D9;
 }
-.button2 {
-  margin-left:5%;
-  border:none;
-  border-radius: 5px;
-  background: #F4EBEB;
-  margin-top:5%;
-  padding-left:3%;
-  padding-right:3%
+.calendarstire{
+  margin-top: 0.5%;
+  margin-bottom: 15%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  height:7%;
 }
+.separator{
+  display:flex;
+  margin-top:10%
+}
+.carduri{
+  margin-left: 1%;
+  margin-right:1%;
+  text-align:left
+}
+
+.vl {
+  border-left: 1px solid black;
+  height: 50px;
+}
+.data p{
+  margin-top:-50%;
+}
+
+/* .separator{
+  border:1px solid black;
+} */
 @media (max-width: 600px) {
   .stire {
-      width: 90%; 
+    width: 90%;
   }
 
   .centered-image {
-      max-width: 100%; 
+    max-width: 100%;
   }
 }
