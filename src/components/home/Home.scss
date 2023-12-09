@@ -1,15 +1,19 @@
-.centered-image {
+.imaginePrezentare {
+    margin-top: 1%;
+    height: 550px; 
+    width: 100%;
+    background-color: #504b5e;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('../assets/bg.jpg');
+    background-size: cover;
+    background-position: center top -120px;
 }
 
-.imagineHome{
-    width: 35%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-}
+
+
+
 
 .despre_noi{
     margin:50px;

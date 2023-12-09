@@ -3,10 +3,17 @@ import "./Meciuri.scss"
 import ListaMeciuriJucate from './listaMeciuriJucate/ListaMeciuriJucate'
 import Clasament from "./clasament/Clasament"
 import ListaMeciuriViitoare from './listaMeciuriViitoare/ListaMeciuriViitoare'
+import UrmatorulMeci from '../meciuri/urmatorulMeci/UrmatorulMeci'
 
 const Meciuri = () => {
   return (
-    <div>
+    <div className='componentaMeciuri'>
+
+    <div className='catreClasament'>
+      <a href="#clasament" className='catreClasament'>CLASAMENT➜</a>
+    </div>
+
+      <UrmatorulMeci/>
       
 
       <div className='containerUltimeleRezultate'>
@@ -19,8 +26,9 @@ const Meciuri = () => {
         <ListaMeciuriViitoare />
       </div>
 
-
-      <Clasament />
+      <div id='clasament'>
+        <Clasament />
+      </div>
         
     </div>
   )

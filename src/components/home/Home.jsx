@@ -112,9 +112,8 @@ const [players, setPlayers] = useState([]);
 
   return (
     <div>
-        <div className="centered-image">
-        <img className='imagineHome' src={ImagineEchipa} alt="imgEchipa" />
-        </div>
+       <div className="imaginePrezentare"></div>
+
 
 
         <div className="despre_noi">
