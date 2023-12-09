@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import "./Clasament.scss";
+import "./ClasamentHome.scss";
 
 
 
 
-import "../meciuri/script"
+import "../meciuri/clasament/script"
 
 const TabelClasament = ({ data }) => {
   return (

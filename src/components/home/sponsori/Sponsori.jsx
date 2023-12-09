@@ -1,5 +1,49 @@
-import React/*, { useState, useEffect }*/ from 'react';
+import React, { useState, useEffect } from 'react';
 import './Sponsori.scss'; 
+
+const Sponsori = () => {
+
+  const [sponsorData, setSponsorData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5050/api/sponsor')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => setSponsorData(data))
+      .catch((error) => console.error('Eroare în obținerea datelor sponsorilor:', error));
+  }, []);
+
+
+  const handleLogoClick = (linkSiteExtern) => {
+    window.open(linkSiteExtern, '_blank');
+  };
+
+ return (
+    <div className="logo-list">
+      {sponsorData.map((sponsor, index) => (
+        <div key={index} className="logo-item">
+          <img
+            src={`data:image/png;base64,${sponsor.Imagine}`}
+            alt={sponsor.numeComplet}
+            className='logoSponsor'
+            onClick={() => handleLogoClick(sponsor.linkSiteExtern)}
+            style={{ cursor: 'pointer' }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Sponsori;
+
+
+
+/*
 
 import logo1 from '../../assets/logoSponsori/primariaSuceava.png';
 import logo2 from '../../assets/logoSponsori/logoUSV.png';
@@ -9,6 +53,7 @@ import logo5 from '../../assets/logoSponsori/pepenero.png';
 import logo6 from '../../assets/logoSponsori/vivendi.png';
 import logo7 from '../../assets/logoSponsori/mihu.png';
 import logo8 from '../../assets/logoSponsori/fiterman.png';
+
 
 const companii = [
   {
@@ -53,40 +98,4 @@ const companii = [
   },
   
 ];
-
-const Sponsori = () => {
-
-/*
-  const [sponsorData, setSponsorData] = useState([]);
-
-  useEffect(() => {
-    fetch('https://..../sponsori')
-      .then((response) => response.json())
-      .then((data) => setSponsorData(data))
-      .catch((error) => console.error('Eroare în obținerea datelor sponsorilor:', error));
-  }, []);
 */
-
-  const handleLogoClick = (websiteUrl) => {
-    window.open(websiteUrl, '_blank');
-  };
-
-  return (
-    <div className="logo-list">
-      {/*sponsorData.map....*/ companii.map((company, index) => (
-        <div key={index} className="logo-item">
-          <img
-            src={company.logoUrl}
-            alt={company.nume}
-            className='logoSponsor'
-            onClick={() => handleLogoClick(company.websiteUrl)}
-            style={{ cursor: 'pointer' }}
-          />
-        </div>
-      ))}
-    </div>
-
-  );
-};
-
-export default Sponsori;

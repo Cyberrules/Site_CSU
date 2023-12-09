@@ -75,14 +75,13 @@
   align-items: center;
 }
 
-/* Tablet styles */
+
 @media (min-width: 768px) {
   .App {
     flex-direction: column;
   }
 }
 
-/* Desktop styles */
 @media (min-width: 992px) {
   .App {
     flex-direction: row;

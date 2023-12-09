@@ -1,10 +1,10 @@
-import React/*, { useState, useEffect } */from 'react';
+import React, { useState, useEffect } from 'react';
 import ImagineEchipa from '../assets/imgEchipa.png';
 import './Home.scss';
 import CardNoutati from '../cardNoutati/CardNoutati';
 import SliderEchipa from '../echipaSlider/SliderEchipa';
 
-import Clasament from '../clasament/Clasament';
+import ClasamentHome from '../clasamentHome/ClasamentHome';
 import Sponsori from './sponsori/Sponsori';
 
 
@@ -53,7 +53,7 @@ const Home = () => {
   const sliderClick = (slider)=>{
 
   }
-
+/*
   const slides = [
     {image:"https://picsum.photos/200/300",title:"This is a title",description:"This is a description",clickEvent:sliderClick},
     {image:"https://picsum.photos/600/500",title:"This is a second title",description:"This is a second description",clickEvent:sliderClick},
@@ -79,11 +79,11 @@ const Home = () => {
   ]
   
 
-/*
+
   const [slides, setSlides] = useState([]);
 
   useEffect(() => {
-    fetch('https://....../slides')
+    fetch('http://localhost:5050/api/jucator')
       .then(response => response.json())
       .then(data => {
         setSlides(data);
@@ -94,10 +94,25 @@ const Home = () => {
   }, []);
 */
 
+const [players, setPlayers] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5050/api/jucator') 
+      .then(response => response.json())
+      .then(data => {
+        setPlayers(data); 
+      })
+      .catch(error => {
+        console.error('A apărut o eroare:', error);
+      });
+  }, []);
+
+
+
 
   return (
     <div>
-        <div className="centered-image" imagineHome>
+        <div className="centered-image">
         <img className='imagineHome' src={ImagineEchipa} alt="imgEchipa" />
         </div>
 
@@ -123,7 +138,7 @@ const Home = () => {
             </div>
         </div>
 
-        <Clasament/>
+        <ClasamentHome/>
 
      
     <div className="jucatori">
@@ -131,7 +146,7 @@ const Home = () => {
     </div>
 
     <div className='sliderEchipa'>
-      <SliderEchipa slides={slides} />
+      <SliderEchipa slides={players} />
     </div>
 
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.scss';
 import Home from './components/home/Home';
 import Navbar from './components/navbar/Navbar';
@@ -10,7 +10,6 @@ import Noutati from './components/noutati/Noutati';
 import Echipa from './components/echipa/Echipa';
 import Juniori from './components/juniori/Juniori';
 
-
 function App() {
   return (
     <div className='dimensiune'>
@@ -18,6 +17,7 @@ function App() {
       <div className='container'>
         <BrowserRouter>
           <Routes>
+            <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/home" element={<Home />} />
             <Route path="/despre" element={<Despre />} />
             <Route path="/meciuri" element={<Meciuri />} />
@@ -29,7 +29,6 @@ function App() {
       </div>
       <Footer />
     </div>
-    
   );
 }
 

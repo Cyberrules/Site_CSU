@@ -50,9 +50,9 @@ const SimpleSlider = ({ cardData, currentIndex, totalCards, cardsPerPage, goToNe
       </button>
       <div className="slider-wrapper">
         <div className="slider-container" style={{ transform: `translateX(-${currentIndex * 33.33}%)` }}>
-        {cardData.map((stireObject, index) => (
-            <div className="slide">
-              <CardNoutati stire={stireObject} /> 
+          {cardData.map((stireObject, index) => (
+            <div key={stireObject.id} className="slide">
+                <CardNoutati stire={stireObject} /> 
             </div>
           ))}
         </div>
@@ -163,8 +163,8 @@ const Noutati = () => {
       </div>
     </div>
 
-    <div class="container-stiri">
-      <div class="coloanastanga">
+    <div className="container-stiri">
+      <div className="coloanastanga">
         <div className='stire'>
           <button className='buton-dreapta'>Share</button>
           <h4>
@@ -188,7 +188,7 @@ const Noutati = () => {
           </div>
         </div>
       </div>
-      <div class="coloanadreapta ">
+      <div className="coloanadreapta ">
         <div className="calendarstire">
           <CDropdown dark>
             <CDropdownToggle style={vars} color="secondary">Calendar stire</CDropdownToggle>
@@ -214,7 +214,7 @@ const Noutati = () => {
             <p>2.09</p>
             <p> 2023</p>
           </div>
-          <div class="vl"></div>
+          <div className="vl"></div>
         </div>
       </div>
     </div>
