@@ -38,7 +38,7 @@ public class EchipaController {
         return echipaService.deleteEchipa(echipaID);
     }
 
-    @GetMapping("/{meciID}")
+    @GetMapping("/{echipaID}")
     public Echipa getEchipa(@PathVariable Long echipaID){
         return echipaService.getEchipa(echipaID);
     }
