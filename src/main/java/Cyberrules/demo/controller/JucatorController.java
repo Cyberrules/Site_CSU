@@ -1,7 +1,9 @@
 package Cyberrules.demo.controller;
 
 import Cyberrules.demo.model.Jucator;
+import Cyberrules.demo.model.Sponsor;
 import Cyberrules.demo.service.JucatorService;
+import Cyberrules.demo.service.SponsorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +15,7 @@ import java.util.List;
 public class JucatorController {
     private JucatorService jucatorService;
     @Autowired
-    public JucatorController(JucatorService jucatorService) {
+    public JucatorController(JucatorService jucatorService){
         this.jucatorService = jucatorService;
     }
     @GetMapping
@@ -56,5 +58,4 @@ public class JucatorController {
     {
         return jucatorService.putJucator(jucator);
     }
-
 }
