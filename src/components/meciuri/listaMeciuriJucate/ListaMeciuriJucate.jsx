@@ -1,82 +1,78 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MeciuriJucate from '../meciuriJucate/MeciuriJucate';
-
-import echipa1 from "../../assets/logoSponsori/logoUSV.png"
-import echipa2 from "../../assets/logoSponsori/iuliusMallSuceava.png"
+import echipa1 from "../../assets/logoSponsori/logoUSV.png";
+import echipa2 from "../../assets/logoSponsori/iuliusMallSuceava.png";
 
 const ListaMeciuriJucate = () => {
-  const meciuri = [
-    {
-      "etapa": "Etapa 1",
-      "locatia": "Stadionul A",
-      "data": "3 februarie 2023",
-      "echipe": [
-        {
-          "logo": echipa1,
-          "nume": "Echipa A",
-          "scor": 15
-        },
-        {
-          "logo": echipa2,
-          "nume": "Echipa B",
-          "scor": 10
-        }
-      ]
-    },
-    {
-      "etapa": "Etapa 2",
-      "locatia": "Stadionul B",
-      "data": "10 februarie 2023",
-      "echipe": [
-        {
-          "logo": echipa2,
-          "nume": "Echipa C",
-          "scor": 20
-        },
-        {
-          "logo": echipa1,
-          "nume": "Echipa D",
-          "scor": 18
-        }
-      ]
-    },
-    {
-      "etapa": "Etapa 3",
-      "locatia": "Stadionul C",
-      "data": "17 februarie 2023",
-      "echipe": [
-        {
-          "logo": echipa1,
-          "nume": "Echipa E",
-          "scor": 12
-        },
-        {
-          "logo": echipa2,
-          "nume": "Echipa F",
-          "scor": 16
-        }
-      ]
-    }
-  ];
+  const [meciuri, setMeciuri] = useState([]);
+  const [echipeDetails1, setEchipeDetails1] = useState({});
+  const [echipeDetails2, setEchipeDetails2] = useState({});
+
+  const fetchTeamDetails1 = (teamId1) => {
+    fetch(`http://localhost:5050/api/echipa/${teamId1}`)
+      .then(response => response.json())
+      .then(echipaData => {
+        setEchipeDetails1(prevDetails1 => ({
+          ...prevDetails1,
+          [`${teamId1}_nume`]: echipaData.nume
+        }));
+      })
+      .catch(error => {
+        console.error(`Error fetching team details for team ID ${teamId1}:`, error);
+      });
+  };
+  
+  const fetchTeamDetails2 = (teamId2) => {
+    fetch(`http://localhost:5050/api/echipa/${teamId2}`)
+      .then(response => response.json())
+      .then(echipaData => {
+        setEchipeDetails2(prevDetails2 => ({
+          ...prevDetails2,
+          [`${teamId2}_nume`]: echipaData.nume
+        }));
+      })
+      .catch(error => {
+        console.error(`Error fetching team details for team ID ${teamId2}:`, error);
+      });
+  };
+  
+  useEffect(() => {
+    fetch('http://localhost:5050/api/meci/tip/Liga Zimbrilor')
+      .then(response => response.json())
+      .then(data => {
+        setMeciuri(data);
+        data.forEach(meci => {
+          fetchTeamDetails1(meci.echipaid);
+          fetchTeamDetails2(meci.adversarid);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  const formatDate = (dateString) => {
+    // Funcția pentru formatarea datei rămâne neschimbată
+  };
 
   return (
     <div className='listaMeciuriContainer'>
       {meciuri.map((meci, index) => (
         <MeciuriJucate
           key={index}
-          etapa={meci.etapa}
-          locatia={meci.locatia}
-          data={meci.data}
-          logoEchipa1={meci.echipe[0].logo}
-          numeEchipa1={meci.echipe[0].nume}
-          scorEchipa1={meci.echipe[0].scor}
-          logoEchipa2={meci.echipe[1].logo}
-          numeEchipa2={meci.echipe[1].nume}
-          scorEchipa2={meci.echipe[1].scor}
+          etapa={meci.tipcampionat}
+          locatia={meci.locatie}
+          data={formatDate(meci.datameci)}
+          logoEchipa1={(meci.echipaid === 1) ? echipa1 : echipa2}
+          numeEchipa1={echipeDetails1[`${meci.echipaid}_nume`]} 
+          scorEchipa1={meci.scorechipa}
+          logoEchipa2={(meci.adversarid === 1) ? echipa1 : echipa2} 
+          numeEchipa2={echipeDetails2[`${meci.adversarid}_nume`]} 
+          scorEchipa2={meci.scoradversar}
         />
       ))}
     </div>
   );
-};
+}
 
 export default ListaMeciuriJucate;
