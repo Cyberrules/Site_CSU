@@ -1,9 +1,7 @@
 package Cyberrules.demo.controller;
 
 import Cyberrules.demo.model.Jucator;
-import Cyberrules.demo.model.Sponsor;
 import Cyberrules.demo.service.JucatorService;
-import Cyberrules.demo.service.SponsorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

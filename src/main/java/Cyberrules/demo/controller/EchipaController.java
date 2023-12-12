@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/api/echipa")
 @CrossOrigin(origins = "*",allowedHeaders = "*",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE})
@@ -44,12 +43,11 @@ public class EchipaController {
         return echipaService.getEchipa(echipaID);
     }
 
-    @GetMapping("categorie/{categorie}")
+    @GetMapping("/categorie/{categorie}")
     public List<Echipa> getEchipaCategorie(@PathVariable String categorie){
         return echipaService.getEchipaCategorie(categorie);
     }
-
-    @GetMapping("categorie/{categorie}")
+    @GetMapping("/nume/{nume}")
     public List<Echipa> getEchipaNume(@PathVariable String nume){
         return echipaService.getEchipaNume(nume);
     }
