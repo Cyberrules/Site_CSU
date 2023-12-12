@@ -24,7 +24,7 @@ public class JucatorService {
                 rs.getString("Nationalitate"),
                 rs.getDouble("Inaltime"),
                 rs.getString("Descriere"),
-                rs.getString("CaleImagine"),
+                rs.getBytes("imagine"),
                 rs.getLong("EchipaID"),
                 rs.getBoolean("isDeleted")
         );
@@ -111,7 +111,7 @@ public class JucatorService {
     public String addJucator(Jucator jucator) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement(
-                     "INSERT INTO Jucatori (Nume, Prenume, Post, Numar, DataNasterii, Nationalitate, Inaltime, Descriere, CaleImagine, EchipaID, isDeleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                     "INSERT INTO Jucatori (Nume, Prenume, Post, Numar, DataNasterii, Nationalitate, Inaltime, Descriere, imagine, EchipaID, isDeleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                      Statement.RETURN_GENERATED_KEYS)){
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             java.util.Date parsedDate = dateFormat.parse(jucator.getDataNasterii());
@@ -125,7 +125,7 @@ public class JucatorService {
             ps.setString(6,jucator.getNationaliate());
             ps.setDouble(7,jucator.getInaltime());
             ps.setString(8,jucator.getDescriere());
-            ps.setString(9,jucator.getCaleImagine());
+            ps.setBytes(9,jucator.getImagine());
             ps.setLong(10,jucator.getEchipaID());
             ps.setBoolean(11,jucator.isDeleted());
 
@@ -162,7 +162,7 @@ public class JucatorService {
 
     public String putJucator(Jucator jucator) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = conn.prepareStatement("UPDATE Jucatori SET Nume = ?, Prenume = ?, Post = ?, Numar = ?, DataNasterii = ?, Nationalitate = ?, Inaltime = ?, Descriere = ?, CaleImagine = ?, EchipaID = ?, isDeleted = ? " +
+             PreparedStatement ps = conn.prepareStatement("UPDATE Jucatori SET Nume = ?, Prenume = ?, Post = ?, Numar = ?, DataNasterii = ?, Nationalitate = ?, Inaltime = ?, Descriere = ?, imagine = ?, EchipaID = ?, isDeleted = ? " +
                      "WHERE JucatorID = ?")){
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             java.util.Date parsedDate = dateFormat.parse(jucator.getDataNasterii());
@@ -176,7 +176,7 @@ public class JucatorService {
             ps.setString(6,jucator.getNationaliate());
             ps.setDouble(7,jucator.getInaltime());
             ps.setString(8,jucator.getDescriere());
-            ps.setString(9,jucator.getCaleImagine());
+            ps.setBytes(9,jucator.getImagine());
             ps.setLong(10,jucator.getEchipaID());
             ps.setBoolean(11,jucator.isDeleted());
             ps.setLong(12,jucator.getJucatorID());

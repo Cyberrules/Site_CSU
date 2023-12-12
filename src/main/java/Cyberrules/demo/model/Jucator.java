@@ -12,14 +12,14 @@ public class Jucator {
     private String Nationalitate;
     private Double Inaltime;
     private String Descriere;
-    private String caleImagine;
+    private byte[] imagine;
     private Long EchipaID;
     private boolean isDeleted;
 
     public Jucator() {
     }
 
-    public Jucator(Long jucatorID, String nume, String prenume, String pozitie, Integer numar, String dataNasterii, String nationalitate, Double inaltime, String descriere, String caleImagine, Long echipaID, boolean isDeleted) {
+    public Jucator(Long jucatorID, String nume, String prenume, String pozitie, Integer numar, String dataNasterii, String nationalitate, Double inaltime, String descriere, byte[] imagine, Long echipaID, boolean isDeleted) {
         JucatorID = jucatorID;
         Nume = nume;
         Prenume = prenume;
@@ -29,7 +29,7 @@ public class Jucator {
         Nationalitate = nationalitate;
         Inaltime = inaltime;
         Descriere = descriere;
-        this.caleImagine = caleImagine;
+        this.imagine = imagine;
         EchipaID = echipaID;
         this.isDeleted = isDeleted;
     }
@@ -103,13 +103,13 @@ public class Jucator {
     public void setDescriere(String descriere) {
         Descriere = descriere;
     }
-    @JsonProperty("caleImagine")
-    public String getCaleImagine() {
-        return caleImagine;
+    @JsonProperty("imagine")
+    public byte[] getImagine() {
+        return imagine;
     }
 
-    public void setCaleImagine(String caleImagine) {
-        this.caleImagine = caleImagine;
+    public void setImagine(byte[] imagine) {
+        this.imagine = imagine;
     }
     @JsonProperty("echipaID")
     public Long getEchipaID() {
