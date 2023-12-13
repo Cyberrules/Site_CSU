@@ -21,7 +21,7 @@ public class ClasamentController {
     @GetMapping
     public ResponseEntity<ArrayList<EchipaClasament>> getClasament() {
             ArrayList<EchipaClasament> clasament = new ArrayList<>();
-            String url = "https://frh.ro/clasament.php?id=552";
+            String url = "https://frh.ro/clasament.php?id=927";
             try {
                 Document doc = Jsoup.connect(url).get();
                 Element table = doc.select("table.table").first();
