@@ -1,11 +1,12 @@
 package Cyberrules.demo.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Meci {
     private Long meciId;
-    private Date datameci;
+    private Timestamp datameci;
     private Long echipaid;
     private Long adversarid;
     private String locatie;
@@ -15,10 +16,11 @@ public class Meci {
     private String tipcampionat;
     private String linkmeci;
     private boolean isDeleted;
+    private boolean isFinished;
     public Meci(){
 
     }
-    public Meci(Long meciId, Date datameci, Long echipaid, Long adversarid, String locatie, Integer scorechipa, Integer scoradversar, String editia, String tipcampionat, String linkmeci, boolean isDeleted) {
+    public Meci(Long meciId, Timestamp datameci, Long echipaid, Long adversarid, String locatie, Integer scorechipa, Integer scoradversar, String editia, String tipcampionat, String linkmeci, boolean isDeleted,boolean isFinished) {
         this.meciId = meciId;
         this.datameci = datameci;
         this.echipaid = echipaid;
@@ -30,6 +32,7 @@ public class Meci {
         this.tipcampionat = tipcampionat;
         this.linkmeci = linkmeci;
         this.isDeleted = isDeleted;
+        this.isFinished = isFinished;
     }
     @JsonProperty("meciId")
     public Long getMeciId() {
@@ -40,11 +43,11 @@ public class Meci {
         this.meciId = meciId;
     }
     @JsonProperty("datameci")
-    public Date getDatameci() {
+    public Timestamp getDatameci() {
         return  datameci;
     }
 
-    public void setDatameci(Date datameci) {
+    public void setDatameci(Timestamp datameci) {
         this.datameci = datameci;
     }
 
@@ -127,5 +130,13 @@ public class Meci {
 
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
+    }
+    @JsonProperty("isFinished")
+    public boolean isFinished() {
+        return isFinished;
+    }
+
+    public void setFinished(boolean finished) {
+        isFinished = finished;
     }
 }

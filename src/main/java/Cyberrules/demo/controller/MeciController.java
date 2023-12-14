@@ -2,6 +2,8 @@ package Cyberrules.demo.controller;
 import Cyberrules.demo.model.Meci;
 import Cyberrules.demo.service.MeciuriService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,5 +56,34 @@ public class MeciController {
     public String updateMeci(@PathVariable Long meciID,@RequestBody Meci meci){
         return meciService.updateMeci(meciID,meci);
     }
-
+    @GetMapping("/ultimulmeci")
+    public ResponseEntity<Meci> getLastMeciPlayed(){
+        Meci lastMeci = meciService.getLastMeciPlayed();
+        if(lastMeci != null)
+        {
+            return new ResponseEntity<>(lastMeci, HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @GetMapping("/mecicurent")
+    public ResponseEntity<Meci> getCurrentMatch(){
+        Meci currentMeci = meciService.getCurrentMatch();
+        if(currentMeci != null)
+        {
+            return new ResponseEntity<>(currentMeci, HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @GetMapping("/meciviitor")
+    public ResponseEntity<Meci> getNextMatch(){
+        Meci nextMeci = meciService.getNextMatch();
+        if(nextMeci != null)
+        {
+            return new ResponseEntity<>(nextMeci, HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
