@@ -21,12 +21,13 @@ const SliderEchipa = (props) => {
           <div className="slider-card" key={index} onClick={() => player.clickEvent()}>
             <div className="slider-card-image"
                 style={{
-                        backgroundImage: `url(data:image/png;base64,${player.Imagine})`,
+                        backgroundImage: `url(data:image/png;base64,${player.imagine})`,
                         backgroundSize: 'cover'
                 }}
             ></div>
- 
             <p className="slider-card-title">{`${player.nume} ${player.prenume}`}</p>
+            <p className="slider-card-nationality">Naţionalitate: {player.nationalitate}</p>
+            <p className="slider-card-position">Poziţie: {player.pozitie}</p>
             <p className="slider-card-description">{player.descriere}</p>
           </div>
         ))}

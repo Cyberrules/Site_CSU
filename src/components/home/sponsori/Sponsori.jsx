@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './Sponsori.scss'; 
+import './Sponsori.scss';
 
 const Sponsori = () => {
-
   const [sponsorData, setSponsorData] = useState([]);
+  const [selectedEdition, setSelectedEdition] = useState('');
+  const [editions, setEditions] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:5050/api/sponsor')
@@ -13,89 +14,73 @@ const Sponsori = () => {
         }
         return response.json();
       })
-      .then((data) => setSponsorData(data))
+      .then((data) => {
+        setSponsorData(data);
+        const years = data.map((sponsor) => sponsor.editia);
+        const uniqueYears = [...new Set(years)];
+        const sortedYears = uniqueYears.sort((a, b) => a - b);
+        const currentYear = new Date().getFullYear().toString().substr(-2);
+        const currentYearEditions = sortedYears.filter(year => year.toString().includes(currentYear));
+        const defaultEdition = currentYearEditions.length > 0 ? currentYearEditions[0] : '';
+        setSelectedEdition(defaultEdition);
+        setEditions(sortedYears);
+      })
       .catch((error) => console.error('Eroare în obținerea datelor sponsorilor:', error));
   }, []);
-
+  
+  useEffect(() => {
+    if (selectedEdition.trim() !== '') {
+      fetch(`http://localhost:5050/api/sponsor?editie=${selectedEdition}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => setSponsorData(data))
+        .catch((error) => console.error('Eroare în obținerea datelor sponsorilor pentru ediție:', error));
+    }
+  }, [selectedEdition]);
 
   const handleLogoClick = (linkSiteExtern) => {
     window.open(linkSiteExtern, '_blank');
   };
 
- return (
-    <div className="logo-list">
-      {sponsorData.map((sponsor, index) => (
-        <div key={index} className="logo-item">
-          <img
-            src={`data:image/png;base64,${sponsor.Imagine}`}
-            alt={sponsor.numeComplet}
-            className='logoSponsor'
-            onClick={() => handleLogoClick(sponsor.linkSiteExtern)}
-            style={{ cursor: 'pointer' }}
-          />
-        </div>
-      ))}
+  const handleEditionChange = (edition) => {
+    setSelectedEdition(edition);
+  };
+
+  return (
+    <div>
+      <div className="dropdown-container">
+        <select value={selectedEdition} onChange={(e) => handleEditionChange(e.target.value)}>
+          <option value="">Selectează o ediție</option>
+            {editions.map((edition, index) => (
+              <option key={index} value={edition}>
+                Ediția: {edition}
+              </option>
+            ))}
+        </select>
+      </div>
+
+      <div className="logo-list">
+        {sponsorData
+          .filter((sponsor) => sponsor.editia === selectedEdition)
+          .map((sponsor, index) => (
+          <div key={index} className="logo-item">
+            <img
+              src={`data:image/png;base64,${sponsor.Imagine}`}
+              alt={sponsor.numeComplet}
+              className="logoSponsor"
+              onClick={() => handleLogoClick(sponsor.linkSiteExtern)}
+              style={{ cursor: 'pointer' }}
+            />
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 };
 
 export default Sponsori;
-
-
-
-/*
-
-import logo1 from '../../assets/logoSponsori/primariaSuceava.png';
-import logo2 from '../../assets/logoSponsori/logoUSV.png';
-import logo3 from '../../assets/logoSponsori/celestin.png';
-import logo4 from '../../assets/logoSponsori/iuliusMallSuceava.png';
-import logo5 from '../../assets/logoSponsori/pepenero.png';
-import logo6 from '../../assets/logoSponsori/vivendi.png';
-import logo7 from '../../assets/logoSponsori/mihu.png';
-import logo8 from '../../assets/logoSponsori/fiterman.png';
-
-
-const companii = [
-  {
-    nume: 'Primaria Suceava',
-    logoUrl: logo1,
-    websiteUrl: 'https://evp.primariasv.ro/dm_suceava/site.nsf/pagini/prima+pagina-0001220E',
-  },
-  {
-    nume: 'USV',
-    logoUrl: logo2,
-    websiteUrl: 'https://usv.ro/',
-  },
-  {
-    nume: 'Celestin',
-    logoUrl: logo3,
-    websiteUrl: 'https://www.tipografiacelestin.ro/',
-  },
-  {
-    nume: 'Iulius Mall',
-    logoUrl: logo4,
-    websiteUrl: 'https://suceava.iuliusmall.com/',
-  },
-  {
-    nume: 'Pepenero',
-    logoUrl: logo5,
-    websiteUrl: 'https://pepeneropizza.ro/',
-  },
-  {
-    nume: 'Vivendi',
-    logoUrl: logo6,
-    websiteUrl: 'https://restaurantvivendi.ro/',
-  },
-  {
-    nume: 'Mihu',
-    logoUrl: logo7,
-    websiteUrl: 'https://www.acoperisuri-mihu.ro/',
-  },
-  {
-    nume: 'Fiterman Pharma',
-    logoUrl: logo8,
-    websiteUrl: 'https://www.fitermanpharma.ro/',
-  },
-  
-];
-*/

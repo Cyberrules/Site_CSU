@@ -3,7 +3,6 @@ import ImagineEchipa from '../assets/imgEchipa.png';
 import './Home.scss';
 import CardNoutati from '../cardNoutati/CardNoutati';
 import SliderEchipa from '../echipaSlider/SliderEchipa';
-
 import ClasamentHome from '../clasamentHome/ClasamentHome';
 import Sponsori from './sponsori/Sponsori';
 
@@ -50,62 +49,33 @@ const Home = () => {
   ];
 
 
-  const sliderClick = (slider)=>{
 
-  }
-/*
-  const slides = [
-    {image:"https://picsum.photos/200/300",title:"This is a title",description:"This is a description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/600/500",title:"This is a second title",description:"This is a second description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/700/600",title:"This is a third title",description:"This is a third description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/500/400",title:"This is a fourth title",description:"This is a fourth description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/200/300",title:"This is a fifth title",description:"This is a fifth description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/800/700",title:"This is a sixth title",description:"This is a sixth description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/300/400",title:"This is a seventh title",description:"This is a seventh description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/200/300",title:"This is a title",description:"This is a description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/600/500",title:"This is a second title",description:"This is a second description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/700/600",title:"This is a third title",description:"This is a third description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/500/400",title:"This is a fourth title",description:"This is a fourth description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/200/300",title:"This is a fifth title",description:"This is a fifth description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/800/700",title:"This is a sixth title",description:"This is a sixth description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/300/400",title:"This is a seventh title",description:"This is a seventh description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/200/300",title:"This is a title",description:"This is a description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/600/500",title:"This is a second title",description:"This is a second description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/700/600",title:"This is a third title",description:"This is a third description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/500/400",title:"This is a fourth title",description:"This is a fourth description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/200/300",title:"This is a fifth title",description:"This is a fifth description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/800/700",title:"This is a sixth title",description:"This is a sixth description",clickEvent:sliderClick},
-    {image:"https://picsum.photos/300/400",title:"This is a seventh title",description:"This is a seventh description",clickEvent:sliderClick},
-  ]
-  
-
-
-  const [slides, setSlides] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:5050/api/jucator')
-      .then(response => response.json())
-      .then(data => {
-        setSlides(data);
-      })
-      .catch(error => {
-        console.error('A apărut o eroare:', error);
-      });
-  }, []);
-*/
-
-const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:5050/api/jucator') 
       .then(response => response.json())
       .then(data => {
-        setPlayers(data); 
+        const filteredPlayers = data.filter(player => player.echipaID === 1);
+        const sortedPlayers = filteredPlayers.sort((a, b) => {
+          if (a.imagine && !b.imagine) {
+            return -1; 
+          } else if (!a.imagine && b.imagine) {
+            return 1; 
+          } else {
+            return 0; 
+          }
+        });
+  
+        setPlayers(sortedPlayers); 
       })
       .catch(error => {
         console.error('A apărut o eroare:', error);
       });
   }, []);
+  
+  
+  
 
 
 
