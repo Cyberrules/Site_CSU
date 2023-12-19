@@ -2,11 +2,11 @@ package Cyberrules.demo.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.sql.Timestamp;
-import java.util.Date;
+
 
 public class Meci {
     private Long meciId;
-    private Timestamp datameci;
+    private String datameci;
     private Long echipaid;
     private Long adversarid;
     private String locatie;
@@ -20,7 +20,7 @@ public class Meci {
     public Meci(){
 
     }
-    public Meci(Long meciId, Timestamp datameci, Long echipaid, Long adversarid, String locatie, Integer scorechipa, Integer scoradversar, String editia, String tipcampionat, String linkmeci, boolean isDeleted,boolean isFinished) {
+    public Meci(Long meciId, String datameci, Long echipaid, Long adversarid, String locatie, Integer scorechipa, Integer scoradversar, String editia, String tipcampionat, String linkmeci, boolean isDeleted,boolean isFinished) {
         this.meciId = meciId;
         this.datameci = datameci;
         this.echipaid = echipaid;
@@ -43,11 +43,11 @@ public class Meci {
         this.meciId = meciId;
     }
     @JsonProperty("datameci")
-    public Timestamp getDatameci() {
+    public String getDatameci() {
         return  datameci;
     }
 
-    public void setDatameci(Timestamp datameci) {
+    public void setDatameci(String datameci) {
         this.datameci = datameci;
     }
 
