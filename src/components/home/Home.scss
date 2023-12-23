@@ -73,14 +73,43 @@ a:hover {
   
 .jucatori {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-align: center;
     background-color: #3F3F95;
     color: #fff;
-    justify-content: center;
+    display: flex;
+  
     margin-left: 50px;
     margin-right: 50px;
     align-items: center;
     height: 70px;
+
+    h4{
+        margin-left: 50%;
+    }
+
+    .dropdownEditie {
+        margin-right: 1%;
+        select {
+            padding: 4px;
+            font-size: 15px;
+            border: 1px solid #000000;
+            border-radius: 15px;
+            outline: none;
+            cursor: pointer;
+            text-align: center;
+            
+        
+            &:hover {
+              border-color: #000000;
+            }
+        
+            &:focus {
+              border-color: #000000;
+            }
+          }
+        }
 }
 
 .titluSponsori {

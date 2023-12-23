@@ -3,6 +3,13 @@ import '../../clasamentHome/ClasamentHome.scss';
 import logo from '../../assets/img1.png';
 
 const UrmatorulMeci = () => {
+
+  const textUrmatorulMeci ={
+    titlu: 'Următorul meci',
+    subtitlu: 'Handbal masculin',
+    descriereLink: 'Vezi LIVE'
+  }
+  
   const [formattedDate, setFormattedDate] = useState('');
   const [formattedTime, setFormattedTime] = useState('');
   const [homeTeamName, setHomeTeamName] = useState('');
@@ -62,11 +69,12 @@ const UrmatorulMeci = () => {
     fetchMeciViitor();
   }, []);
 
+
   return (
     <div className="meci-urmator">
       <div className="title-container">
-        <p className="ultimul-meci">Următorul meci</p>
-        <p className="liga-text">Handbal masculin</p>
+        <p className="ultimul-meci">{textUrmatorulMeci.titlu}</p>
+        <p className="liga-text">{textUrmatorulMeci.subtitlu}</p>
       </div>
       <div className="data-container">
         <div className="header-data">
@@ -86,7 +94,7 @@ const UrmatorulMeci = () => {
         </div>
         <div className="bottom-data">
           <p className="meci-live">
-            Vezi LIVE <span className="arrow">&#x2192;</span>
+            {textUrmatorulMeci.descriereLink} <span className="arrow">&#x2192;</span>
           </p>
         </div>
       </div>

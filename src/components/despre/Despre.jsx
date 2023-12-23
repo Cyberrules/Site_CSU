@@ -7,6 +7,15 @@ import TimeLine from '../despre/timeline/TimeLine'
 
 const Despre = () => {
 
+  const textDespre ={
+    titluDespre: 'Despre CSU Suceava',
+    titluViziune: 'Viziune',
+    titluIstoric: 'Istoric',
+    titluTrofee: 'Trofee',
+    descriereViziune: 'Una dintre prioritățile clubului nostru rămâne depistarea și formarea copiilor cu cele mai bune calități pentru practicarea handbalului de mare performanță. Scopul principal al CLUBULUI SPORTIV UNIVERSITATEA SUCEAVA este de a organiza şi desfăşura activităţi sportive de performanţă şi de masă cu studenţii, cadrele didactice şi alte categorii de personal din Universitatea “Ştefan cel Mare” Suceava, precum şi cu alte categorii de cetăţeni care respectă statutul clubului.',
+    descriereIstoric: 'CSU Suceava se remarcă în fiecare an prin performanțe deosebite la toate categoriile de vârstă. În sezonul 2022-2023 ne-am reconfirmat statutul de cel mai puternic centru de copii și juniori din handbalul masculin românesc, prin câștigarea campionatelor naționale de juniori I și juniori II. De altfel, handbaliștii suceveni sunt majoritari în loturile naționale de tineret și juniori ale României. ',
+  }
+
   /*
   const [trofee, setTrofee] = useState([]);
   useEffect(() => {
@@ -35,34 +44,28 @@ const Despre = () => {
     },
   ];
 
-
   return (
     <div className="despre">
       <div className="titlu">
-        <h3>Despre CSU Suceava</h3>
+        <h3>{textDespre.titluDespre}</h3>
         <div className='image-container'>
           <img className='image' src={image1} alt='Imagine1' />
           <img className='image' src={image2} alt='Imagine2' />
           <img className='image' src={image3} alt='Imagine3' />
-        </div>
-        
+        </div>   
       </div>
-
+      
       <div className="viziune">
-        <h3>Viziune</h3>
-        <h5>
-          Una dintre prioritățile clubului nostru rămâne depistarea și formarea copiilor cu cele mai bune calități pentru practicarea handbalului de mare performanță.
-          Scopul principal al CLUBULUI SPORTIV UNIVERSITATEA SUCEAVA este de a organiza şi desfăşura activităţi sportive de performanţă
-          şi de masă cu studenţii, cadrele didactice şi alte categorii de personal din Universitatea
-          “Ştefan cel Mare” Suceava, precum şi cu alte categorii de cetăţeni care respectă statutul clubului.</h5>
+        <h3>{textDespre.titluViziune}</h3>
+        <h5>{textDespre.descriereViziune}</h5>
       </div>
       <div className="istoric">
-        <h2>Istoric</h2>
+        <h2>{textDespre.titluIstoric}</h2>
       </div>
-      <div className='viziuneText'>CSU Suceava se remarcă în fiecare an prin performanțe deosebite la toate categoriile de vârstă. În sezonul 2022-2023 ne-am reconfirmat statutul de cel mai puternic centru de copii și juniori din handbalul masculin românesc, prin câștigarea campionatelor naționale de juniori I și juniori II. De altfel, handbaliștii suceveni sunt majoritari în loturile naționale de tineret și juniori ale României. </div>
+      <div className='viziuneText'>{textDespre.descriereIstoric}</div>
       <TimeLine />
       <div className="trofee">
-        <h3>Trofee</h3>
+        <h3>{textDespre.titluTrofee}</h3>
       </div>
       <div className="palmares">
         {trofee.map((trofeu) => (

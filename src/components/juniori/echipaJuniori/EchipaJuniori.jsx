@@ -5,6 +5,10 @@ import './EchipaJuniori.scss';
 import arrow from '../../assets/juniori/arrow.png';
 
 const EchipaJuniori = ({ numeEchipa }) => {
+
+
+  const textMesaj = 'Niciun jucător';
+
   const [hideDiv, setHideDiv] = useState(false);
   const [jucatori, setJucatori] = useState([]);
 
@@ -80,7 +84,7 @@ const EchipaJuniori = ({ numeEchipa }) => {
                     ))}
                   </ul>
                 ) : (
-                  <p className='lista-jucatori'>Niciun jucător</p>
+                  <p className='lista-jucatori'>{textMesaj}</p>
                 )}
               </div>
             ))}
@@ -102,6 +106,9 @@ import './EchipaJuniori.scss';
 import arrow from '../../assets/juniori/arrow.png';
 
 const EchipaJuniori = ({ numeEchipa }) => {
+
+  const textMesaj = 'Niciun jucător';
+  
   const [hideDiv, setHideDiv] = useState(false);
   const [jucatori, setJucatori] = useState([]);
 
@@ -171,7 +178,7 @@ const EchipaJuniori = ({ numeEchipa }) => {
                     ))}
                   </ul>
                 ) : (
-                  <p>Niciun jucător</p>
+                  <p className='lista-jucatori'>{textMesaj}</p>
                 )}
               </div>
             ))}

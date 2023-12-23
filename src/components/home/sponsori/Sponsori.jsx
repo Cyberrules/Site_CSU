@@ -6,6 +6,8 @@ const Sponsori = () => {
   const [selectedEdition, setSelectedEdition] = useState('');
   const [editions, setEditions] = useState([]);
 
+  const editieText= 'Editia:';
+
   useEffect(() => {
     fetch('http://localhost:5050/api/sponsor')
       .then((response) => {
@@ -54,10 +56,9 @@ const Sponsori = () => {
     <div>
       <div className="dropdown-container">
         <select value={selectedEdition} onChange={(e) => handleEditionChange(e.target.value)}>
-          <option value="">Selectează o ediție</option>
             {editions.map((edition, index) => (
               <option key={index} value={edition}>
-                Ediția: {edition}
+                {editieText} {edition}
               </option>
             ))}
         </select>

@@ -3,11 +3,21 @@ import '../../clasamentHome/ClasamentHome.scss';
 import logo from '../../assets/img1.png';
 
 const UltimulMeci = () => {
+
+  const textUltimulMeci ={
+    titlu: 'Ultimul meci',
+    subtitlu: 'Handbal masculin',
+    descriereLink: 'Galerie meci'
+  }
+  
   const [meciData, setMeciData] = useState(null);
   const [formattedDate, setFormattedDate] = useState('');
   const [formattedTime, setFormattedTime] = useState('');
   const [homeTeamName, setHomeTeamName] = useState('');
   const [awayTeamName, setAwayTeamName] = useState('');
+
+
+  
 
   useEffect(() => {
     async function fetchMeciData() {
@@ -61,8 +71,8 @@ const UltimulMeci = () => {
   return (
     <div className="meci-trecut">
       <div className="title-container">
-        <p className="ultimul-meci">Ultimul meci</p>
-        <p className="liga-text">Handbal masculin</p>
+        <p className="ultimul-meci">{textUltimulMeci.titlu}</p>
+        <p className="liga-text">{textUltimulMeci.subtitlu}</p>
       </div>
       <div className="data-container">
         <div className="header-data">
@@ -81,7 +91,7 @@ const UltimulMeci = () => {
         </div>
         <div className="bottom-data">
           <p className="galerie-meci">
-            Galerie meci <span className="arrow">&#x2192;</span>
+          {textUltimulMeci.descriereLink} <span className="arrow">&#x2192;</span>
           </p>
         </div>
       </div>

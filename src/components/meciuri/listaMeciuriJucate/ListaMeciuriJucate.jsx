@@ -4,6 +4,8 @@ import echipa1 from '../../assets/logoSponsori/logoUSV.png';
 import echipa2 from '../../assets/logoSponsori/iuliusMallSuceava.png';
 
 const ListaMeciuriJucate = () => {
+  const textShowMore= 'Show More';
+
   const [meciuri, setMeciuri] = useState([]);
   const [echipeDetails, setEchipeDetails] = useState({});
   const [showAll, setShowAll] = useState(false);
@@ -19,7 +21,7 @@ const ListaMeciuriJucate = () => {
         }));
       })
       .catch((error) => {
-        console.error(`Error fetching team details for team ID ${teamId}:`, error);
+        console.error(`Error extragere date despre echipa in functie de ID ${teamId}:`, error);
       });
   };
 
@@ -34,7 +36,7 @@ const ListaMeciuriJucate = () => {
         });
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        console.error('Error extragere date:', error);
       });
   }, []);
 
@@ -51,7 +53,7 @@ const ListaMeciuriJucate = () => {
   };
 
   const handleShowAll = () => {
-    setShowAll(true); // Afiseaza toate meciurile
+    setShowAll(true); 
   };
 
   return (
@@ -65,15 +67,15 @@ const ListaMeciuriJucate = () => {
             data={formatDate(meci.datameci)}
             logoEchipa1={meci.echipaid === 1 ? echipa1 : echipa2}
             numeEchipa1={echipeDetails[`${meci.echipaid}_nume`]}
-            scorEchipa1={meci.scorechipa}
+            scorEchipa1={meci.scorechipa} 
             logoEchipa2={meci.adversarid === 1 ? echipa1 : echipa2}
             numeEchipa2={echipeDetails[`${meci.adversarid}_nume`]}
-            scorEchipa2={meci.scoradversar}
+            scorEchipa2={meci.scoradversar} 
           />
         ))}
       </div>
       {!showAll && meciuri.length < meciuri.length && (
-        <button onClick={handleShowAll}>Show More</button>
+        <button onClick={handleShowAll}>{textShowMore}</button>
       )}
     </div>
   );

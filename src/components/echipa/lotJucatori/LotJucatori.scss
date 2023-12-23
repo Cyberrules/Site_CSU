@@ -18,10 +18,10 @@
   .containerButton {
     margin-bottom: 3%;
     margin-top: 3%;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 14%;
+    margin-right: 14%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Afișează butoanele în grid flexibil */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     justify-items: center;
     align-items: center;
     gap: 10px;
@@ -35,16 +35,23 @@
     border-radius: 4px;
     letter-spacing: 2px;
     font-size: 16px;
-    width: 100%; /* Butonul ocupă întreaga lățime a celulei grid-ului */
+    width: 100%;
   }
   
   
   .jucatoriContainer{
     display: flex;
     flex-direction: column;
+
+
+    .textInfo{
+      font-size: 20px;
+      text-align: center;
+      margin-bottom:1%;
+      padding-bottom: 4%;
+    }
   }
   .playercontainer{
-    
     background-color: #3F3F95;
     margin-left:1.5%;
     margin-bottom: 5%;
@@ -58,14 +65,11 @@
     overflow-x: hidden;
   }
   
-  
-
-
   .playercards {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 2%;
-    margin-top: 2%;
+    margin-left: 8%;
+    margin-top: 3%;
     gap: 10px;
     justify-content: space-between;
   }

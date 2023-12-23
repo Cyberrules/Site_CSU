@@ -5,33 +5,18 @@ import IntroJuniori from "./introJuniori/IntroJuniori";
 import  ListaTrofee from "../juniori/listaTrofee/ListaTrofee";
 import  ListaEchipe from "../juniori/listaEchipe/ListaEchipe";
 
-
-/*
-
-<div className="juniori">
-        <div className="header">JUNIORI</div>
-        {teamsWithPlayers?.map((team, index) => (
-          <EchipaJuniori
-            key={index}
-            teamName={team.categorie}
-            players={team.players}
-          />
-        ))}
-      </div>
-
-*/
-
-
 const Juniori = () => {
+
+  const titluCadeti= 'CADEȚI';
+
   return (
     <div className="container-juniori">
      
       <IntroJuniori/>
       
       <div className="cadeti">
-        <div className="headerCadeti">CADEȚI</div>
+        <div className="headerCadeti">{titluCadeti}</div>
       </div>
-
       <ListaEchipe />
       <ListaTrofee/>
  

@@ -1,15 +1,17 @@
 import React from 'react'
 import './IntroJuniori.scss';
 
-
 import intro1 from "../../assets/juniori/intro/Image1.jpg";
 import intro2 from "../../assets/juniori/intro/Image2.jpg";
 import intro3 from "../../assets/juniori/intro/antrenor.jpg";
 
-
-
-
 const IntroJuniori = () => {
+
+  const textIntroJuniori ={
+    titlu: 'Handbal juvenil',
+    continut: 'Mauris sollicitudin tempus purus sit amet sollicitudin. Curabitur ac nulla libero. Proin pretium augue a arcu congue blandit. Maecenas ut risus eleifend nibh vestibulum ultricies. Duis vitae dui lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi facilisis mattis metus a fringilla. Mauris laoreet elementum scelerisque. Mauris sollicitudin tempus purus sit amet sollicitudin. Curabitur ac nulla libero. Proin pretium augue a arcu congue blandit. Maecenas ut risus eleifend nibh vestibulum ultricies. Duis vitae dui lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi facilisis mattis metus a fringilla. Mauris laoreet elementum scelerisque.'
+  }
+
   return (
     <div>
 
@@ -22,17 +24,13 @@ const IntroJuniori = () => {
         </div>
       </div>
 
-
         <div className="details-container">
         <div >
           <div className="titleIntro">
-            <h2>Handbal juvenil</h2>
+            <h2>{textIntroJuniori.titlu}</h2>
           </div>
           <div className="infoIntro">
-            <p>
-                Mauris sollicitudin tempus purus sit amet sollicitudin. Curabitur ac nulla libero. Proin pretium augue a arcu congue blandit. Maecenas ut risus eleifend nibh vestibulum ultricies. Duis vitae dui lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi facilisis mattis metus a fringilla. Mauris laoreet elementum scelerisque.
-                Mauris sollicitudin tempus purus sit amet sollicitudin. Curabitur ac nulla libero. Proin pretium augue a arcu congue blandit. Maecenas ut risus eleifend nibh vestibulum ultricies. Duis vitae dui lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi facilisis mattis metus a fringilla. Mauris laoreet elementum scelerisque.
-            </p>
+            <p>{textIntroJuniori.continut}</p>
           </div>
         </div>
 
@@ -41,12 +39,6 @@ const IntroJuniori = () => {
         </div>
       </div>
 
-
-
-
-
-        
-      
     </div>
   )
 }

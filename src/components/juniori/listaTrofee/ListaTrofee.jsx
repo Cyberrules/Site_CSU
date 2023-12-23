@@ -2,10 +2,11 @@
 import React from 'react';
 import './ListaTrofee.scss';
 import Trofee from '../trofee/Trofee'; 
-
 import trofeu1 from "../../assets/juniori/trofee/trofeu1.jpg";
 
 const ListaTrofee = () => {
+
+  const titlu= 'PALMARES';
 
   const trofeeData = [
     {
@@ -40,7 +41,7 @@ const ListaTrofee = () => {
 
   return (
     <div className="palmaresJuniori">
-    <div className="titlu-palmaresJuniori">PALMARES</div>
+    <div className="titlu-palmaresJuniori">{titlu}</div>
         <div className="container-trofee">
             {trofeeData.map(trofeu => (
                 <Trofee

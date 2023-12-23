@@ -2,31 +2,50 @@ import React, { useState, useEffect } from 'react';
 import "./Clasament.scss"
 import "./script"
 
-
 import ligaLogo from "../../assets/logoLiga.png"
+
 const TabelClasament = ({ data }) => {
+  const textTabelClasament ={
+    pozitia: 'Pozitia',
+    echipa: 'Echipa',
+    meciuriJucate: 'Juc',
+    victorii: 'V',
+    egaluri: 'E',
+    punctePrimite: 'P',
+    goluriMarcate: 'GM',
+    goluriPrimite: 'GP',
+    diferentaGoluri: 'GDif',
+    victoriiAcasa: 'VA',
+    egaluriAcasa: 'EA',
+    victoriiDeplasare: 'VD',
+    egaluriDeplasare: 'ED',
+    puncteAnotare: 'PtsA',
+    punctePrimite: 'PtsD',
+    puncte: 'Puncte'
+  }
+
   return (
     <div className='container-clasament'>
       <div>
     <table className='tableTeam'>
       <thead>
         <tr className='trTeam'>
-          <th className='thTeam'>Pozitia</th>
-          <th className='thTeam'>Echipa</th>
-          <th className='thTeam'>Juc</th>
-          <th className='thTeam'>V</th>
-          <th className='thTeam'>E</th>
-          <th className='thTeam'>P</th>
-          <th className='thTeam'>GM</th>
-          <th className='thTeam'>GP</th>
-          <th className='thTeam'>GDif</th>
-          <th className='thTeam'>VA</th>
-          <th className='thTeam'>EA</th>
-          <th className='thTeam'>VD</th>
-          <th className='thTeam'>ED</th>
-          <th className='thTeam'>PtsA</th>
-          <th className='thTeam'>PtsD</th>
-          <th className='thTeam'>Puncte</th>
+          <th className='thTeam'>{textTabelClasament.pozitia}</th>
+          <th className='thTeam'>{textTabelClasament.echipa}</th>
+          <th className='thTeam'>{textTabelClasament.meciuriJucate}</th>
+          <th className='thTeam'>{textTabelClasament.victorii}</th>
+          <th className='thTeam'>{textTabelClasament.egaluri}</th>
+          <th className='thTeam'>{textTabelClasament.punctePrimite}</th>
+          <th className='thTeam'>{textTabelClasament.goluriMarcate}</th>
+          <th className='thTeam'>{textTabelClasament.goluriPrimite}</th>
+          <th className='thTeam'>{textTabelClasament.diferentaGoluri}</th>
+          <th className='thTeam'>{textTabelClasament.victoriiAcasa}</th>
+          <th className='thTeam'>{textTabelClasament.egaluriAcasa}</th>
+          <th className='thTeam'>{textTabelClasament.victoriiDeplasare}</th>
+          <th className='thTeam'>{textTabelClasament.egaluriDeplasare}</th>
+          <th className='thTeam'>{textTabelClasament.puncteAnotare}</th>
+          <th className='thTeam'>{textTabelClasament.punctePrimite}</th>
+          <th className='thTeam'>{textTabelClasament.puncte}</th>
         </tr>
       </thead>
       <tbody>
@@ -57,84 +76,16 @@ const TabelClasament = ({ data }) => {
   );
 };
 
-/*
-const dateExemplu = [
-  {
-    Pos: 1,
-    Echipa: 'Echipa 1',
-    Juc: 10,
-    V: 7,
-    E: 2,
-    P: 1,
-    GM: 20,
-    GP: 10,
-    GDif: 10,
-    VA: 15,
-    EA: 5,
-    VD: 5,
-    ED: 2,
-    PtsA: 22,
-    PtsD: 12,
-    Pts: 34,
-  },
-  {
-    Pos: 2,
-    Echipa: 'Echipa 2',
-    Juc: 10,
-    V: 7,
-    E: 2,
-    P: 1,
-    GM: 20,
-    GP: 10,
-    GDif: 10,
-    VA: 15,
-    EA: 5,
-    VD: 5,
-    ED: 2,
-    PtsA: 22,
-    PtsD: 12,
-    Pts: 34,
-  },
-  {
-    Pos: 3,
-    Echipa: 'Echipa 3',
-    Juc: 10,
-    V: 7,
-    E: 2,
-    P: 1,
-    GM: 20,
-    GP: 10,
-    GDif: 10,
-    VA: 15,
-    EA: 5,
-    VD: 5,
-    ED: 2,
-    PtsA: 22,
-    PtsD: 12,
-    Pts: 34,
-  },
-  {
-    Pos: 4,
-    Echipa: 'Echipa 4',
-    Juc: 10,
-    V: 7,
-    E: 2,
-    P: 1,
-    GM: 20,
-    GP: 10,
-    GDif: 10,
-    VA: 15,
-    EA: 5,
-    VD: 5,
-    ED: 2,
-    PtsA: 22,
-    PtsD: 12,
-    Pts: 34,
-  },
-];
-
-*/
 const Clasament = ({ data }) => {
+
+
+  const textClasament ={
+    titlu: 'Clasament',
+    subtitlu: 'Handbal masculin',
+    anul: '2023/2024',
+    liga: 'Liga națională de handbal masculin',
+    sezonul: 'Sezonul 2023 - 2024',
+  }
 
   const [dateExemplu, setPlayersData] = useState([]);
   useEffect(() => {
@@ -152,14 +103,11 @@ const Clasament = ({ data }) => {
   return (
     <div className='meciuri'>
       <div className='textClasament'>
-          <h1 className='textHClasament'>Clasament</h1>
-          <h5  className='textPClasament'>Handbal masculin</h5>
-          <h6  className='textPClasament'>2023/2024</h6>
+          <h1 className='textHClasament'>{textClasament.titlu}</h1>
+          <h5  className='textPClasament'>{textClasament.subtitlu}</h5>
+          <h6  className='textPClasament'>{textClasament.anul}</h6>
       </div>
-
       <div className='containerClasament'>
-
-
 
       <div className='containerLiga'>
         <div className='columnLiga'>
@@ -168,12 +116,11 @@ const Clasament = ({ data }) => {
             </div>
         </div>
         <div className='columnLiga2'>
-            <h5>Liga națională de handbal masculin</h5>
-            <h6>Sezonul 2023 - 2024</h6>
+            <h5>{textClasament.liga}</h5>
+            <h6>{textClasament.sezonul}</h6>
         </div>
       </div>
-
-            <TabelClasament data={dateExemplu} />
+          <TabelClasament data={dateExemplu} />
       </div>
     </div>
   );

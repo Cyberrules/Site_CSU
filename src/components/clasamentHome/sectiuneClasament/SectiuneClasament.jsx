@@ -41,6 +41,11 @@ const TabelClasament = ({ data }) => {
 
 const SectiuneClasament = ({data}) => {
 
+  const textSectiuneClasament ={
+    clasament: 'Clasament',
+    subtitlu: 'Handbal masculin'
+  }
+
     const [dateExemplu, setPlayersData] = useState([]);
 
     useEffect(() => {
@@ -64,8 +69,8 @@ const SectiuneClasament = ({data}) => {
     return (
         <div className="clasament">
             <div className="title-container">
-                <p className="ultimul-meci">Clasament</p>
-                <p className="liga-text">Handbal masculin</p>
+                <p className="ultimul-meci">{textSectiuneClasament.clasament}</p>
+                <p className="liga-text">{textSectiuneClasament.subtitlu}</p>
             </div>
         <div className="clasament-echipe">
           <TabelClasament data={dateExemplu} />

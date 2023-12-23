@@ -3,6 +3,7 @@ import './CardNoutati.scss';
 
 const CardNoutati = ({ stire }) => {
   const { imagine, titlu, continut } = stire;
+  const textLink= 'Afla mai multe →';
 
   return (
     <div className="m-4">
@@ -14,7 +15,7 @@ const CardNoutati = ({ stire }) => {
           <h5 className="card-title">{titlu}</h5>
           <p className="card-text">{continut}</p>
           <a href="#" className="btn button_news ">
-            Afla mai multe →
+              {textLink}
           </a>
         </div>
       </div>

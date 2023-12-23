@@ -1,7 +1,6 @@
 import React from 'react'
 import './Trofee.scss';
 
-
 const Trofee = ({imagine, denumire, pozitie, an }) => {
   return (
     <div className="card-trofeu">

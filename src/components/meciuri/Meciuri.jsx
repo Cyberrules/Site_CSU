@@ -6,30 +6,30 @@ import ListaMeciuriViitoare from './listaMeciuriViitoare/ListaMeciuriViitoare'
 import UrmatorulMeci from '../meciuri/urmatorulMeci/UrmatorulMeci'
 
 const Meciuri = () => {
+
+  const textMeciuri ={
+    textLink: 'CLASAMENT➜',
+    titluUltimeleRezultate: 'ULTIMELE REZULTATE',
+    titluUrmatoareleRezultate: 'URMĂTOARELE MECIURI'
+  }
+  
   return (
     <div className='componentaMeciuri'>
-
     <div className='catreClasament'>
-      <a href="#clasament" className='catreClasament'>CLASAMENT➜</a>
+      <a href="#clasament" className='catreClasament'>{textMeciuri.textLink}</a>
     </div>
-
       <UrmatorulMeci/>
-      
-
       <div className='containerUltimeleRezultate'>
-        <p className='ultimeleRezultate'>ULTIMELE REZULTATE</p>
+        <p className='ultimeleRezultate'>{textMeciuri.titluUltimeleRezultate}</p>
         <ListaMeciuriJucate />
       </div>
-
       <div className='contMeciuriViitoare'>
-        <p className='meciuriViitoare'>URMĂTOARELE MECIURI</p>
+        <p className='meciuriViitoare'>{textMeciuri.titluUrmatoareleRezultate}</p>
         <ListaMeciuriViitoare />
       </div>
-
       <div id='clasament'>
         <Clasament />
-      </div>
-        
+      </div> 
     </div>
   )
 }

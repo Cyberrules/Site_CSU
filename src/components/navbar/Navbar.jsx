@@ -3,13 +3,18 @@ import './Navbar.scss'
 import Logo from "../assets/logo.png";
 import { FaSearch,FaUser } from 'react-icons/fa';
 
-
-
-
-
-
-
 function Navbar() {
+
+  const textNavbar= {
+    paginaAcasa: 'ACASA',
+    paginaDespre: 'DESPRE',
+    paginaMeciuri: 'MECIURI',
+    paginaNoutati: 'NOUTĂȚI',
+    paginaEchipa: 'ECHIPA',
+    paginaJuniori: 'JUNIORI'
+
+  }
+
   const [toggleMenu, setToggleMenu] = useState(false)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
@@ -31,7 +36,6 @@ function Navbar() {
 
   return (
     <nav>
-      
       <div>
         <button onClick={toggleNav} className="btn meniu fas fa-bars " style={{ float: "right" }}></button>
       </div>
@@ -39,36 +43,29 @@ function Navbar() {
       {(toggleMenu || screenWidth > 500) && (
       <ul className="list">
         <li><a href="/home" className="logo"><img className="imagine" src={Logo} alt="logo" /></a></li>
-        <li><a href="/home">ACASA</a></li>
-        <li><a href="/despre">DESPRE</a></li>
-        <li><a href="/meciuri">MECIURI</a></li>
-        <li><a href="/noutati">NOUTĂȚI</a></li>
-        <li><a href="/echipa">ECHIPA</a></li>
-        <li><a href="/juniori">JUNIORI</a></li>
-
-
+        <li><a href="/home">{textNavbar.paginaAcasa}</a></li>
+        <li><a href="/despre">{textNavbar.paginaDespre}</a></li>
+        <li><a href="/meciuri">{textNavbar.paginaMeciuri}</a></li>
+        <li><a href="/noutati">{textNavbar.paginaNoutati}</a></li>
+        <li><a href="/echipa">{textNavbar.paginaEchipa}</a></li>
+        <li><a href="/juniori">{textNavbar.paginaJuniori}</a></li>
 
         <div className="searchBox">
-  <input type="text" className="searchInput" id="searchInput" name="searchInput" placeholder="Search" />
-  <button className="searchButton">
-    <FaSearch />
-  </button>
-</div>
+          <input type="text" className="searchInput" id="searchInput" name="searchInput" placeholder="Search" />
+          <button className="searchButton">
+            <FaSearch />
+          </button>
+        </div>
 
-<div className="login">
-  <button id="loginButton" name="loginButton">
-    <FaUser />
-  </button>
-</div>
-
-   
-     
-
+        <div className="login">
+          <button id="loginButton" name="loginButton">
+            <FaUser />
+          </button>
+        </div>
 
       </ul>
       )}
    
-      
     </nav>
   )
 }

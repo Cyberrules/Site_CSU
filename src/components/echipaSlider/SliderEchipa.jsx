@@ -3,6 +3,12 @@ import './SliderEchipa.scss';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 const SliderEchipa = (props) => {
+
+  const textSlider ={
+    nationalitate: 'Naţionalitate:',
+    pozitie: 'Poziţie:'
+  }
+
   const slideLeft = () => {
     var slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft - 325;
@@ -26,8 +32,8 @@ const SliderEchipa = (props) => {
                 }}
             ></div>
             <p className="slider-card-title">{`${player.nume} ${player.prenume}`}</p>
-            <p className="slider-card-nationality">Naţionalitate: {player.nationalitate}</p>
-            <p className="slider-card-position">Poziţie: {player.pozitie}</p>
+            <p className="slider-card-nationality">{textSlider.nationalitate} {player.nationalitate}</p>
+            <p className="slider-card-position">{textSlider.pozitie} {player.pozitie}</p>
             <p className="slider-card-description">{player.descriere}</p>
           </div>
         ))}
