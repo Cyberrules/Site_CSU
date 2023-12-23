@@ -37,13 +37,12 @@ public class EchipaService {
     {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement(
-                     "INSERT INTO Echipa(echipaid, categorie, nume, imagine,isdeleted,editia)VALUES (?, ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS)) {
-            ps.setLong(1, echipa.getEchipaId());
-            ps.setString(2, echipa.getCategorie());
-            ps.setString(3, echipa.getNume());
-            ps.setBytes(4, echipa.getImagine());
-            ps.setBoolean(5, echipa.isDeleted());
-            ps.setString(6,echipa.getEditia());
+                     "INSERT INTO Echipa(categorie, nume, imagine,isdeleted,editia)VALUES (?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, echipa.getCategorie());
+            ps.setString(2, echipa.getNume());
+            ps.setBytes(3, echipa.getImagine());
+            ps.setBoolean(4, echipa.isDeleted());
+            ps.setString(5,echipa.getEditia());
 
             int affectedRows = ps.executeUpdate();
 
