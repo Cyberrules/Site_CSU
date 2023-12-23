@@ -26,10 +26,10 @@ public class JucatorController {
     {
         return jucatorService.getJucator(jucatorID);
     }
-    @GetMapping("/echipa/{echipaID}")
-    public List<Jucator> getJucatoriEchipa(@PathVariable Long echipaID)
+    @GetMapping("/echipa/{numeEchipa}/editia/{editia}/categoria/{categoria}")
+    public List<Jucator> getJucatoriEchipaEditie(@PathVariable String numeEchipa,@PathVariable String editia,@PathVariable String categoria)
     {
-        return jucatorService.getJucatoriEchipa(echipaID);
+        return jucatorService.getJucatoriEchipaEditie(numeEchipa,editia,categoria);
     }
     @GetMapping("/nume/{numeJucator}")
     public List<Jucator> getJucatoriNume(@PathVariable String numeJucator)

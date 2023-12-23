@@ -60,11 +60,13 @@ public class JucatorService {
         }
         return null;
     }
-    public List<Jucator> getJucatoriEchipa(Long echipaID) {
+    public List<Jucator> getJucatoriEchipaEditie(String numeEchipa,String editia, String categoria) {
         List<Jucator> jucatori = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Jucatori WHERE EchipaID = ?")){
-            ps.setLong(1,echipaID);
+             PreparedStatement ps = conn.prepareStatement("SELECT j.* FROM Jucatori j, Echipa e WHERE j.echipaid=e.echipaid AND e.nume = ? AND e.editia = ? AND e.categorie = ?")){
+            ps.setString(1,numeEchipa);
+            ps.setString(2,editia);
+            ps.setString(3,categoria);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 Jucator jucator = buildJucatorFromResultSet(rs);

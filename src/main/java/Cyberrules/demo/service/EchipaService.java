@@ -3,7 +3,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import Cyberrules.demo.model.Echipa;
-import Cyberrules.demo.model.Meci;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,7 +22,8 @@ public class EchipaService {
                         rs.getString("categorie"),
                         rs.getString("nume"),
                         rs.getBytes("imagine"),
-                        rs.getBoolean("isDeleted")
+                        rs.getBoolean("isDeleted"),
+                        rs.getString("editia")
                 );
 
                 echipe.add(echipa);
@@ -37,12 +37,13 @@ public class EchipaService {
     {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement(
-                     "INSERT INTO Echipa(echipaid, categorie, nume, imagine,isdeleted)VALUES (?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS)) {
+                     "INSERT INTO Echipa(echipaid, categorie, nume, imagine,isdeleted,editia)VALUES (?, ?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS)) {
             ps.setLong(1, echipa.getEchipaId());
             ps.setString(2, echipa.getCategorie());
             ps.setString(3, echipa.getNume());
             ps.setBytes(4, echipa.getImagine());
             ps.setBoolean(5, echipa.isDeleted());
+            ps.setString(6,echipa.getEditia());
 
             int affectedRows = ps.executeUpdate();
 
@@ -63,7 +64,6 @@ public class EchipaService {
              PreparedStatement ps = conn.prepareStatement("DELETE FROM Echipa WHERE echipaId = ?")) {
 
             ps.setLong(1, echipaID);
-
 
             int affectedRows = ps.executeUpdate();
 
@@ -89,7 +89,8 @@ public class EchipaService {
                         rs.getString("categorie"),
                         rs.getString("nume"),
                         rs.getBytes("imagine"),
-                        rs.getBoolean("isDeleted")
+                        rs.getBoolean("isDeleted"),
+                        rs.getString("editia")
                 );
                 return echipa;
             }
@@ -98,11 +99,13 @@ public class EchipaService {
         }
         return null;
     }
-    public List<Echipa> getEchipaNume(String nume) {
+    public List<Echipa> getEchipaNumeEditieCategorie(String nume, String editie, String categorie) {
         List<Echipa> echipe  = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Echipa WHERE nume = ?")) {
-            ps.setString(1, nume);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Echipa WHERE nume = ? AND editia = ? AND categorie = ?")) {
+            ps.setString(1,nume);
+            ps.setString(2,editie);
+            ps.setString(3,categorie);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Echipa echipa = new Echipa(
@@ -110,13 +113,14 @@ public class EchipaService {
                         rs.getString("categorie"),
                         rs.getString("nume"),
                         rs.getBytes("imagine"),
-                        rs.getBoolean("isDeleted")
+                        rs.getBoolean("isDeleted"),
+                        rs.getString("editia")
                 );
-
                 echipe.add(echipa);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            System.err.println("SQL Error: " + e.getMessage());
         }
         return echipe;
     }
@@ -132,9 +136,9 @@ public class EchipaService {
                         rs.getString("categorie"),
                         rs.getString("nume"),
                         rs.getBytes("imagine"),
-                        rs.getBoolean("isDeleted")
+                        rs.getBoolean("isDeleted"),
+                        rs.getString("editia")
                 );
-
                 echipe.add(echipa);
             }
         } catch (SQLException e) {
@@ -145,7 +149,7 @@ public class EchipaService {
     public String updateEchipa(Long echipaID, Echipa echipa) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
 
-            String updateQuery = "UPDATE echipa SET echipaid=?, categorie=?, nume=?, imagine=?,isdeleted=?\n" +
+            String updateQuery = "UPDATE echipa SET echipaid=?, categorie=?, nume=?, imagine=?,isdeleted=?, editia=?\n" +
                     "\t WHERE echipaid=?";
 
             try (PreparedStatement ps = conn.prepareStatement(updateQuery)) {
@@ -155,7 +159,8 @@ public class EchipaService {
                 ps.setString(3, echipa.getNume());
                 ps.setBytes(4, echipa.getImagine());
                 ps.setBoolean(5, echipa.isDeleted());
-                ps.setLong(6, echipa.getEchipaId());
+                ps.setString(6,echipa.getEditia());
+                ps.setLong(7, echipa.getEchipaId());
 
                 int affectedRows = ps.executeUpdate();
 

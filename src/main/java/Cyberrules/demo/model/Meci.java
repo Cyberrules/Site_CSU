@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 public class Meci {
     private Long meciId;
-    private String datameci;
+    private Timestamp datameci;
     private Long echipaid;
     private Long adversarid;
     private String locatie;
@@ -20,7 +20,7 @@ public class Meci {
     public Meci(){
 
     }
-    public Meci(Long meciId, String datameci, Long echipaid, Long adversarid, String locatie, Integer scorechipa, Integer scoradversar, String editia, String tipcampionat, String linkmeci, boolean isDeleted,boolean isFinished) {
+    public Meci(Long meciId, Timestamp datameci, Long echipaid, Long adversarid, String locatie, Integer scorechipa, Integer scoradversar, String editia, String tipcampionat, String linkmeci, boolean isDeleted,boolean isFinished) {
         this.meciId = meciId;
         this.datameci = datameci;
         this.echipaid = echipaid;
@@ -43,11 +43,11 @@ public class Meci {
         this.meciId = meciId;
     }
     @JsonProperty("datameci")
-    public String getDatameci() {
+    public Timestamp getDatameci() {
         return  datameci;
     }
 
-    public void setDatameci(String datameci) {
+    public void setDatameci(Timestamp datameci) {
         this.datameci = datameci;
     }
 

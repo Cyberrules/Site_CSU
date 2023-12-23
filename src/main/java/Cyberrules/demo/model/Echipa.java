@@ -9,16 +9,18 @@ public class Echipa {
     private String nume;
     private byte[] imagine;
     private boolean isDeleted;
+    private String editia;
 
     public Echipa() {
     }
 
-    public Echipa(Long echipaId, String categorie, String nume, byte[] imagine, boolean isDeleted) {
+    public Echipa(Long echipaId, String categorie, String nume, byte[] imagine, boolean isDeleted, String editia) {
         this.echipaId = echipaId;
         this.categorie = categorie;
         this.nume = nume;
         this.imagine = imagine;
         this.isDeleted = isDeleted;
+        this.editia = editia;
     }
 
     @JsonProperty("echipaId")
@@ -61,9 +63,14 @@ public class Echipa {
     public boolean isDeleted() {
         return isDeleted;
     }
-
-
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
+    }
+    @JsonProperty("editia")
+    public String getEditia() {
+        return editia;
+    }
+    public void setEditia(String editia) {
+        this.editia = editia;
     }
 }

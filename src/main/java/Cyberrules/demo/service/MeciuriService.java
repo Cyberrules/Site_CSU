@@ -1,7 +1,5 @@
 package Cyberrules.demo.service;
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import Cyberrules.demo.model.Meci;
@@ -21,7 +19,7 @@ public class MeciuriService {
             while (rs.next()) {
                 Meci meci = new Meci(
                         rs.getLong("meciid"),
-                        rs.getString("datameci"),
+                        rs.getTimestamp("datameci"),
                         rs.getLong("echipaid"),
                         rs.getLong("adversarid"),
                         rs.getString("locatie"),
@@ -47,10 +45,9 @@ public class MeciuriService {
              PreparedStatement ps = conn.prepareStatement(
                      "INSERT INTO Meciuri( datameci, echipaid, adversarid, locatie, scorechipa, scoradversar, editia, tipcampionat, linkmeci, isdeleted, isfinished) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                      Statement.RETURN_GENERATED_KEYS)) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            java.util.Date parsedDate = dateFormat.parse(meci.getDatameci());
-            Date sqlDate = new Date(parsedDate.getTime());
-            ps.setDate(1, sqlDate);
+            java.util.Date dataUtil = meci.getDatameci();
+            java.sql.Timestamp dataSql = new java.sql.Timestamp(dataUtil.getTime());
+            ps.setTimestamp(1, dataSql);
             ps.setLong(2, meci.getEchipaid());
             ps.setLong(3, meci.getAdversarid());
             ps.setString(4, meci.getLocatie());
@@ -73,8 +70,6 @@ public class MeciuriService {
 
         } catch (SQLException e) {
             return "Failed to add meci - " + e.getMessage();
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -106,7 +101,7 @@ public class MeciuriService {
             while (rs.next()) {
                 Meci meci = new Meci(
                 rs.getLong("meciid"),
-                        rs.getString("datameci"),
+                        rs.getTimestamp("datameci"),
                         rs.getLong("echipaid"),
                         rs.getLong("adversarid"),
                         rs.getString("locatie"),
@@ -134,7 +129,7 @@ public class MeciuriService {
             while (rs.next()) {
                 Meci meci = new Meci(
                         rs.getLong("meciid"),
-                        rs.getString("datameci"),
+                        rs.getTimestamp("datameci"),
                         rs.getLong("echipaid"),
                         rs.getLong("adversarid"),
                         rs.getString("locatie"),
@@ -162,7 +157,7 @@ public class MeciuriService {
             while (rs.next()) {
                 Meci meci = new Meci(
                         rs.getLong("meciid"),
-                        rs.getString("datameci"),
+                        rs.getTimestamp("datameci"),
                         rs.getLong("echipaid"),
                         rs.getLong("adversarid"),
                         rs.getString("locatie"),
@@ -187,11 +182,8 @@ public class MeciuriService {
             String updateQuery = "UPDATE meciuri SET datameci=?, echipaid=?, adversarid=?, locatie=?, scorechipa=?, scoradversar=?, editia=?, tipcampionat=?, linkmeci=?, isdeleted=?,isfinished=? WHERE meciid=?";
 
             try (PreparedStatement ps = conn.prepareStatement(updateQuery)) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                java.util.Date parsedDate = dateFormat.parse(meci.getDatameci());
-                Date sqlDate = new Date(parsedDate.getTime());
 
-                ps.setDate(1, sqlDate);
+                ps.setTimestamp(1, new java.sql.Timestamp(meci.getDatameci().getTime()));
                 ps.setLong(2, meci.getEchipaid());
                 ps.setLong(3, meci.getAdversarid());
                 ps.setString(4, meci.getLocatie());
@@ -211,8 +203,6 @@ public class MeciuriService {
                 } else {
                     return "Meci with ID " + meciID + " updated successfully";
                 }
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
             return "Failed to update meci - " + e.getMessage();
@@ -226,7 +216,7 @@ public class MeciuriService {
             while (rs.next()) {
                 Meci meci = new Meci(
                         rs.getLong("meciid"),
-                        rs.getString("datameci"),
+                        rs.getTimestamp("datameci"),
                         rs.getLong("echipaid"),
                         rs.getLong("adversarid"),
                         rs.getString("locatie"),
@@ -262,7 +252,7 @@ public class MeciuriService {
             while (rs.next()) {
                 Meci meci = new Meci(
                         rs.getLong("meciid"),
-                        rs.getString("datameci"),
+                        rs.getTimestamp("datameci"),
                         rs.getLong("echipaid"),
                         rs.getLong("adversarid"),
                         rs.getString("locatie"),
@@ -293,7 +283,7 @@ public class MeciuriService {
             while (rs.next()) {
                 Meci meci = new Meci(
                         rs.getLong("meciid"),
-                        rs.getString("datameci"),
+                        rs.getTimestamp("datameci"),
                         rs.getLong("echipaid"),
                         rs.getLong("adversarid"),
                         rs.getString("locatie"),

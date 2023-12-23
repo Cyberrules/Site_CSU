@@ -47,9 +47,9 @@ public class EchipaController {
     public List<Echipa> getEchipaCategorie(@PathVariable String categorie){
         return echipaService.getEchipaCategorie(categorie);
     }
-    @GetMapping("/nume/{nume}")
-    public List<Echipa> getEchipaNume(@PathVariable String nume){
-        return echipaService.getEchipaNume(nume);
+    @GetMapping("/nume/{nume}/editia/{editie}/categorie/{categorie}")
+    public List<Echipa> getEchipaNumeEditieCategorie(@PathVariable String nume,@PathVariable String editie, @PathVariable String categorie){
+        return echipaService.getEchipaNumeEditieCategorie(nume,editie,categorie);
     }
     @PutMapping("/{echipaID}")
     public String updateEchipa(@PathVariable Long echipaID,@RequestBody Echipa echipa){
