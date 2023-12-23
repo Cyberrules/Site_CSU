@@ -47,6 +47,10 @@ public class EchipaController {
     public List<Echipa> getEchipaCategorie(@PathVariable String categorie){
         return echipaService.getEchipaCategorie(categorie);
     }
+    @GetMapping("/nume/{nume}/categorie/{categorie}")
+    public List<Echipa> getEchipaNumeCategorie(@PathVariable String nume,@PathVariable String categorie){
+        return echipaService.getEchipaNumeCategorie(nume,categorie);
+    }
     @GetMapping("/nume/{nume}/editia/{editie}/categorie/{categorie}")
     public List<Echipa> getEchipaNumeEditieCategorie(@PathVariable String nume,@PathVariable String editie, @PathVariable String categorie){
         return echipaService.getEchipaNumeEditieCategorie(nume,editie,categorie);

@@ -120,7 +120,6 @@ public class EchipaService {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.err.println("SQL Error: " + e.getMessage());
         }
         return echipe;
     }
@@ -173,5 +172,29 @@ public class EchipaService {
         } catch (SQLException e) {
             return "Failed to update echipa - " + e.getMessage();
         }
+    }
+
+    public List<Echipa> getEchipaNumeCategorie(String nume, String categorie) {
+        List<Echipa> echipe  = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Echipa WHERE nume = ? AND categorie = ?")) {
+            ps.setString(1,nume);
+            ps.setString(2,categorie);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Echipa echipa = new Echipa(
+                        rs.getLong("echipaid"),
+                        rs.getString("categorie"),
+                        rs.getString("nume"),
+                        rs.getBytes("imagine"),
+                        rs.getBoolean("isDeleted"),
+                        rs.getString("editia")
+                );
+                echipe.add(echipa);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return echipe;
     }
 }
