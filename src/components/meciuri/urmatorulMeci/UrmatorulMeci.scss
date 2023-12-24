@@ -76,68 +76,65 @@
         box-sizing: border-box; 
          
     }
-        .info-top {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%; 
-            color: #fff;
+    .info-top {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50%; 
+        color: #fff;
+        text-align: center;
+        margin-top: 2%;
+        .ora-data {
+            font-size: 18px;
+            color: #000000;
             text-align: center;
-            margin-top: 2%;
-            .ora-data {
-                font-size: 18px;
-                color: #000000;
-                text-align: center;
-                font-family: Electrolize;
-                letter-spacing: 4px;
-            }
-    
-
-        }
-
-        .echipe {
-            color: #000;
-            top: 0;
-            text-align: center;
-            font-family: Arial;
-            font-size: 25px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            margin-top: 7%;
-            margin-bottom: 3%;
-        }
-
-        .ligaNadionala{
-            color: rgba(0, 0, 0, 0.80);
-            text-align: left;
-            margin-left: 2%;
-            font-family: Arial;
-            margin-top: 8%;
-            font-size: 17px;
-            letter-spacing: 1.4px;
-        }
-
-        .etapaMeci{
-            color: #000;
-            text-align: left;
-            margin-left: 2%;
             font-family: Electrolize;
-            font-size: 17px;
-            margin-top: 2%;
-            letter-spacing: 1.4px;
+            letter-spacing: 4px;
         }
+    }
 
-        .locatieMeci{
-            color: rgba(0, 0, 0, 0.80);
-            text-align: left;
-            margin-left: 2%;
-            font-family: Arial;
-            margin-top: 2%;
-            margin-bottom: 6%;
-            font-size: 17px;
-            letter-spacing: 1.4px;
+    .echipe {
+        color: #000;
+        top: 0;
+        text-align: center;
+        font-family: Arial;
+        font-size: 25px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        margin-top: 12%;          
+    }
 
-        }
+    .ligaNadionala{
+        color: rgba(0, 0, 0, 0.80);
+        text-align: left;
+        margin-left: 2%;
+        font-family: Arial;
+        margin-top: 2%;
+        font-size: 17px;
+        letter-spacing: 1.4px;
+    }
+
+    .etapaMeci{
+        color: #000;
+        text-align: left;
+        margin-left: 2%;
+        font-family: Electrolize;
+        font-size: 17px;
+        margin-top: 2%;
+        letter-spacing: 1.4px;
+    }
+
+    .locatieMeci{
+        color: rgba(0, 0, 0, 0.80);
+        text-align: left;
+        margin-left: 2%;
+        font-family: Arial;
+        margin-top: 2%;
+        margin-bottom: 6%;
+        font-size: 17px;
+        letter-spacing: 1.4px;
+    }
+ 
     .design {
         position: absolute; 
         bottom: 0;

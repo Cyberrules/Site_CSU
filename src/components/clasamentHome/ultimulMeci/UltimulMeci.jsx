@@ -65,9 +65,6 @@ const UltimulMeci = () => {
     scoradversar,
   } = meciData || {};
   
-  const homeScore = scorechipa !== undefined ? scorechipa : 'eroare';
-  const awayScore = scoradversar !== undefined ? scoradversar : 'eroare';
-
   return (
     <div className="meci-trecut">
       <div className="title-container">

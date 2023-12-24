@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import MeciuriJucate from '../meciuriJucate/MeciuriJucate';
-import echipa1 from '../../assets/logoSponsori/logoUSV.png';
-import echipa2 from '../../assets/logoSponsori/iuliusMallSuceava.png';
+
+import "./ListaMeciuriJucate.scss"
 
 const ListaMeciuriJucate = () => {
-  const textShowMore= 'Show More';
-
-  const [meciuri, setMeciuri] = useState([]);
+  const textShowMore = 'Vezi toate meciurile';
+  const textShowLess = 'Vezi mai putin';
+  
   const [echipeDetails, setEchipeDetails] = useState({});
   const [showAll, setShowAll] = useState(false);
+  const [finishedMatches, setFinishedMatches] = useState([]);
+  const [scorechipaValues, setScorechipaValues] = useState([]);
+  const [scoradversarValues, setScoradversarValues] = useState([]);
+  const [echipaImages, setEchipaImages] = useState({});
 
   const fetchTeamDetails = (teamId) => {
     fetch(`http://localhost:5050/api/echipa/${teamId}`)
       .then((response) => response.json())
       .then((echipaData) => {
         console.log(`Detalii echipa ${teamId}:`, echipaData);
-        setEchipeDetails((prevDetails) => ({
-          ...prevDetails,
-          [`${teamId}_nume`]: echipaData.nume,
-        }));
+        if (echipaData.nume && echipaData.imagine) {
+          setEchipeDetails((prevDetails) => ({
+            ...prevDetails,
+            [`${teamId}_nume`]: echipaData.nume,
+          }));
+          setEchipaImages((prevImages) => ({
+            ...prevImages,
+            [`${teamId}_logo`]: `data:image/jpeg;base64,${echipaData.imagine}`,
+          }));
+        }
       })
       .catch((error) => {
         console.error(`Error extragere date despre echipa in functie de ID ${teamId}:`, error);
@@ -29,8 +39,16 @@ const ListaMeciuriJucate = () => {
     fetch('http://localhost:5050/api/meci/tip/Liga Zimbrilor')
       .then((response) => response.json())
       .then((data) => {
-        setMeciuri(data.reverse().slice(0, 3)); 
-        data.forEach((meci) => {
+        const filteredMatches = data.filter(meci => meci.isFinished === true);
+
+        const scorechipaValuesArray = filteredMatches.map(meci => meci.scorechipa);
+        const scoradversarValuesArray = filteredMatches.map(meci => meci.scoradversar);
+
+        setFinishedMatches(filteredMatches);
+        setScorechipaValues(scorechipaValuesArray);
+        setScoradversarValues(scoradversarValuesArray);
+
+        filteredMatches.forEach((meci) => {
           fetchTeamDetails(meci.echipaid);
           fetchTeamDetails(meci.adversarid);
         });
@@ -53,30 +71,33 @@ const ListaMeciuriJucate = () => {
   };
 
   const handleShowAll = () => {
-    setShowAll(true); 
+    setShowAll(!showAll);
   };
 
   return (
     <div>
-      <div className="listaMeciuriContainer">
-        {meciuri.map((meci, index) => (
+      <div className="listaMeciuriJucateContainer">
+        {(showAll ? finishedMatches : finishedMatches.slice(0, 3)).map((meci, index) => (
           <MeciuriJucate
             key={index}
             etapa={meci.tipcampionat}
             locatia={meci.locatie}
             data={formatDate(meci.datameci)}
-            logoEchipa1={meci.echipaid === 1 ? echipa1 : echipa2}
+            logoEchipa1={echipaImages[`${meci.echipaid}_logo`]}
             numeEchipa1={echipeDetails[`${meci.echipaid}_nume`]}
-            scorEchipa1={meci.scorechipa} 
-            logoEchipa2={meci.adversarid === 1 ? echipa1 : echipa2}
+            scorEchipa1={scorechipaValues[index]}
+            logoEchipa2={echipaImages[`${meci.adversarid}_logo`]}
             numeEchipa2={echipeDetails[`${meci.adversarid}_nume`]}
-            scorEchipa2={meci.scoradversar} 
+            scorEchipa2={scoradversarValues[index]}
           />
         ))}
-      </div>
-      {!showAll && meciuri.length < meciuri.length && (
-        <button onClick={handleShowAll}>{textShowMore}</button>
+        {finishedMatches.length > 3 && (
+        <button onClick={handleShowAll} className='btnShowMore'>
+          {showAll ? textShowLess : textShowMore}
+        </button>
       )}
+      </div>
+      
     </div>
   );
 };

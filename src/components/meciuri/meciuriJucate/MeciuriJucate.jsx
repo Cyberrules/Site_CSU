@@ -13,8 +13,8 @@ const MeciuriJucate = ({
   numeEchipa2,
   scorEchipa2,
 }) => {
-
-  const raportMeci= 'Raport Meci';
+  const raportMeci = 'Raport Meci';
+  
   return (
     <div className='containerMeciuriJucate'>
       <div className='cardMeciuriJucate'>
