@@ -7,7 +7,6 @@ import ClasamentHome from '../clasamentHome/ClasamentHome';
 import Sponsori from './sponsori/Sponsori';
 
 
-
 const Home = () => {
 
   const textHome ={
@@ -119,6 +118,13 @@ const Home = () => {
 
 
 
+
+ 
+
+  const handlePlayerSelect = (playerId) => {
+    window.location.href = `/prezentareJucator/${playerId}`;
+  };
+
   return (
     <div>
        <div className="imaginePrezentare"></div>
@@ -157,8 +163,9 @@ const Home = () => {
           </div>
         </div>
 
+        
         <div className='sliderEchipa'>
-          <SliderEchipa slides={players} />
+          <SliderEchipa slides={players} onPlayerSelect={handlePlayerSelect} />
         </div>
 
         <div className="containerSponsori">

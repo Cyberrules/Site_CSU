@@ -13,14 +13,14 @@
     scroll-behavior: smooth;
     margin-right: 20px;
     margin-left: 20px; 
+
+    a {
+        text-decoration: none;
+        color: inherit;
+      }
 }
 
     
-
-
-
-
-
 #slider::-webkit-scrollbar{
     display:none;
 }
@@ -36,6 +36,7 @@
     font-weight: bold;
     margin-bottom: 8px;
     margin-left: 25%;
+    
 }
 
 .slider-card-nationality,
@@ -71,16 +72,26 @@
     cursor: pointer;
 }
 
+.slider-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+
 .slider-icon.left{
     left: 0;
+    
 }
 
 .slider-icon.right{
     right: 0;
+    
 }
 
 .slider-icon.left:hover, .slider-icon.right:hover{
     opacity: 1;
+    
+    
 }
 
 .slider-card {
@@ -92,4 +103,18 @@
     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 12%);
     cursor: pointer;
     margin: 20px; 
+    text-decoration: none;
+  color: inherit;
+    
+    
 }
+
+
+.slider-card:hover,
+.slider-card:active,
+.slider-card:focus,
+.slider-card:visited {
+  text-decoration: none;
+  color: inherit;
+}
+

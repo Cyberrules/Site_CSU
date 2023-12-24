@@ -11,7 +11,7 @@ const TabelClasament = ({ data }) => {
     meciuriJucate: 'Juc',
     victorii: 'V',
     egaluri: 'E',
-    punctePrimite: 'P',
+    puncteP: 'P',
     goluriMarcate: 'GM',
     goluriPrimite: 'GP',
     diferentaGoluri: 'GDif',
@@ -35,7 +35,7 @@ const TabelClasament = ({ data }) => {
           <th className='thTeam'>{textTabelClasament.meciuriJucate}</th>
           <th className='thTeam'>{textTabelClasament.victorii}</th>
           <th className='thTeam'>{textTabelClasament.egaluri}</th>
-          <th className='thTeam'>{textTabelClasament.punctePrimite}</th>
+          <th className='thTeam'>{textTabelClasament.puncteP}</th>
           <th className='thTeam'>{textTabelClasament.goluriMarcate}</th>
           <th className='thTeam'>{textTabelClasament.goluriPrimite}</th>
           <th className='thTeam'>{textTabelClasament.diferentaGoluri}</th>

@@ -1,0 +1,34 @@
+
+.container-prezentare{
+  padding-top: 50px;
+  .player-details {
+  
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 2%;
+  
+    .player-info {
+      margin-bottom: 20px;
+  
+      h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+  
+      p {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+    }
+  
+    .player-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+  }
+
+
+}

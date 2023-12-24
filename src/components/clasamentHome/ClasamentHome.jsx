@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React  from 'react'
 import "./ClasamentHome.scss";
 import "../meciuri/clasament/script"
 import UltimulMeci from './ultimulMeci/UltimulMeci';

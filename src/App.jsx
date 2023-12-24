@@ -9,6 +9,7 @@ import Meciuri from './components/meciuri/Meciuri';
 import Noutati from './components/noutati/Noutati';
 import Echipa from './components/echipa/Echipa';
 import Juniori from './components/juniori/Juniori';
+import PrezentareJucator from './components/home/prezentareJucator/PrezentareJucator';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
             <Route path="/noutati" element={<Noutati />} />
             <Route path="/echipa" element={<Echipa />} />
             <Route path="/juniori" element={<Juniori />} />
+            <Route path="/prezentareJucator/:playerId" element={<PrezentareJucator />} />
+
+
           </Routes>
         </BrowserRouter>
       </div>
