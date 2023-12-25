@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import './PrezentareJucator.scss';
+import Intro from './intro/Intro';
+import Pozitie from './pozitie/Pozitie';
+import InformatiiJucator from './informatiiJucator/InformatiiJucator';
 
 const PrezentareJucator = () => {
   const { playerId } = useParams();
-
-  const textPrezentareJucator ={
-    dataNastere: 'Data Nașterii:',
-    nationalitate: 'Naționalitate:',
-    pozitie: 'Poziție:',
-    inaltime: 'Înălțime:',
-    unitateMasura: 'cm',
-    numar: 'Număr:',
-    mesaj: ' ',
-  }
-
   const [playerDetails, setPlayerDetails] = useState(null);
 
   useEffect(() => {
@@ -33,48 +27,63 @@ const PrezentareJucator = () => {
     fetchPlayerDetails();
   }, [playerId]);
 
-  const convertToLowerCase = (text) => {
-    return text.toLowerCase();
-  };
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}.${month}.${year}`;
+
+  const tabs = [
+    {
+      label: 'Intro',
+      content: playerDetails && <Intro playerDetails={playerDetails} />,
+      closable: true
+    },
+    {
+      label: 'Informatii',
+      content: playerDetails && <InformatiiJucator playerDetails={playerDetails} />,
+      closable: false
+    },
+    {
+      label: 'Poziție',
+      content: playerDetails && <Pozitie playerDetails={playerDetails} />,
+      closable: false
+    },
+    
+  ];
+
+  const [activeTab, setActiveTab] = useState(0);
+
+  const closeAllTabs = () => {
+    setPlayerDetails(null);
   };
-  
 
   return (
-    <div className='container-prezentare'>
-    <div className="player-details">
-      {playerDetails !== null ? (
-        <div>
-          <div className="player-info">
-            <h2>{`${playerDetails.nume} ${playerDetails.prenume}`}</h2>
-            <p>{textPrezentareJucator.dataNastere} {formatDate(playerDetails.dataNasterii)}</p>
-            <p>{textPrezentareJucator.nationalitate} {convertToLowerCase(playerDetails.nationalitate)}</p>
-            <p>{textPrezentareJucator.pozitie} {convertToLowerCase(playerDetails.pozitie)}</p>
-            <p>{textPrezentareJucator.inaltime} {playerDetails.inaltime} {textPrezentareJucator.unitateMasura}</p>
-            <p>{textPrezentareJucator.numar} {playerDetails.numar}</p>
-          </div>
-          {playerDetails.imagine && (
-            <div className="player-image">
-              <img
-                src={`data:image/png;base64,${playerDetails.imagine}`}
-                alt={`${playerDetails.nume} ${playerDetails.prenume}`}
-              />
+    <div>
+      {playerDetails && (
+        <div className='container-prezentare'>
+          <div className="tabs">
+            <div className="tab-buttons">
+              {tabs.map((tab, index) => (
+                <div key={index} className="tab">
+                  <button
+                    className={index === activeTab ? 'active' : ''}
+                    onClick={() => setActiveTab(index)}
+                  >
+                    {tab.label}
+                  </button>
+                </div>
+              ))}
             </div>
-          )}
+            <div className="tab-content">
+              <div className="close-button">
+                <button onClick={closeAllTabs}>
+                  <FontAwesomeIcon icon={faTimes} />
+                </button>
+              </div>
+              {tabs[activeTab]?.content || null}
+            </div>
+          </div>
         </div>
-      ) : (
-        <p>{textPrezentareJucator.mesaj}</p>
       )}
     </div>
-    </div>
   );
-}
-  
+};
 
 export default PrezentareJucator;
