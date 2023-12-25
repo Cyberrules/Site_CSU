@@ -21,7 +21,7 @@ const SliderEchipa = ({ slides, onPlayerSelect }) => {
 
   const handlePlayerClick = (player) => {
     if (player) {
-      console.log('Player Data:', player.jucatorID);
+      console.log('ID jucator:', player.jucatorID);
       onPlayerSelect(player.jucatorID);
     }
   };

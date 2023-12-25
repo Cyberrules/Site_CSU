@@ -5,18 +5,12 @@
   pointer-events: none;
 }
 
-.container{
-  padding-top:40px;
-  margin-left: 0px;
-  max-width: 100%;
-  background-color: rgba(157, 195, 245, 0.313)
-}
-
 .dimensiune{
   display: flex;
   flex-direction: column;
   width:100%;
   margin:0;
+  background-color: rgba(157, 195, 245, 0.313);
 }
 
 

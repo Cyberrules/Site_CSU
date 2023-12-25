@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import ImagineEchipa from '../assets/imgEchipa.png';
 import './Home.scss';
 import CardNoutati from '../cardNoutati/CardNoutati';
 import SliderEchipa from '../echipaSlider/SliderEchipa';
 import ClasamentHome from '../clasamentHome/ClasamentHome';
 import Sponsori from './sponsori/Sponsori';
+import PrezentareJucator from './prezentareJucator/PrezentareJucator';
 
 
 const Home = () => {
@@ -57,10 +59,12 @@ const Home = () => {
 
   const [editiiEchipa, setEditiiEchipa] = useState([]);
   const [editieSelectata, setEditieSelectata] = useState('');
-
+  const [players, setPlayers] = useState([]);
+  const uniqueSortedEditii = editiiEchipa.filter((value, index, self) => self.indexOf(value) === index).sort();
+  const [selectedPlayerId, setSelectedPlayerId] = useState(null);
+  const location = useLocation();
   const numeEchipa = 'CSU Suceava';
   const categorie = 'Adulti';
-
 
   useEffect(() => {
     fetch(`http://localhost:5050/api/echipa/nume/${numeEchipa}/categorie/${categorie}`)
@@ -84,9 +88,6 @@ const Home = () => {
         console.error('There has been a problem with your fetch operation:', error);
       });
   }, []);
-
-
-  const [players, setPlayers] = useState([]);
 
   useEffect(() => {
     if (editieSelectata !== '') {
@@ -114,16 +115,20 @@ const Home = () => {
     setEditieSelectata(event.target.value);
   };
   
-  const uniqueSortedEditii = editiiEchipa.filter((value, index, self) => self.indexOf(value) === index).sort();
-
-
-
-
- 
-
   const handlePlayerSelect = (playerId) => {
-    window.location.href = `/prezentareJucator/${playerId}`;
+    setSelectedPlayerId(playerId);
   };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const shouldScroll = searchParams.get('scrollToLinkJucatori');
+    if (shouldScroll === 'true') {
+      const element = document.getElementById('linkJucatori');
+      if (element) {
+        element.scrollIntoView();  
+      }
+    }
+  }, [location.search]);
 
   return (
     <div>
@@ -147,10 +152,8 @@ const Home = () => {
                 ))} 
             </div>
         </div>
-
         <ClasamentHome/>
- 
-        <div className="jucatori">
+        <div id='linkJucatori' className="jucatori">
           <h4>{textHome.titluJucatori}</h4>
           <div className="dropdownEditie">
             <select id="selectorEditie" onChange={handleEditieChange} value={editieSelectata}>
@@ -163,16 +166,15 @@ const Home = () => {
           </div>
         </div>
 
-        
         <div className='sliderEchipa'>
           <SliderEchipa slides={players} onPlayerSelect={handlePlayerSelect} />
+          <PrezentareJucator playerId={selectedPlayerId} />
         </div>
 
         <div className="containerSponsori">
           <div className='titluSponsori'><h3 >{textHome.titluSponsori}</h3></div>
             <Sponsori />
         </div>
-
     </div>
   );
 };

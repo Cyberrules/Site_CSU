@@ -10,6 +10,7 @@ import InformatiiJucator from './informatiiJucator/InformatiiJucator';
 const PrezentareJucator = () => {
   const { playerId } = useParams();
   const [playerDetails, setPlayerDetails] = useState(null);
+  const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     const fetchPlayerDetails = async () => {
@@ -26,8 +27,6 @@ const PrezentareJucator = () => {
     };
     fetchPlayerDetails();
   }, [playerId]);
-
-
 
   const tabs = [
     {
@@ -48,16 +47,15 @@ const PrezentareJucator = () => {
     
   ];
 
-  const [activeTab, setActiveTab] = useState(0);
-
   const closeAllTabs = () => {
-    setPlayerDetails(null);
+    window.location.href = '/home?scrollToLinkJucatori=true';
   };
-
+  
   return (
     <div>
       {playerDetails && (
         <div className='container-prezentare'>
+          <div className='titluEchipa'> CSU SUCEAVA</div>
           <div className="tabs">
             <div className="tab-buttons">
               {tabs.map((tab, index) => (
@@ -72,11 +70,9 @@ const PrezentareJucator = () => {
               ))}
             </div>
             <div className="tab-content">
-              <div className="close-button">
-                <button onClick={closeAllTabs}>
-                  <FontAwesomeIcon icon={faTimes} />
-                </button>
-              </div>
+              <button onClick={closeAllTabs} className="close-button">
+                <FontAwesomeIcon icon={faTimes} />
+              </button>  
               {tabs[activeTab]?.content || null}
             </div>
           </div>
