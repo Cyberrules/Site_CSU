@@ -5,6 +5,8 @@ import Clasament from "./clasament/Clasament"
 import ListaMeciuriViitoare from './listaMeciuriViitoare/ListaMeciuriViitoare'
 import UrmatorulMeci from '../meciuri/urmatorulMeci/UrmatorulMeci'
 
+
+import CardStireFiltru from  '../meciuri/cardStireFiltru/CardStireFiltru'
 const Meciuri = () => {
 
   const textMeciuri ={

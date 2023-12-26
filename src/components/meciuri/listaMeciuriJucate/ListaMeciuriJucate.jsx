@@ -44,6 +44,10 @@ const ListaMeciuriJucate = () => {
         const scorechipaValuesArray = filteredMatches.map(meci => meci.scorechipa);
         const scoradversarValuesArray = filteredMatches.map(meci => meci.scoradversar);
 
+        filteredMatches.sort((a, b) => {
+          return new Date(b.datameci) - new Date(a.datameci);
+        });
+
         setFinishedMatches(filteredMatches);
         setScorechipaValues(scorechipaValuesArray);
         setScoradversarValues(scoradversarValuesArray);

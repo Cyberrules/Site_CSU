@@ -94,7 +94,7 @@ const UrmatorulMeci = () => {
         </div>
         <div className="bottom-data">
           <p className="meci-live">
-            {textUrmatorulMeci.descriereLink} <span className="arrow">&#x2192;</span>
+            <a href="https://www.youtube.com/@CSUSuceava" target="_blank" rel="nofollow noopener noreferrer">{textUrmatorulMeci.descriereLink} <span className="arrow">&#x2192;</span></a>
           </p>
         </div>
       </div>

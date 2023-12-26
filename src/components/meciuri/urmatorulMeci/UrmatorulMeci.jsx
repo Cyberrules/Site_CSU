@@ -14,9 +14,8 @@ const UrmatorulMeci = () => {
     liga: 'Liga Națională de handbal masculin',
     locatia: 'Locație:',
     etapaMeciului: 'Etapa:',
-    numeEchipa1: 'Echipa 1',
-    numeEchipa2: 'Echipa 2',
-    loading: 'Se incarca...'
+    loading: 'Se incarca...',
+    descriereLink:'URMARESTE MECIUL LIVE →'
   }
 
   const [matchData, setMatchData] = useState({});
@@ -29,6 +28,8 @@ const UrmatorulMeci = () => {
   const [imagineEchipaGazda, setImagineEchipaGazda] = useState('');
   const [echipaOaspeti, setEchipaOaspeti] = useState('');
   const [imagineEchipaOaspeti, setImagineEchipaOaspeti] = useState('');
+  const [showCountdown, setShowCountdown] = useState(true);
+  const [showLink, setShowLink] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,6 +82,24 @@ const UrmatorulMeci = () => {
     fetchData();
   }, []); 
 
+
+  useEffect(() => {
+    let timer;
+    let timeElapsed = 0;
+    const updateTime = () => {
+      timeElapsed += 1;
+      if (timeElapsed >= 120) {
+        setShowCountdown(false);
+        setShowLink(true);
+        clearInterval(timer);
+      }
+    };
+    if (showCountdown) {
+      timer = setInterval(updateTime, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [showCountdown]);
+
     return (
     <div className='imaginePromoMeci'>
       {loading ? (
@@ -109,9 +128,16 @@ const UrmatorulMeci = () => {
               <div className='locatieMeci'>{textUrmatorulMeci.locatia} {locatieMeci}</div>
           </div>
   
+          
           <div className='design'>
-            <CountdownTimer matchDateTime={matchData.datameci} />
+            {showCountdown && <CountdownTimer matchDateTime={matchData.datameci} />}
+              {showLink && (
+                <a href="https://www.youtube.com/@CSUSuceava" target="_blank" rel="nofollow noopener noreferrer">
+                  {textUrmatorulMeci.descriereLink}
+                </a>
+              )}
           </div>
+
         </div>
         </>
         )}
