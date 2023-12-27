@@ -3,8 +3,12 @@ package Cyberrules.demo.controller;
 import Cyberrules.demo.model.Jucator;
 import Cyberrules.demo.service.JucatorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -17,43 +21,111 @@ public class JucatorController {
         this.jucatorService = jucatorService;
     }
     @GetMapping
-    public List<Jucator> getJucatori()
-    {
-        return jucatorService.getJucatori();
+    public ResponseEntity<?> getJucatori() {
+        try {
+            List<Jucator> jucatori = jucatorService.getJucatori();
+            if (jucatori.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(jucatori, HttpStatus.OK);
+            }
+        } catch (SQLException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
     @GetMapping("/{jucatorID}")
-    public Jucator getJucator(@PathVariable Long jucatorID)
-    {
-        return jucatorService.getJucator(jucatorID);
+    public ResponseEntity<?> getJucator(@PathVariable Long jucatorID) {
+        try {
+            Jucator jucator = jucatorService.getJucator(jucatorID);
+            return jucator != null ?
+                    new ResponseEntity<>(jucator, HttpStatus.OK) :
+                    new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (SQLException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
     @GetMapping("/echipa/{numeEchipa}/editia/{editia}/categoria/{categoria}")
-    public List<Jucator> getJucatoriEchipaEditie(@PathVariable String numeEchipa,@PathVariable String editia,@PathVariable String categoria)
-    {
-        return jucatorService.getJucatoriEchipaEditie(numeEchipa,editia,categoria);
+    public ResponseEntity<?> getJucatoriEchipaEditie(@PathVariable String numeEchipa, @PathVariable String editia, @PathVariable String categoria) {
+        try {
+            List<Jucator> jucatori = jucatorService.getJucatoriEchipaEditie(numeEchipa, editia, categoria);
+            if (jucatori.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(jucatori, HttpStatus.OK);
+            }
+        } catch (SQLException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
     @GetMapping("/nume/{numeJucator}")
-    public List<Jucator> getJucatoriNume(@PathVariable String numeJucator)
-    {
-        return jucatorService.getJucatoriNume(numeJucator);
+    public ResponseEntity<?> getJucatoriNume(@PathVariable String numeJucator) {
+        try {
+            List<Jucator> jucatori = jucatorService.getJucatoriNume(numeJucator);
+            if (jucatori.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(jucatori, HttpStatus.OK);
+            }
+        } catch (SQLException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
     @GetMapping("/prenume/{prenumeJucator}")
-    public List<Jucator> getJucatoriPrenume(@PathVariable String prenumeJucator)
-    {
-        return jucatorService.getJucatoriPrenume(prenumeJucator);
+    public ResponseEntity<?> getJucatoriPrenume(@PathVariable String prenumeJucator) {
+        try {
+            List<Jucator> jucatori = jucatorService.getJucatoriPrenume(prenumeJucator);
+            if (jucatori.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(jucatori, HttpStatus.OK);
+            }
+        } catch (SQLException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
     @PostMapping
-    public String postJucator(@RequestBody Jucator jucator)
-    {
-        return jucatorService.addJucator(jucator);
+    public ResponseEntity<String> postJucator(@RequestBody Jucator jucator) {
+        try {
+            String result = jucatorService.addJucator(jucator);
+            if(result.equals("Jucator added successfully"))
+                return new ResponseEntity<>(result, HttpStatus.CREATED);
+        } catch (SQLException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (ParseException e) {
+            return new ResponseEntity<>("Failed to convert the birth date provided. Make sure the date is in format dd/mm/yyyy.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>("Creating jucator failed, no rows affected.", HttpStatus.BAD_REQUEST);
     }
+
     @DeleteMapping("/{jucatorID}")
-    public String deleteJucator(@PathVariable Long jucatorID)
-    {
-        return jucatorService.deleteJucator(jucatorID);
+    public ResponseEntity<String> deleteJucator(@PathVariable Long jucatorID) {
+        try {
+            String result = jucatorService.deleteJucator(jucatorID);
+            String deleted_message = "Jucator with ID " + jucatorID + " deleted successfully";
+            if(result.equals(deleted_message))
+                return new ResponseEntity<>(result, HttpStatus.NO_CONTENT);
+        } catch (SQLException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>("No jucator found with ID: "+jucatorID, HttpStatus.NOT_FOUND);
     }
+
     @PutMapping("/{jucatorID}")
-    public String putJucator(@RequestBody Jucator jucator)
-    {
-        return jucatorService.putJucator(jucator);
+    public ResponseEntity<String> putJucator(@RequestBody Jucator jucator) {
+        try {
+            String result = jucatorService.putJucator(jucator);
+            String update_message = "Jucator with ID " + jucator.getJucatorID() + " updated successfully";
+            if(result.equals(update_message))
+                return new ResponseEntity<>(result, HttpStatus.NO_CONTENT);
+        } catch (SQLException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (ParseException e) {
+            return new ResponseEntity<>("Failed to convert the birth date provided. Make sure the date is in format dd/mm/yyyy.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>("No jucator found with ID: "+jucator.getJucatorID(), HttpStatus.NOT_FOUND);
     }
 }

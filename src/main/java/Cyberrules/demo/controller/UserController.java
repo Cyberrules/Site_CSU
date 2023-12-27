@@ -24,9 +24,9 @@ public class UserController {
     {
         return userService.getUsers();
     }
-    @GetMapping("{userID}")
-    public User getUser(@PathVariable Long userID){
-        return userService.getUser(userID);
+    @GetMapping("/{username}")
+    public User getUser(@PathVariable String username){
+        return userService.getUser(username);
     }
     @GetMapping("nume/{nume}")
     public List<User> getUserNume(@PathVariable String nume){
@@ -47,15 +47,15 @@ public class UserController {
         return userService.addUser(user);
     }
 
-    @DeleteMapping("/{userid}")
-    public String deleteUser(@PathVariable Long userid)
+    @DeleteMapping("/{username}")
+    public String deleteUser(@PathVariable String username)
     {
-        return userService.deleteUser(userid);
+        return userService.deleteUser(username);
     }
 
-    @PutMapping("/{userid}")
-    public String updateUser(@PathVariable Long userid,@RequestBody User user){
-        return userService.updateUser(userid,user);
+    @PutMapping("/{username}")
+    public String updateUser(@PathVariable String username,@RequestBody User user){
+        return userService.updateUser(username,user);
     }
 
 }

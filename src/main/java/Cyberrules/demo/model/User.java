@@ -3,7 +3,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
 
-    private Long Userid;
     private String Username;
     private String Nume;
     private String Prenume;
@@ -14,23 +13,13 @@ public class User {
     public User() {
     }
 
-    public User(Long userid, String username, String nume, String prenume, String passwordhash, String usertype, boolean isDeleted) {
-        Userid = userid;
+    public User(String username, String nume, String prenume, String passwordhash, String usertype, boolean isDeleted) {
         Username = username;
         Nume = nume;
         Prenume = prenume;
         Passwordhash = passwordhash;
         Usertype = usertype;
         this.isDeleted = isDeleted;
-    }
-
-    @JsonProperty("userid")
-    public Long getUserid() {
-        return Userid;
-    }
-
-    public void setUserid(Long userid) {
-        Userid = userid;
     }
 
     @JsonProperty("username")

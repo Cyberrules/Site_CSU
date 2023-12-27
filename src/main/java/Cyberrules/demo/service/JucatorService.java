@@ -30,7 +30,7 @@ public class JucatorService {
         );
     }
 
-    public List<Jucator> getJucatori() {
+    public List<Jucator> getJucatori() throws SQLException {
         List<Jucator> jucatori = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              Statement st = conn.createStatement();
@@ -40,13 +40,10 @@ public class JucatorService {
                 Jucator jucator = buildJucatorFromResultSet(rs);
                 jucatori.add(jucator);
             }
-
-        }catch (SQLException e){
-            e.printStackTrace();
         }
         return jucatori;
     }
-    public Jucator getJucator(Long jucatorID) {
+    public Jucator getJucator(Long jucatorID) throws SQLException {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM Jucatori WHERE JucatorID = ?")){
             ps.setLong(1,jucatorID);
@@ -55,12 +52,10 @@ public class JucatorService {
                 Jucator jucator = buildJucatorFromResultSet(rs);
                 return jucator;
             }
-        } catch (SQLException e){
-            e.printStackTrace();
         }
         return null;
     }
-    public List<Jucator> getJucatoriEchipaEditie(String numeEchipa,String editia, String categoria) {
+    public List<Jucator> getJucatoriEchipaEditie(String numeEchipa,String editia, String categoria) throws SQLException {
         List<Jucator> jucatori = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement("SELECT j.* FROM Jucatori j, Echipa e WHERE j.echipaid=e.echipaid AND e.nume = ? AND e.editia = ? AND e.categorie = ?")){
@@ -72,13 +67,11 @@ public class JucatorService {
                 Jucator jucator = buildJucatorFromResultSet(rs);
                 jucatori.add(jucator);
             }
-        } catch (SQLException e){
-            e.printStackTrace();
         }
         return jucatori;
     }
 
-    public List<Jucator> getJucatoriNume(String numeJucator) {
+    public List<Jucator> getJucatoriNume(String numeJucator) throws SQLException {
         List<Jucator> jucatori = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM Jucatori WHERE Nume = ?")){
@@ -88,13 +81,11 @@ public class JucatorService {
                 Jucator jucator = buildJucatorFromResultSet(rs);
                 jucatori.add(jucator);
             }
-        } catch (SQLException e){
-            e.printStackTrace();
         }
         return jucatori;
     }
 
-    public List<Jucator> getJucatoriPrenume(String prenumeJucator) {
+    public List<Jucator> getJucatoriPrenume(String prenumeJucator) throws SQLException {
         List<Jucator> jucatori = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement("SELECT * FROM Jucatori WHERE Prenume = ?")){
@@ -104,13 +95,11 @@ public class JucatorService {
                 Jucator jucator = buildJucatorFromResultSet(rs);
                 jucatori.add(jucator);
             }
-        } catch (SQLException e){
-            e.printStackTrace();
         }
         return jucatori;
     }
 
-    public String addJucator(Jucator jucator) {
+    public String addJucator(Jucator jucator) throws SQLException, ParseException{
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement(
                      "INSERT INTO Jucatori (Nume, Prenume, Post, Numar, DataNasterii, Nationalitate, Inaltime, Descriere, imagine, EchipaID, isDeleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
@@ -138,14 +127,10 @@ public class JucatorService {
             else{
                 return "Jucator added successfully";
             }
-        } catch (SQLException e){
-            return "Failed to add jucator - " + e.getMessage();
-        } catch (ParseException e) {
-            return "Failed to convert the birth date provided. Make sure the date is in format dd/mm/yyyy.";
         }
     }
 
-    public String deleteJucator(Long jucatorID) {
+    public String deleteJucator(Long jucatorID) throws SQLException{
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement("DELETE FROM Jucatori WHERE JucatorID = ?")) {
             ps.setLong(1, jucatorID);
@@ -157,12 +142,10 @@ public class JucatorService {
             else{
                 return "Jucator with ID " + jucatorID + " deleted successfully";
             }
-        } catch (SQLException e) {
-            return "Failed to delete jucator - " + e.getMessage();
         }
     }
 
-    public String putJucator(Jucator jucator) {
+    public String putJucator(Jucator jucator) throws SQLException, ParseException{
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement("UPDATE Jucatori SET Nume = ?, Prenume = ?, Post = ?, Numar = ?, DataNasterii = ?, Nationalitate = ?, Inaltime = ?, Descriere = ?, imagine = ?, EchipaID = ?, isDeleted = ? " +
                      "WHERE JucatorID = ?")){
@@ -190,11 +173,6 @@ public class JucatorService {
             else{
                 return "Jucator with ID " + jucator.getJucatorID() + " updated successfully";
             }
-
-        }catch (SQLException e){
-            return "Failed to update jucator - " + e.getMessage();
-        } catch (ParseException e) {
-            return "Failed to convert the birth date provided. Make sure the date is in format dd/mm/yyyy.";
         }
     }
 }

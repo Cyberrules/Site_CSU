@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService{
     private static final String URL = "jdbc:postgresql://localhost:5432/cyberrules";
     private static final String USER = "postgres";
     private static final String PASSWORD = "cyberrules";
@@ -33,7 +33,6 @@ public class UserService {
 
             while (rs.next()) {
                 User user = new User(
-                        rs.getLong("userid"),
                         rs.getString("username"),
                         rs.getString("nume"),
                         rs.getString("prenume"),
@@ -49,14 +48,13 @@ public class UserService {
         }
         return users;
     }
-    public User getUser(Long userid) {
+    public User getUser(String username) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Users WHERE userid = ?")) {
-            ps.setLong(1, userid);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Users WHERE username = ?")) {
+            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 User user = new User(
-                        rs.getLong("userid"),
                         rs.getString("username"),
                         rs.getString("nume"),
                         rs.getString("prenume"),
@@ -69,7 +67,6 @@ public class UserService {
             }
 
         }
-
         catch (SQLException e) {
             e.printStackTrace();
         }
@@ -83,7 +80,6 @@ public class UserService {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 User user = new User(
-                        rs.getLong("userid"),
                         rs.getString("username"),
                         rs.getString("nume"),
                         rs.getString("prenume"),
@@ -92,8 +88,6 @@ public class UserService {
                         rs.getBoolean("isDeleted")
                 );
                 users.add(user);
-
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -108,7 +102,6 @@ public class UserService {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 User user = new User(
-                        rs.getLong("userid"),
                         rs.getString("username"),
                         rs.getString("nume"),
                         rs.getString("prenume"),
@@ -117,8 +110,6 @@ public class UserService {
                         rs.getBoolean("isDeleted")
                 );
                 users.add(user);
-
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,7 +124,6 @@ public class UserService {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 User user = new User(
-                        rs.getLong("userid"),
                         rs.getString("username"),
                         rs.getString("nume"),
                         rs.getString("prenume"),
@@ -142,8 +132,6 @@ public class UserService {
                         rs.getBoolean("isDeleted")
                 );
                 users.add(user);
-
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -156,7 +144,6 @@ public class UserService {
              PreparedStatement ps = conn.prepareStatement(
                      "INSERT INTO users( username, nume, prenume, passwordhash, usertype, isdeleted) VALUES (?, ?, ?, ?, ?, ?)",
                      Statement.RETURN_GENERATED_KEYS)) {
-
 
             String hashedPassword = encryptPassword(user.getPasswordhash());
             ps.setString(1, user.getUsername());
@@ -179,48 +166,46 @@ public class UserService {
         }
     }
 
-    public String deleteUser(Long userID) {
+    public String deleteUser(String username) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement ps = conn.prepareStatement("DELETE FROM Users WHERE Userid = ?")) {
+             PreparedStatement ps = conn.prepareStatement("DELETE FROM Users WHERE username = ?")) {
 
-            ps.setLong(1, userID);
-
+            ps.setString(1, username);
 
             int affectedRows = ps.executeUpdate();
 
             if (affectedRows == 0) {
-                return "No user found with ID: "+userID;
+                return "No user found with username: "+username;
             }
             else{
-                return "User with ID " + userID + " deleted successfully";
+                return "User with username " + username + " deleted successfully";
             }
 
         } catch (SQLException e) {
             return "Failed to delete user - " + e.getMessage();
         }
     }
-    public String updateUser(Long userID, User user) {
+    public String updateUser(String username, User user) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
 
             String updateQuery = "UPDATE Users\n" +
-                    "\tSET username=?, nume=?, prenume=?, passwordhash=?, usertype=?, isdeleted=?\n" +
-                    "\tWHERE userid=?";
+                    "\tSET nume=?, prenume=?, passwordhash=?, usertype=?, isdeleted=?\n" +
+                    "\tWHERE username=?";
 
             try (PreparedStatement ps = conn.prepareStatement(updateQuery)) {
                 String hashedPassword = BCrypt.hashpw(user.getPasswordhash(), BCrypt.gensalt());
-                ps.setString(1, user.getUsername());
-                ps.setString(2, user.getNume());
-                ps.setString(3, user.getPrenume());
-                ps.setString(4,hashedPassword);
-                ps.setString(5, user.getUsertype());
-                ps.setBoolean(6, user.isDeleted());
-                ps.setLong(7, userID);
+                ps.setString(1, user.getNume());
+                ps.setString(2, user.getPrenume());
+                ps.setString(3,hashedPassword);
+                ps.setString(4, user.getUsertype());
+                ps.setBoolean(5, user.isDeleted());
+                ps.setString(6, username);
                 int affectedRows = ps.executeUpdate();
 
                 if (affectedRows == 0) {
-                    return "No user found with ID: " + userID;
+                    return "No user found with username: " + username;
                 } else {
-                    return "User with ID " + userID + " updated successfully";
+                    return "User with username " + username + " updated successfully";
                 }
             }
         } catch (SQLException e) {
