@@ -14,7 +14,6 @@ const Pozitie = ({ playerDetails }) => {
     centru: 'Centrul este responsabil pentru organizarea și distribuirea jocului, fiind adesea un conducător al atacului echipei. El coordonează acțiunile ofensive și distribuie mingea către coechipieri pentru a crea șanse de gol.'
   };
 
-
   const pozitii = {
     'portar': 'Portar',
     'inter-stanga': 'Inter stânga',
@@ -31,8 +30,19 @@ const Pozitie = ({ playerDetails }) => {
 
   let pozitieNoua = pozitie.toLowerCase().replace(/ă/g, 'a').replace(/â/g, 'a').replace(/ /g, '-');
   const textPozitie = descrierePozitie[pozitieNoua];
+  const clasaSuplimentara = 'activ';
+  const activeClass = `cerc ${pozitieNoua} ${clasaSuplimentara}`;
 
-  const activeClass = `cerc ${pozitieNoua}`;
+  const pozitiiDiv = Object.keys(pozitii).map((key) => {
+    if (key !== pozitieNoua) {
+      const pozitieClassName = key.toLowerCase().replace(/ă/g, 'a').replace(/â/g, 'a').replace(/ /g, '-');
+      const className = `cerc ${pozitieClassName}`;
+      return (
+        <div key={key} className={className} data-toggle="tooltip" data-placement="top" title={pozitii[key]}></div>
+      );
+    }
+    return null;
+  });
 
   return (
     <div className="container">
@@ -43,6 +53,7 @@ const Pozitie = ({ playerDetails }) => {
       <div className="teren">
         <img src={teren1} alt="Imagine teren" />
         <div className="pozitii">
+          {pozitiiDiv}
           <div className={`cerc ${activeClass}`} data-toggle="tooltip" data-placement="top" title={pozitie}></div>
         </div>
       </div>

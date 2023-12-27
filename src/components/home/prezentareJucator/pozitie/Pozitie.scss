@@ -44,10 +44,9 @@
  
     .cerc {
       width: 8%;
-      height: 7%;
+      height: 6%;
       border-radius: 50%;
-      background: #e6f51d;
-      border: 6px solid #01220f;
+      border: 2px solid #01220f59;
       opacity: 1;
       display: block;
       position: absolute;
@@ -95,10 +94,15 @@
         transform: translate(-50%, -50%);
       }
  
-      &:active {
+      &.activ {
         background: #d8da4c;
-        border: 6px solid #64326b;
-        opacity: 0.8;
+        border: 4px solid #3b1c3f;
+        opacity: 1;
+
+        &:hover{
+          background: #4cda87;
+          border: 5px solid #000000;
+        }
       }
  
       @media (max-width: 600px) {
