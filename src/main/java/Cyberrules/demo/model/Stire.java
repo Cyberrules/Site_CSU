@@ -1,20 +1,27 @@
 package Cyberrules.demo.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+
 
 public class Stire {
     private Long stireID;
-    private String datapublicarii;
+    private Timestamp datapublicarii;
     private String titlu;
     private String continut;
     private Long userId;
     private boolean isinfuture;
     private boolean isDeleted;
+    private byte[] imagine1;
+    private byte[] imagine2;
+    private byte[] imagine3;
+    private byte[] video;
 
     public Stire() {
     }
 
-    public Stire(Long stireID, String datapublicarii, String titlu, String continut, Long userId, boolean isinfuture, boolean isDeleted) {
+    public Stire(Long stireID, Timestamp datapublicarii, String titlu, String continut, Long userId, boolean isinfuture, boolean isDeleted,byte[] imagine1,byte[] imagine2,byte[] imagine3,byte[] video) {
         this.stireID = stireID;
         this.datapublicarii = datapublicarii;
         this.titlu = titlu;
@@ -22,6 +29,10 @@ public class Stire {
         this.userId = userId;
         this.isinfuture = isinfuture;
         this.isDeleted = isDeleted;
+        this.imagine1=imagine1;
+        this.imagine2=imagine2;
+        this.imagine3=imagine3;
+        this.video=video;
     }
     @JsonProperty("stireid")
     public Long getStireID() {
@@ -32,11 +43,11 @@ public class Stire {
         this.stireID = stireID;
     }
     @JsonProperty("datapublicarii")
-    public String getDatapublicarii() {
+    public Timestamp getDatapublicarii() {
         return datapublicarii;
     }
 
-    public void setDatapublicarii(String datapublicarii) {
+    public void setDatapublicarii(Timestamp datapublicarii) {
         this.datapublicarii = datapublicarii;
     }
 
@@ -83,5 +94,37 @@ public class Stire {
 
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
+    }
+    @JsonProperty("imagine1")
+    public byte[] getImagine1() {
+        return imagine1;
+    }
+
+    public void setImagine1(byte[] imagine1) {
+        this.imagine1 = imagine1;
+    }
+    @JsonProperty("imagine2")
+    public byte[] getImagine2() {
+        return imagine2;
+    }
+
+    public void setImagine2(byte[] imagine2) {
+        this.imagine2 = imagine2;
+    }
+    @JsonProperty("imagine3")
+    public byte[] getImagine3() {
+        return imagine3;
+    }
+
+    public void setImagine3(byte[] imagine3) {
+        this.imagine3 = imagine3;
+    }
+    @JsonProperty("video")
+    public byte[] getVideo() {
+        return video;
+    }
+
+    public void setVideo(byte[] video) {
+        this.video = video;
     }
 }

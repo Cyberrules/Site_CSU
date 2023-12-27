@@ -28,17 +28,17 @@ public class StireController {
     {
         return stireService.addStire(stire);
     }
-    @DeleteMapping("/{stireid}")
+    @DeleteMapping("/{stireID}")
     public String deleteStire(@PathVariable Long stireID)
     {
         return stireService.deleteStire(stireID);
     }
-    @GetMapping("/{stireid}")
+    @GetMapping("/{stireID}")
     public Stire getStire(@PathVariable Long stireID){
         return stireService.getStire(stireID);
     }
 
-    @PutMapping("/{stireid}")
+    @PutMapping("/{stireID}")
     public String putStire(@PathVariable Long stireID,@RequestBody Stire stire)
     {
         return stireService.updateStire(stireID,stire);

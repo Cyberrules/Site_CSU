@@ -20,13 +20,16 @@ public class StireService {
             while (rs.next()) {
                 Stire stire = new Stire(
                         rs.getLong("stireID"),
-                        rs.getString("datapublicarii"),
+                        rs.getTimestamp("datapublicarii"),
                         rs.getString("titlu"),
                         rs.getString("continut"),
                         rs.getLong("userID"),
                         rs.getBoolean("isinfuture"),
-                        rs.getBoolean("isDeleted")
-
+                        rs.getBoolean("isDeleted"),
+                        rs.getBytes("imagine1"),
+                        rs.getBytes("imagine2"),
+                        rs.getBytes("imagine3"),
+                        rs.getBytes("video")
                 );
 
                 stiri.add(stire);
@@ -40,18 +43,18 @@ public class StireService {
     {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement(
-                     "INSERT INTO stiri(datapublicarii, titlu, continut, userid, isinfuture, isdeleted) VALUES ( ?, ?, ?, ?, ?, ?)",
+                     "INSERT INTO stiri(datapublicarii, titlu, continut, userid, isinfuture, isdeleted, imagine1, imagine2, imagine3, video) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             Statement.RETURN_GENERATED_KEYS)) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            java.util.Date parsedDate = dateFormat.parse(stire.getDatapublicarii());
-            Date sqlDate = new Date(parsedDate.getTime());
-            ps.setDate(1, sqlDate);
+            ps.setTimestamp(1, stire.getDatapublicarii());
             ps.setString(2, stire.getTitlu());
             ps.setString(3, stire.getContinut());
             ps.setLong(4, stire.getUserId());
             ps.setBoolean(5, stire.isIsinfuture());
             ps.setBoolean(6, stire.isDeleted());
-
+            ps.setBytes(7, stire.getImagine1());
+            ps.setBytes(8, stire.getImagine2());
+            ps.setBytes(9, stire.getImagine3());
+            ps.setBytes(10,stire.getVideo());
 
             int affectedRows = ps.executeUpdate();
 
@@ -64,8 +67,6 @@ public class StireService {
 
         } catch (SQLException e) {
             return "Failed to add stire - " + e.getMessage();
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
         }
     }
     public String deleteStire(Long stireID) {
@@ -73,7 +74,6 @@ public class StireService {
              PreparedStatement ps = conn.prepareStatement("DELETE FROM Stiri WHERE stireId = ?")) {
 
             ps.setLong(1, stireID);
-
 
             int affectedRows = ps.executeUpdate();
 
@@ -96,13 +96,16 @@ public class StireService {
             while (rs.next()) {
                 Stire stire = new Stire(
                         rs.getLong("stireID"),
-                        rs.getString("datapublicarii"),
+                        rs.getTimestamp("datapublicarii"),
                         rs.getString("titlu"),
                         rs.getString("continut"),
                         rs.getLong("userID"),
                         rs.getBoolean("isinfuture"),
-                        rs.getBoolean("isDeleted")
-
+                        rs.getBoolean("isDeleted"),
+                        rs.getBytes("imagine1"),
+                        rs.getBytes("imagine2"),
+                        rs.getBytes("imagine3"),
+                        rs.getBytes("video")
                 );
                 return stire;
             }
@@ -117,20 +120,21 @@ public class StireService {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
 
             String updateQuery = "UPDATE stiri\n" +
-                    "\tSET  datapublicarii=?, titlu=?, continut=?, userid=?, isinfuture=?, isdeleted=?\n" +
+                    "\tSET  datapublicarii=?, titlu=?, continut=?, userid=?, isinfuture=?, isdeleted=?, imagine1=?, imagine2=?, imagine3=?, video=?\n" +
                     "\tWHERE stireid=?";
 
             try (PreparedStatement ps = conn.prepareStatement(updateQuery)) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                java.util.Date parsedDate = dateFormat.parse(stire.getDatapublicarii());
-                Date sqlDate = new Date(parsedDate.getTime());
-                ps.setDate(1, sqlDate);
+                ps.setTimestamp(1, stire.getDatapublicarii());
                 ps.setString(2, stire.getTitlu());
                 ps.setString(3, stire.getContinut());
                 ps.setLong(4, stire.getUserId());
                 ps.setBoolean(5, stire.isIsinfuture());
                 ps.setBoolean(6,stire.isDeleted());
-                ps.setLong(7, stireID);
+                ps.setBytes(7, stire.getImagine1());
+                ps.setBytes(8, stire.getImagine2());
+                ps.setBytes(9, stire.getImagine3());
+                ps.setBytes(10, stire.getVideo());
+                ps.setLong(11, stireID);
 
                 int affectedRows = ps.executeUpdate();
 
@@ -139,8 +143,6 @@ public class StireService {
                 } else {
                     return "Stire with ID " + stireID + " updated successfully";
                 }
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
             return "Failed to update stire - " + e.getMessage();
