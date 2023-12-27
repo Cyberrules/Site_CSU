@@ -10,7 +10,7 @@ public class Stire {
     private Timestamp datapublicarii;
     private String titlu;
     private String continut;
-    private Long userId;
+    private String username;
     private boolean isinfuture;
     private boolean isDeleted;
     private byte[] imagine1;
@@ -21,12 +21,12 @@ public class Stire {
     public Stire() {
     }
 
-    public Stire(Long stireID, Timestamp datapublicarii, String titlu, String continut, Long userId, boolean isinfuture, boolean isDeleted,byte[] imagine1,byte[] imagine2,byte[] imagine3,byte[] video) {
+    public Stire(Long stireID, Timestamp datapublicarii, String titlu, String continut, String username, boolean isinfuture, boolean isDeleted,byte[] imagine1,byte[] imagine2,byte[] imagine3,byte[] video) {
         this.stireID = stireID;
         this.datapublicarii = datapublicarii;
         this.titlu = titlu;
         this.continut = continut;
-        this.userId = userId;
+        this.username = username;
         this.isinfuture = isinfuture;
         this.isDeleted = isDeleted;
         this.imagine1=imagine1;
@@ -69,13 +69,13 @@ public class Stire {
         this.continut = continut;
     }
 
-    @JsonProperty("userid")
-    public Long getUserId() {
-        return userId;
+    @JsonProperty("username")
+    public String getUserName() {
+        return username;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     @JsonProperty("isinfuture")

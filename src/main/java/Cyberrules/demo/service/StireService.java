@@ -23,7 +23,7 @@ public class StireService {
                         rs.getTimestamp("datapublicarii"),
                         rs.getString("titlu"),
                         rs.getString("continut"),
-                        rs.getLong("userID"),
+                        rs.getString("username"),
                         rs.getBoolean("isinfuture"),
                         rs.getBoolean("isDeleted"),
                         rs.getBytes("imagine1"),
@@ -43,12 +43,12 @@ public class StireService {
     {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement(
-                     "INSERT INTO stiri(datapublicarii, titlu, continut, userid, isinfuture, isdeleted, imagine1, imagine2, imagine3, video) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                     "INSERT INTO stiri(datapublicarii, titlu, continut, username, isinfuture, isdeleted, imagine1, imagine2, imagine3, video) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             Statement.RETURN_GENERATED_KEYS)) {
             ps.setTimestamp(1, stire.getDatapublicarii());
             ps.setString(2, stire.getTitlu());
             ps.setString(3, stire.getContinut());
-            ps.setLong(4, stire.getUserId());
+            ps.setString(4, stire.getUserName());
             ps.setBoolean(5, stire.isIsinfuture());
             ps.setBoolean(6, stire.isDeleted());
             ps.setBytes(7, stire.getImagine1());
@@ -99,7 +99,7 @@ public class StireService {
                         rs.getTimestamp("datapublicarii"),
                         rs.getString("titlu"),
                         rs.getString("continut"),
-                        rs.getLong("userID"),
+                        rs.getString("username"),
                         rs.getBoolean("isinfuture"),
                         rs.getBoolean("isDeleted"),
                         rs.getBytes("imagine1"),
@@ -120,14 +120,14 @@ public class StireService {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
 
             String updateQuery = "UPDATE stiri\n" +
-                    "\tSET  datapublicarii=?, titlu=?, continut=?, userid=?, isinfuture=?, isdeleted=?, imagine1=?, imagine2=?, imagine3=?, video=?\n" +
+                    "\tSET  datapublicarii=?, titlu=?, continut=?, username=?, isinfuture=?, isdeleted=?, imagine1=?, imagine2=?, imagine3=?, video=?\n" +
                     "\tWHERE stireid=?";
 
             try (PreparedStatement ps = conn.prepareStatement(updateQuery)) {
                 ps.setTimestamp(1, stire.getDatapublicarii());
                 ps.setString(2, stire.getTitlu());
                 ps.setString(3, stire.getContinut());
-                ps.setLong(4, stire.getUserId());
+                ps.setString(4, stire.getUserName());
                 ps.setBoolean(5, stire.isIsinfuture());
                 ps.setBoolean(6,stire.isDeleted());
                 ps.setBytes(7, stire.getImagine1());
