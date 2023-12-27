@@ -8,23 +8,25 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-image: url('../../assets/background.png'); 
+  background-image: url('../../assets/background.png');
   background-size: cover;
+  background-attachment: fixed;
   opacity: 1;
   z-index: 999;
-  margin-bottom: 200px; 
+  margin-bottom: 200px;
   box-sizing: border-box;
+  overflow-y: auto;
 
   .titluEchipa {
     margin-left: 40%;
-    font-size: 80px;
-    font-family: Copperplate Gothic Light, fantasy;
-    text-shadow: 2px 3px 3px rgba(0, 0, 0, 0.534);  
-    background-image: linear-gradient(to right, #ffffff, #469beb); 
-    -webkit-background-clip: text;  
-    background-clip: text;
-    -webkit-text-fill-color: transparent;  
-    animation: gradientAnimation 10s infinite linear; 
+  font-size: 80px;
+  font-family: Copperplate Gothic Light, fantasy;
+  text-shadow: 2px 3px 3px rgba(0, 0, 0, 0.534);
+  background-image: linear-gradient(to right, #ffffff, #469beb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientAnimation 10s infinite linear;
   }
   
   @keyframes gradientAnimation {
@@ -33,6 +35,19 @@
     }
     100% {
       background-position: right top;
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    .titluEchipa {
+      font-size: 60px;
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    .titluEchipa {
+      font-size: 40px;
+      margin-left: 20%;
     }
   }
 
@@ -119,6 +134,19 @@
     }
   }
   
+  }
+
+  @media screen and (max-width: 1200px) {
+    .tabs {
+      width: 70%;
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    .tabs {
+      width: 80%;
+      margin-left: 10%;
+    }
   }
 }
 

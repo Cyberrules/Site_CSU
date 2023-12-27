@@ -2,97 +2,122 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+ 
+  @media (max-width: 600px) {
+    flex-direction: row;
+  }
+ 
   .textPozitie {
     margin-top: 7%;
     text-align: center;
+ 
     p {
       font-size: 35px;
       text-transform: uppercase;
+ 
+      @media (max-width: 600px) {
+        font-size: 20px;
+      }
     }
   }
-
-.teren {
-  position: relative;
-
-  img {
-    width: 600px;
-    height: 600px;
-  }
-
-  .pozitii {
-    position: absolute;
+ 
+  .teren {
+    position: relative;
+ 
+    img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-width: 600px;
+    max-height: 600px;
+ 
+      @media (max-width: 600px) {
+        width: 100%;
+        height: auto;
+      }
+    }
+ 
+    .pozitii {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+ 
+    .cerc {
+      width: 8%;
+      height: 7%;
+      border-radius: 50%;
+      background: #e6f51d;
+      border: 6px solid #01220f;
+      opacity: 1;
+      display: block;
+      position: absolute;
+      cursor: pointer;
+ 
+      &.portar {
+        top: -10%;
+        left: 51.5%;
+        transform: translate(-50%, -50%);
+      }
+ 
+      &.inter-dreapta {
+        top: -20.6%;
+        left: 65%;
+        transform: translate(-50%, -50%);
+      }
+ 
+      &.inter-stanga {
+        top: -20.6%;
+        left: 37%;
+        transform: translate(-50%, -50%);
+      }
+ 
+      &.pivot {
+        top: -21.8%;
+        left: 51.5%;
+        transform: translate(-50%, -50%);
+      }
+ 
+      &.centru {
+        top: -31%;
+        left: 51.5%;
+        transform: translate(-50%, -50%);
+      }
+ 
+      &.extrema-dreapta {
+        top: -13%;
+        left: 77%;
+        transform: translate(-50%, -50%);
+      }
+ 
+      &.extrema-stanga {
+        top: -13%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+      }
+ 
+      &:active {
+        background: #d8da4c;
+        border: 6px solid #64326b;
+        opacity: 0.8;
+      }
+ 
+      @media (max-width: 600px) {
+        width: 5%;
+        height: 5%;
+      }
+    }
   }
-
-  .cerc {
-    width: 8%;
-    height: 7%;
-    border-radius: 50%;
-    background: #e6f51d;
-    border: 6px solid #01220f;
-    opacity: 1;
-    display: block;
-    position: absolute;
-    cursor: pointer;
-
-    &.portar {
-      top: -10%;
-      left: 51.5%;
-      transform: translate(-50%, -50%);
-    }
-
-    &.inter-dreapta {
-      top: -20.6%;
-      left: 65%;
-      transform: translate(-50%, -50%);
-    }
-
-    &.inter-stanga {
-      top: -20.6%;
-      left: 37%;
-      transform: translate(-50%, -50%);
-    }
-
-    &.pivot {
-      top: -21.8%;
-      left: 51.5%;
-      transform: translate(-50%, -50%);
-    }
-
-    &.centru {
-      top: -31%;
-      left: 51.5%;
-      transform: translate(-50%, -50%);
-    }
-
-    &.extrema-dreapta {
-      top: -13%;
-      left: 77%;
-      transform: translate(-50%, -50%);
-    }
-
-    &.extrema-stanga {
-      top: -13%;
-      left: 25%;
-      transform: translate(-50%, -50%);
-    }
-
-    &:active {
-      background: #d8da4c;
-      border: 6px solid #64326b;
-      opacity: 0.8;
-    }
-
-  }
-}
-
+ 
   .descriere {
     text-align: center;
     color: #3f3838;
     font-size: 20px;
     padding: 20px;
     margin-bottom: 2%;
+ 
+    @media (max-width: 600px) {
+      font-size: 14px;
+    }
   }
-}
+ }
+ 

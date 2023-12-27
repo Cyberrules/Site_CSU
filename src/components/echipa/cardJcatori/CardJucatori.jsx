@@ -22,7 +22,7 @@ const CardJucatori = ({ player }) => {
         </div>
         <img src={`data:image/jpeg;base64,${imagine}`} alt="imagine" />
         <figcaption>
-        <h3>{nume}{' '}{prenume}</h3>
+          <h3><span id="nume">{nume}</span><span className="spatiu" id="prenume">{prenume}</span></h3>
           <p>{text.pozitie} {pozitie}</p>
           <p>{text.nationalitate} {nationalitate}</p>
           <p>{text.dataNastere} {dataNasterii}</p>
