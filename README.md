@@ -55,7 +55,7 @@ Ensure that you have the following prerequisites installed:
 
 ## Database design
 
-![image](https://github.com/Cyberrules/Site_CSU/assets/74990176/af446210-e98f-45ce-9725-a717d2c6e2c6)
+![image](https://github.com/Cyberrules/Site_CSU/assets/74990176/084e3f01-eee6-4d17-9f24-b24c87e24c24)
 
 ## Errors fixing
 ### No logs available
