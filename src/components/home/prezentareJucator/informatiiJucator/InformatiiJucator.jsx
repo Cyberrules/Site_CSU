@@ -1,22 +1,51 @@
-import React from 'react'
-import './InformatiiJucator.scss'
+import React from 'react';
+import './InformatiiJucator.scss';
 
 const InformatiiJucator = ({ playerDetails }) => {
-    if (!playerDetails) return null;
 
-    const formatDate = (dateString) => {
-      const date = new Date(dateString);
-      const day = date.getDate().toString().padStart(2, '0');
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const year = date.getFullYear();
-      return `${day}.${month}.${year}`;
-    };
+  const textInformatiiJucator = {
+    nationalitate: 'Naționalitate: ',
+    dataNasterii: 'Data nașterii: ',
+    inaltime: 'Înălțime: ',
+    numar: 'Număr: ',
+    varsta: 'Vârsta: '
+  };
 
-    return (
-      <div className="informatiiJuc">
-        <p>Data nașterii: {formatDate(playerDetails.dataNasterii)}</p>
-      </div>
-    );
-}
+  if (!playerDetails) return null;
 
-export default InformatiiJucator
+  const dataFormatata = (dateString) => {
+    const data = new Date(dateString);
+    const zi = data.getDate().toString().padStart(2, '0');
+    const luna = (data.getMonth() + 1).toString().padStart(2, '0');
+    const an = data.getFullYear();
+    return `${zi}.${luna}.${an}`;
+  };
+
+  const calculVarsta = (birthDate) => {
+    const dataCurenta = new Date();
+    const dataNastereJucator = new Date(birthDate);
+    
+    let varsta = dataCurenta.getFullYear() - dataNastereJucator.getFullYear();
+    const diferentaLuni = dataCurenta.getMonth() - dataNastereJucator.getMonth();
+    if (diferentaLuni < 0 || (diferentaLuni === 0 && dataCurenta.getDate() < dataNastereJucator.getDate())) {
+      varsta--;
+    }
+    return varsta;
+  };
+
+  return (
+    <div className="informatiiJuc">
+      <h2>
+        <span className='nume'>{playerDetails.nume}</span> <span className='prenume'>{playerDetails.prenume}</span>
+      </h2>
+
+      <p>{textInformatiiJucator.nationalitate} {playerDetails.nationalitate.toLowerCase()}</p>
+      <p>{textInformatiiJucator.dataNasterii} {dataFormatata(playerDetails.dataNasterii) === '11.11.1111' ? 'lipsește' : dataFormatata(playerDetails.dataNasterii)}</p>
+      <p>{textInformatiiJucator.inaltime} {playerDetails.inaltime === 0 ? 'lipsește' : playerDetails.inaltime}</p>
+      <p>{textInformatiiJucator.numar} {playerDetails.numar}</p>
+      <p>{textInformatiiJucator.varsta} {dataFormatata(playerDetails.dataNasterii) === '11.11.1111' ? 'lipsește' : calculVarsta(playerDetails.dataNasterii)}</p>
+    </div>
+  );
+};
+
+export default InformatiiJucator;

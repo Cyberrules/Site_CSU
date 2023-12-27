@@ -11,7 +11,6 @@ const CardJucatori = ({ player }) => {
     nationalitate: 'Cetățenie:',
     dataNastere: 'Data nașterii:',
     inaltime: 'Înălțime:',
-    unitateMasura: 'cm'
   };
 
   return (
@@ -26,7 +25,7 @@ const CardJucatori = ({ player }) => {
           <p>{text.pozitie} {pozitie}</p>
           <p>{text.nationalitate} {nationalitate}</p>
           <p>{text.dataNastere} {dataNasterii}</p>
-          <p>{text.inaltime} {inaltime} {text.unitateMasura}</p>
+          <p>{text.inaltime} {inaltime}</p>
         </figcaption>
       </figure>
     </div>

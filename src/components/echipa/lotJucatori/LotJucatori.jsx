@@ -28,15 +28,29 @@ const LotJucatori = ({ editieSelectata }) => {
 
       const playerPositions = data.map(item => item.pozitie);
       const uniquePositions = Array.from(new Set(playerPositions));
+      
       data.forEach(player => {
         const date = new Date(player.dataNasterii);
-        const formattedDate = date.toLocaleDateString('ro-RO', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric'
-        });
-        player.dataNasterii = formattedDate;
+        
+        if (date.getFullYear() === 1111 && date.getMonth() === 0 && date.getDate() === 1) {
+          player.dataNasterii = 'lipsește';
+        } else {
+          const formattedDate = date.toLocaleDateString('ro-RO', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          });
+          player.dataNasterii = formattedDate;
+        }
+
+        if (player.inaltime === 0) {
+          player.inaltime = 'lipsește';
+        }
+        else {
+          player.inaltime = player.inaltime + ' cm';
+        }
       });
+      
 
       setPositions(uniquePositions);
       setData(data);
