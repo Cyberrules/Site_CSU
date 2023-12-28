@@ -108,14 +108,12 @@
             }
         
         }
-
-
-
     }
 }
 
 
 @media screen and (max-width: 1024px) {
+   
     .meci-urmator {
         height: auto;
         margin-top: 20px;
@@ -133,6 +131,10 @@
             margin-left: 5%;
             position: relative;
             left: 0;
+
+            .bottom-data{
+                margin-top: -1.5%;
+            }
         }
     }
 }
@@ -155,11 +157,8 @@
 
             .bottom-data{
                 margin-top: -1%;
-
             }
         }
-
-   
     }
 }
 

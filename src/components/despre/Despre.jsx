@@ -59,6 +59,7 @@ const Despre = () => {
         <h3>{textDespre.titluViziune}</h3>
         <h5>{textDespre.descriereViziune}</h5>
       </div>
+      
       <div className="istoric">
         <h2>{textDespre.titluIstoric}</h2>
       </div>
