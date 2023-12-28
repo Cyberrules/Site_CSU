@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/meci")
-@CrossOrigin(origins = "*",allowedHeaders = "*",methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE})
+@CrossOrigin(methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE})
 
 public class MeciController {
     private MeciuriService meciService;

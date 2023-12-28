@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("api/clasament")
-@CrossOrigin(origins = "*",allowedHeaders = "*",methods = {RequestMethod.GET})
+@CrossOrigin(methods = {RequestMethod.GET})
 public class ClasamentController {
 
     @GetMapping
