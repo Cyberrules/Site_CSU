@@ -1,16 +1,14 @@
 .imaginePrezentare {
   height: 590px;
   max-width: 100%;
-  background-color: #504b5e;
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: url('../assets/bg.jpg');
   background-size: cover;
-  background-position: top;
+  background-position:top;
   background-repeat: no-repeat;
 }
-
 
 .despre_noi {
   margin: 50px;
@@ -49,7 +47,7 @@
 
   .carduri {
     display: inline-flex;
-    max-width: 99%;
+    min-width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -81,13 +79,16 @@
   margin-right: 50px;
   align-items: center;
   height: 70px;
+  position: relative;
 
-  h4 {
+  .titluJucatori {
     margin-left: 50%;
   }
 
   .dropdownEditie {
-    margin-right: 1%;
+    position: absolute;
+    right: 1%;
+    top: 24%;
 
     select {
       padding: 4px;
@@ -129,14 +130,71 @@
 }
 
 
+
+@media screen and (max-width: 1550px) {
+  
+  .imaginePrezentare {
+    height: 450px;
+    background-position: center calc(30% + 170px);
+    background-repeat: no-repeat;
+  }
+}
+
 @media screen and (max-width: 1024px) {
+  .imaginePrezentare {
+    height: 330px;
+    background-position: center calc(50% + 200px);
+    background-repeat: no-repeat;
+  }
+
   .carduri {
     max-width: 80%;
   }
 }
 
+
 @media screen and (max-width: 768px) {
+  .imaginePrezentare {
+    height: 280px;
+    background-position: center calc(50% + 148px);
+    background-repeat: no-repeat;
+  }
+
   .carduri {
-    max-width: 80%;
+    max-width: 60%;
+  }
+}
+
+
+
+@media screen and (max-width: 600px) {
+
+  .imaginePrezentare {
+    height: 250px;
+    background-position: center calc(50% + 100px);
+    background-repeat: no-repeat;
+  }
+
+  .carduri {
+    max-width: 40%;
+  }
+
+
+  .jucatori {
+    flex-direction: column;
+    height: auto;
+    padding-bottom: 3%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .titluJucatori {
+    margin-left: 0; 
+    margin: 0 auto; 
+  }
+
+  .dropdownEditie {
+    left: 34%;
+    margin-top: 5%;
   }
 }

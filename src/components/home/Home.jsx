@@ -4,7 +4,7 @@ import ImagineEchipa from "../assets/imgEchipa.png";
 import "./Home.scss";
 import CardNoutati from "./cardNoutati/CardNoutati";
 import SliderEchipa from "./echipaSlider/SliderEchipa";
-import ClasamentHome from "../clasamentHome/ClasamentHome";
+import ContainerClasament from "./containerClasament/ContainerClasament";
 import Sponsori from "./sponsori/Sponsori";
 import PrezentareJucator from "./prezentareJucator/PrezentareJucator";
 
@@ -40,7 +40,7 @@ const Home = () => {
       id: 1,
       imagine: ImagineEchipa,
       titlu: "Titlu știre 1",
-      continut: "Conținutul știrii 1...",
+      continut: "Conținutul știrii 2..hafbhjadfbasbfhasfhasvfhjasvfhsvfashjfvashjfvasljhfvsaj.",
     },
     {
       id: 2,
@@ -168,11 +168,11 @@ const Home = () => {
         </div>
       </div>
       <div className="clasamentPgHome">
-        <ClasamentHome />
+        <ContainerClasament />
       </div>
 
       <div id="linkJucatori" className="jucatori">
-        <h4>{textHome.titluJucatori}</h4>
+        <div className="titluJucatori"><h4>{textHome.titluJucatori}</h4></div>
         <div className="dropdownEditie">
           <select
             id="selectorEditie"

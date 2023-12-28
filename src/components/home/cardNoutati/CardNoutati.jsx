@@ -5,18 +5,22 @@ const CardNoutati = ({ stire }) => {
   const { imagine, titlu, continut } = stire;
   const textLink= 'Afla mai multe →';
 
+  const handleRedirect = () => {
+    window.location.href = '/';
+  };
+
   return (
-    <div className="m-4">
+    <div>
       <div className="card">
         <div className='imagineCard'>
           <img src={imagine} alt="imagine" className="card-img-top" />
         </div>
-        <div className="card-body text-center">
-          <h5 className="card-title">{titlu}</h5>
-          <p className="card-text">{continut}</p>
-          <a href="#" className="btn button_news ">
-              {textLink}
-          </a>
+        <div className="continutText">
+          <h5 className="titluStire">{titlu}</h5>
+          <p className="continutStire">{continut}</p>
+          <button className="butonLink" onClick={handleRedirect}>
+            {textLink}
+          </button>
         </div>
       </div>
     </div>

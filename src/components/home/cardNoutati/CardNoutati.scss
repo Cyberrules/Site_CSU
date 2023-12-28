@@ -1,52 +1,50 @@
-
-.m-4 {
-  margin: 1rem;
-}
 .card {
   background-color: rgba(63, 63, 149, 1);
-  width: 520px;
-  color:white;
-  border-radius: 5px;
+  min-width: 480px;
+  max-width: 480px;
+  max-height: 350px;
+  color: white;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
+  margin-bottom: 1%;
 
-}
+  .imagineCard {
+    display: flex;
+    justify-content: center;
 
-.imagineCard{
-  display: flex;
-  justify-content: center;
-}
+    img {
+      max-width: 100%;
+      max-height: 200px;
+    }
+  }
 
-.card img {
-  max-width:100%; 
-  max-height: 200px;
-}
+  .continutText {
+    padding: 1rem;
+    width: 98%;
+    height: 80%;
 
-.card-body {
-  padding: 1rem;
-}
+    .titluStire {
+      font-size: 20px;
+      text-align: left;
+      font-style: italic;
+    }
 
-.card-title {
-  font-size: 1.45rem;
-  text-align: left;
-  margin-top: -30px;
-  font-style: italic;
- 
-}
+    .continutStire {
+      margin-bottom: 5%;
+      color: #ffffff;
+      text-align: left;
+    }
+  }
 
-.card-text {
-  padding-top: 15px;
-  color: #ffffff;
-  text-align: left;
-}
+  .butonLink {
+    float: right;
+    background-color: #D9D9D9;
+    color: black;
+    padding: 3px 6px;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+  }
 
-.button_news {
-  float:right;
-  background-color:  #D9D9D9;
-  border-radius:2px;
-  color: black;
-  padding: 5px 8px;
-  border: none;
-  border-radius: 9px;
-  cursor:pointer;
 }

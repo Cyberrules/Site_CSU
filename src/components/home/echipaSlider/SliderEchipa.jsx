@@ -16,12 +16,12 @@ const SliderEchipa = ({ slides, onPlayerSelect }) => {
 
   const slideLeft = () => {
     const slider = document.getElementById("slider");
-    slider.scrollLeft = slider.scrollLeft - 325;
+    slider.scrollLeft = slider.scrollLeft - 295;
   };
 
   const slideRight = () => {
     const slider = document.getElementById("slider");
-    slider.scrollLeft = slider.scrollLeft + 325;
+    slider.scrollLeft = slider.scrollLeft + 295;
   };
 
   const handlePlayerClick = (player) => {
