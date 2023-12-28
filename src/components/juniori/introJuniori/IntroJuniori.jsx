@@ -15,27 +15,27 @@ const IntroJuniori = () => {
   return (
     <div>
 
-      <div className="image-container">
-        <div className="imageIntro1">
+      <div className="image-container-juniori">
+        <div className="imageIntro1-juniori">
           <img src={intro1} alt="intro1" />
         </div>
-        <div className="imageIntro2">
+        <div className="imageIntro2-juniori">
           <img src={intro2} alt="intro2" />
         </div>
       </div>
 
-        <div className="details-container">
+        <div className="details-container-juniori">
         <div >
-          <div className="titleIntro">
+          <div className="titleIntro-juniori">
             <h2>{textIntroJuniori.titlu}</h2>
           </div>
-          <div className="infoIntro">
+          <div className="infoIntro-juniori">
             <p>{textIntroJuniori.continut}</p>
           </div>
         </div>
 
-        <div className="imageIntro">
-          <img src={intro3} alt="" className='imagineIntro'/>
+        <div className="imageIntro-juniori">
+          <img src={intro3} alt="" className='imagineIntro-juniori'/>
         </div>
       </div>
 

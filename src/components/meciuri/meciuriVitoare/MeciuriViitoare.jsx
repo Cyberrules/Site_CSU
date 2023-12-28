@@ -16,29 +16,42 @@ const MeciuriViitoare = ({
   return (
     <div className="containerMeciuriViitoare">
       <div className="cardMeciuriViitoare">
-        <div className="logoContainerViitoare">
-          <img src={logoLiga} alt="Logo" className="logoLigaViitorare" />
-        </div>
-        <div className="infoContainer">
-          <p>{etapa}</p>
-          <p>{locatia}</p>
-        </div>
-        <div className="bara-verticala-viitoare"></div>
-        <div className="infoData">
-          <p>{data}</p>
-        </div>
-        <div className="elementeMeciuri">
-          <div className="logoEchipe">
-            <p className="numeEchipaGazda">{numeEchipa1}</p>
-            <img src={logoEchipa1} alt="Logo" className="logoLigaMeciViitor" />
+
+
+
+        <div className="wrapperContainerViitoare">
+          <div className="logoContainerViitoare">
+            <img src={logoLiga} alt="Logo" className="logoLigaViitorare" />
           </div>
-          <div className="separator">{textVS}</div>
-          <div className="logoEchipe">
-            <img src={logoEchipa2} alt="Logo" className="logoLigaMeciViitor" />
-            <p className="numeEchipaOaspete">{numeEchipa2}</p>
+
+          <div className="infoContainer">
+            <p>{etapa}</p>
+            <p>{locatia}</p>
+          </div>
+
+          <div className="bara-verticala-viitoare"></div>
+
+          <div className="infoData">
+            <p>{data}</p>
           </div>
         </div>
-        <div className="ora">{ora}</div>
+
+        <div class="elementeMeciuri">
+          <div class="logoEchipaGazda">
+            <p class="numeEchipaGazda">{numeEchipa1}</p>
+            <img src={logoEchipa1} alt="Logo" class="logoLigaMeciViitor" />
+          </div>
+          <div class="separator">{textVS}</div>
+          <div class="logoEchipaOaspete">
+            <img src={logoEchipa2} alt="Logo" class="logoLigaMeciViitor" />
+            <p class="numeEchipaOaspete">{numeEchipa2}</p>
+          </div>
+        </div>
+
+        <div className="containerOraMeci">
+          <div className="ora">{ora}</div>
+        </div>
+      
       </div>
     </div>
   );

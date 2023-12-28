@@ -1,10 +1,10 @@
-.image-container {
+.image-container-juniori {
   margin-top: 1%;
   display: flex;
   flex-wrap: wrap;
 
-.imageIntro1 img,
-.imageIntro2 img {
+.imageIntro1-juniori img,
+.imageIntro2-juniori img {
   width: 100%;
   height: auto;
   max-height: 350px;
@@ -12,8 +12,8 @@
 }
 
   @media (max-width: 768px) {
-    .imageIntro1,
-    .imageIntro2 {
+    .imageIntro1-juniori,
+    .imageIntro2-juniori {
       flex: 1 1 100%;
       width: 100%;
       max-width: 100%;
@@ -21,7 +21,7 @@
   }
 }
 
-.details-container {
+.details-container-juniori {
   background-color: #3f3f95;
   display: flex;
   margin: 20px 50px;
@@ -29,7 +29,7 @@
   font-family: Electrolize;
   color: white;
 
-  .titleIntro {
+  .titleIntro-juniori {
     flex: 0 0 70%;
     padding-right: 40px;
     padding-left: 10px;
@@ -40,7 +40,7 @@
     margin-bottom: 5%;
   }
 
-  .infoIntro {
+  .infoIntro-juniori {
     margin-top: 20px;
     margin-right: 2%;
     font-size: 22px;
@@ -49,12 +49,12 @@
     flex: 1;
   }
 
-  .imageIntro {
+  .imageIntro-juniori {
     flex: 0 0 20%;
     display: flex;
     justify-content: flex-end;
 
-    .imagineIntro {
+    .imagineIntro-juniori {
       max-width: 100%;
       height: auto;
     }
@@ -65,20 +65,20 @@
     align-items: center; 
     margin: 20px 0;
 
-    .titleIntro {
+    .titleIntro-juniori {
       padding-right: 0;
       text-align: center; 
     }
 
-    .infoIntro {
+    .infoIntro-juniori {
       margin-right: 0;
       margin-top: 10px;
     }
 
-    .imageIntro {
+    .imageIntro-juniori {
       margin-top: 20px;
 
-      .imagineIntro {
+      .imagineIntro-juniori {
         max-width: 100%;
         height: auto;
       }
