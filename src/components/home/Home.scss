@@ -1,162 +1,142 @@
 .imaginePrezentare {
-    margin-top: 3.5%;
-    height: 550px; 
-    width: 100%;
-    background-color: #504b5e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url('../assets/bg.jpg');
-    background-size: cover;
-    background-position: center top -120px;
+  height: 590px;
+  max-width: 100%;
+  background-color: #504b5e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../assets/bg.jpg');
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
 }
 
 
+.despre_noi {
+  margin: 50px;
+  height: 100%;
+  background-color: rgb(235, 235, 239);
+  border: 2px outset #3F3F95;
+  border-radius: 10x;
 
+  .despre_text {
+    padding: 40px;
+    padding-top: 0px;
+  }
 
-
-.despre_noi{
-    margin:50px;
-    height: 100%; 
-    background-color:rgb(235, 235, 239);
-    border: 2px outset #3F3F95;
-    border-radius:10x;
-}
-
-.despre_text{
-     padding: 40px;
-     padding-top:0px;
-}
-  
-.adauga_mai_multe {
-    border: none;
-    cursor: pointer;
-}
-
-a:hover {
+  a:hover {
     color: rgb(0, 0, 0);
     text-decoration: none;
+  }
+
+  .link {
+    float: right;
+    color: rgb(0, 0, 0);
+    font-size: 22px;
+  }
 }
 
-.link{
-    float:right;
-    color:rgb(0, 0, 0);
-    font-size:22px;
+.clasamentPgHome {
+  margin-bottom: 3%;
 }
 
+.noutati-container {
 
- .noutati{
+  .noutati {
     background: linear-gradient(270deg, #3F3F95 45.23%, rgba(65, 45, 45, 0.00) 99.14%);
-    margin:50px;
-   
+    margin: 50px;
+  }
+
+  .carduri {
+    display: inline-flex;
+    max-width: 99%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
 }
 
-.carduri{
-  display: inline-flex;
-  max-width: 100%;
+.sliderEchipa {
+  margin-left: 50px;
+  margin-right: 50px;
+  height: 360px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3F3F95;
+  padding-bottom: 10px;
+
 }
 
-.sliderEchipa{
-    margin-left:50px;
-    margin-right:50px;
-    height: 360px;
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    background-color: #3F3F95;
-    padding-bottom:10px;
-    
-}
-  
 .jucatori {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    background-color: #3F3F95;
-    color: #fff;
-    display: flex;
-  
-    margin-left: 50px;
-    margin-right: 50px;
-    align-items: center;
-    height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background-color: #3F3F95;
+  color: #fff;
+  display: flex;
+  margin-left: 50px;
+  margin-right: 50px;
+  align-items: center;
+  height: 70px;
 
-    h4{
-        margin-left: 50%;
+  h4 {
+    margin-left: 50%;
+  }
+
+  .dropdownEditie {
+    margin-right: 1%;
+
+    select {
+      padding: 4px;
+      font-size: 15px;
+      border: 1px solid #000000;
+      border-radius: 15px;
+      outline: none;
+      cursor: pointer;
+      text-align: center;
+
+
+      &:hover {
+        border-color: #000000;
+      }
+
+      &:focus {
+        border-color: #000000;
+      }
     }
-
-    .dropdownEditie {
-        margin-right: 1%;
-        select {
-            padding: 4px;
-            font-size: 15px;
-            border: 1px solid #000000;
-            border-radius: 15px;
-            outline: none;
-            cursor: pointer;
-            text-align: center;
-            
-        
-            &:hover {
-              border-color: #000000;
-            }
-        
-            &:focus {
-              border-color: #000000;
-            }
-          }
-        }
+  }
 }
 
-.titluSponsori {
-    margin-top: 1%;
-    order: -1; 
-}
 .containerSponsori {
-    width: 96%;
-    margin-top: 3%;
-    margin-left: 2%;
-    margin-bottom: 3%;
-    text-align: center;
-    border-radius: 50px;
-    border: 3px solid rgb(124, 101, 101);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  width: 96%;
+  margin-top: 3%;
+  margin-left: 2%;
+  margin-bottom: 3%;
+  text-align: center;
+  border-radius: 50px;
+  border: 3px solid rgb(124, 101, 101);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .titluSponsori {
+    margin-top: 1%;
+    order: -1;
   }
+}
 
 
-
-
-
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
+@media screen and (max-width: 1024px) {
+  .carduri {
     max-width: 80%;
-    max-height: 80%;
-    overflow: auto;
   }
-  
-  
-  .modal.active {
-    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .carduri {
+    max-width: 80%;
   }
-  
+}

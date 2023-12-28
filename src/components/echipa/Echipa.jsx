@@ -7,10 +7,9 @@ import GalerieImagini from './galerieImagini/GalerieImagini';
 const Echipa = () => {
   const [editiiEchipa, setEditiiEchipa] = useState([]);
   const [editieSelectata, setEditieSelectata] = useState('');
-
   const numeEchipa = 'CSU Suceava';
   const categorieStaff = 'Staff';
-  const categorieJucatori = 'Adulti';
+  /*const categorieJucatori = 'Adulti';*/
 
   useEffect(() => {
     fetchEditii(categorieStaff, setEditiiEchipa, setEditieSelectata);

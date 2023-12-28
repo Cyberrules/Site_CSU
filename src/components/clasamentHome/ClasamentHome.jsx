@@ -11,7 +11,7 @@ const Clasament = () => {
     <div className="meciuri-container">
       <UltimulMeci />
       <UrmatorulMeci/>
-      <SectiuneClasament />
+      <SectiuneClasament />  
   </div>
   )
 }

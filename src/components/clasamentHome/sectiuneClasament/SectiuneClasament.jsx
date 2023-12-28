@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import "../ClasamentHome.scss";
+import "./SectiuneClasament.scss";
 
 const TabelClasament = ({ data }) => {
     return (
-      <div className='container-clasament'>
       <table className='tableClasament'>
         <thead>
           <tr className='trClasament'>
@@ -35,7 +34,6 @@ const TabelClasament = ({ data }) => {
         </tbody>
       </table>
 
-      </div>
     );
   };
 
@@ -74,7 +72,7 @@ const SectiuneClasament = ({data}) => {
             </div>
         <div className="clasament-echipe">
           <TabelClasament data={dateExemplu} />
-        </div>
+        </div> 
     </div>
   )
 }

@@ -1,5 +1,4 @@
 $base-duration: 500ms;
-
 $sm: new-breakpoint(min-width 320px);
 $med: new-breakpoint(min-width 768px);
 $lg: new-breakpoint(min-width 1024px);
@@ -11,29 +10,24 @@ $lg: new-breakpoint(min-width 1024px);
   outline: none;
 }
 
-.wrapper-team{
+.wrapper-team {
   width: 500px;
   height: 450px;
-  position: relative; 
-  display: inline-block; 
-
+  position: relative;
+  display: inline-block;
 }
 
 .steag {
-  position: absolute; 
-  top: 25px; 
-  left: 10px; 
+  position: absolute;
+  top: 25px;
+  left: 10px;
   width: 60px;
   height: 30px;
 }
 
 .image-block {
-  position: relative; 
+  position: relative;
 }
-
-
-
-
 
 
 figure {
@@ -45,26 +39,31 @@ figure {
   min-width: 40%;
   height: 90%;
   border-radius: 10px;
-  box-shadow: 
-    0 1px 3px rgba(0,0,0,0.12), 
-    0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  box-shadow:
+  0 1px 3px rgba(0, 0, 0, 0.12),
+  0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
   overflow: hidden;
+
   &:hover {
-    box-shadow: 
-      0 14px 28px rgba(0,0,0,0.25), 
-      0 10px 10px rgba(0,0,0,0.22);
+    box-shadow:
+      0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22);
+
     h1 {
       opacity: 0;
       transform: scale(0.7);
     }
+
     img {
       transform: scale(1.25);
     }
+
     figcaption {
       bottom: 0;
     }
   }
+
   h1 {
     position: absolute;
     top: 50px;
@@ -80,10 +79,12 @@ figure {
     transition: 0.25s ease;
     z-index: 999;
   }
+
   img {
     height: 100%;
     transition: 0.25s;
   }
+
   figcaption {
     position: absolute;
     bottom: -50%;
@@ -91,28 +92,30 @@ figure {
     width: 100%;
     margin: 0;
     padding: 30px;
-    background-color: rgba(black,0.85);
-    box-shadow: 0 0 20px rgba(black,0.4);
+    background-color: rgba(black, 0.85);
+    box-shadow: 0 0 20px rgba(black, 0.4);
     color: white;
     line-height: 1;
     transition: 0.25s;
+
     h3 {
       margin: 0 0 35px;
       padding: 0;
       margin-left: -6%;
+
       .spatiu {
         padding-left: 10px;
       }
 
-      .nume{
+      .nume {
         margin-left: 30px;
       }
-      
     }
+
     p {
       font-size: 14px;
       line-height: 1.75;
     }
-  
+
   }
 }
