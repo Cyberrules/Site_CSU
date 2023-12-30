@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Noutati.scss';
-import { Stire } from '../noutati/stire/Stire';
+import Stire from './stire/Stire';
 import DatePicker from 'react-datepicker';
 import Select from 'react-select';
 import 'react-datepicker/dist/react-datepicker.css';
 import ListaCardStiri from './listacardstiri/ListaCardStiri';
+import SliderNoutati from './sliderNoutati/SliderNoutati';
 
 const Noutati = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedStire, setSelectedStire] = useState(null);
 
   const options = [
     { value: 'Ieri', label: 'Ieri' },
@@ -27,16 +29,27 @@ const Noutati = () => {
     }
   };
 
+  const handleCardClick = (stire) => {
+    setSelectedStire(stire);
+  };
+
   return (
     <div>
       <div>
-        <div className="container-stiri">
+        <div className="container-stiri-slider">
+         <SliderNoutati/>
         </div>
       </div>
 
       <div className="container-stiri">
         <div className="coloanastanga">
-          <Stire />
+          {selectedStire && (
+            <Stire
+              titlu={selectedStire.titlu}
+              descriere={selectedStire.continut}
+              imagine={`data:image/jpeg;base64,${selectedStire.imagine1}`}
+            />
+          )}
         </div>
         <div className="coloanadreapta ">
           <div className="calendarstire">
@@ -53,12 +66,16 @@ const Noutati = () => {
           </div>
           <div className="separatorListaStiri"></div>
           <div className='carduri-lista-stiri'>
-            <ListaCardStiri selectedOption={selectedOption} selectedDate={selectedDate} />
+            <ListaCardStiri
+              selectedOption={selectedOption}
+              selectedDate={selectedDate}
+              onCardClick={handleCardClick}
+            />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Noutati;
