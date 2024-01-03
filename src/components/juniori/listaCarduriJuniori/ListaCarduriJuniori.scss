@@ -6,14 +6,14 @@
   width: 100%;
 
   .container-titlu-juniori {
-    margin-top: 4%;
+    margin-top: 3%;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .titlu-juniori {
       font-family: Roboto;
-      font-size: 36px;
+      font-size: 45px;
       font-weight: bold;
       color: #555;
     }
@@ -37,7 +37,7 @@
   }
 
   .galerie-juniori {
-    margin-top: 5%;
+    margin-top: 2%;
     margin-bottom: 5%;
     display: flex;
     flex-direction: column;
@@ -48,7 +48,7 @@
     .carduri-juniori {
       display: grid;
       grid-template-columns: repeat(4, minmax(250px, 1fr));
-      gap: 30px;
+      gap: 50px;
       width: 100%;
       max-width: 70%;
       justify-items: center;
