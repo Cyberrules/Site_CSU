@@ -6,6 +6,8 @@ import Cyberrules.demo.payload.LoginDto;
 import Cyberrules.demo.payload.SignUpDto;
 import Cyberrules.demo.repository.RoleRepository;
 import Cyberrules.demo.repository.UserRepository;
+import Cyberrules.demo.security.JwtConstants;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,15 +15,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.security.Key;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -46,13 +50,14 @@ public class AuthController {
                     loginDto.getUsername(), loginDto.getPassword()));
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            return new ResponseEntity<>("User signed-in successfully!", HttpStatus.OK);
+            // Generate JWT token
+            String token = generateJwtToken(authentication);
+            return new ResponseEntity<>(token, HttpStatus.OK);
         } catch (AuthenticationException e) {
             // Handle authentication failure
             return new ResponseEntity<>("Authentication failed.", HttpStatus.UNAUTHORIZED);
         }
     }
-
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignUpDto signUpDto){
@@ -78,4 +83,33 @@ public class AuthController {
 
         return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
     }
+    private String generateJwtToken(Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        // Extract additional user information
+        User user = userRepository.findByUsername(userDetails.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        // Create claims for JWT payload
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("nume", user.getNume());
+        claims.put("prenume", user.getPrenume());
+
+        // Extract roles and add them to claims
+        Set<String> roles = user.getRoles().stream().map(Role::getName).collect(Collectors.toSet());
+        claims.put("roles", roles);
+
+        // Use Keys.secretKeyFor to generate a secure key for HS512
+        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+
+        // Build JWT with claims
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + JwtConstants.EXPIRATION_TIME))
+                .signWith(key)
+                .compact();
+    }
+
 }
