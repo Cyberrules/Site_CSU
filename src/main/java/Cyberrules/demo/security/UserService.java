@@ -3,6 +3,8 @@ package Cyberrules.demo.security;
 
 import Cyberrules.demo.model.User;
 import Cyberrules.demo.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,8 +35,14 @@ public class UserService implements UserDetailsService{
                 .getRoles()
                 .stream()
                 .map((role) -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toSet());
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
                 user.getPasswordhash(),
                 authorities);
+
+//        // Log user details for debugging
+//        System.out.println("User Details: "+ userDetails);
+
+        return userDetails;
     }
 }
