@@ -21,11 +21,10 @@ const Sponsori = () => {
         const years = data.map((sponsor) => sponsor.editia);
         const uniqueYears = [...new Set(years)];
         const sortedYears = uniqueYears.sort((a, b) => a - b);
-        const currentYear = new Date().getFullYear().toString().substr(-2);
-        const currentYearEditions = sortedYears.filter(year => year.toString().includes(currentYear));
-        const defaultEdition = currentYearEditions.length > 0 ? currentYearEditions[0] : '';
+        const defaultEdition = sortedYears.length > 0 ? sortedYears[sortedYears.length - 1] : '';
         setSelectedEdition(defaultEdition);
         setEditions(sortedYears);
+
       })
       .catch((error) => console.error('Eroare în obținerea datelor sponsorilor:', error));
   }, []);

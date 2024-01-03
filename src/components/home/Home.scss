@@ -14,7 +14,7 @@
   margin: 50px;
   height: 100%;
   background-color: rgb(235, 235, 239);
-  border: 2px outset #3F3F95;
+  border: 2px outset #155885;;
   border-radius: 10x;
 
   .despre_text {
@@ -41,7 +41,7 @@
 .noutati-container {
 
   .noutati {
-    background: linear-gradient(270deg, #3F3F95 45.23%, rgba(65, 45, 45, 0.00) 99.14%);
+    background: linear-gradient(270deg, #155885 45.23%, rgba(65, 45, 45, 0.00) 99.14%);
     margin: 50px;
   }
 
@@ -62,7 +62,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #3F3F95;
+  background-color: #155885;
   padding-bottom: 10px;
 
 }
@@ -72,7 +72,7 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  background-color: #3F3F95;
+  background-color: #155885;
   color: #fff;
   display: flex;
   margin-left: 50px;
@@ -83,6 +83,7 @@
 
   .titluJucatori {
     margin-left: 50%;
+    background-color: #155885;
   }
 
   .dropdownEditie {

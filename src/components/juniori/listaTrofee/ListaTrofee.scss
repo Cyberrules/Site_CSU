@@ -1,14 +1,14 @@
 .palmaresJuniori {
-    background-color: rgba(63, 63, 149, 0.85);
+    background-color: #155885;
     margin:20px 50px;
     padding:20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 95%;
   }
   
   .titlu-palmaresJuniori {
-    font-size: 28px;
     margin-bottom: 10px;
     color: #000;
     font-family: Inter;
@@ -38,7 +38,7 @@
     }
   
     .imagine-trofeu {
-      max-width: 100%;
+      max-width: 60%;
       height: auto;
     }
   
@@ -49,8 +49,6 @@
       font-family: Electrolize;
       font-size: 22px;
       font-style: normal;
-      font-weight: 400;
-      line-height: normal;
       letter-spacing: 1.1px;
     }
   }

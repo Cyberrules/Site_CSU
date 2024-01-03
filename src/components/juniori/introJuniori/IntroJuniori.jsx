@@ -1,31 +1,23 @@
-import React from 'react'
-import './IntroJuniori.scss';
+import React from "react";
+import "./IntroJuniori.scss";
 
-import intro1 from "../../assets/juniori/intro/Image1.jpg";
-import intro2 from "../../assets/juniori/intro/Image2.jpg";
 import intro3 from "../../assets/juniori/intro/antrenor.jpg";
 
 const IntroJuniori = () => {
-
-  const textIntroJuniori ={
-    titlu: 'Handbal juvenil',
-    continut: 'Mauris sollicitudin tempus purus sit amet sollicitudin. Curabitur ac nulla libero. Proin pretium augue a arcu congue blandit. Maecenas ut risus eleifend nibh vestibulum ultricies. Duis vitae dui lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi facilisis mattis metus a fringilla. Mauris laoreet elementum scelerisque. Mauris sollicitudin tempus purus sit amet sollicitudin. Curabitur ac nulla libero. Proin pretium augue a arcu congue blandit. Maecenas ut risus eleifend nibh vestibulum ultricies. Duis vitae dui lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi facilisis mattis metus a fringilla. Mauris laoreet elementum scelerisque.'
-  }
+  const textIntroJuniori = {
+    titlu: "Handbal juvenil",
+    continut:
+      "Mauris sollicitudin tempus purus sit amet sollicitudin. Curabitur ac nulla libero. Proin pretium augue a arcu congue blandit. Maecenas ut risus eleifend nibh vestibulum ultricies. Duis vitae dui lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi facilisis mattis metus a fringilla. Mauris laoreet elementum scelerisque. Mauris sollicitudin tempus purus sit amet sollicitudin. Curabitur ac nulla libero. Proin pretium augue a arcu congue blandit. Maecenas ut risus eleifend nibh vestibulum ultricies. Duis vitae dui lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi facilisis mattis metus a fringilla. Mauris laoreet elementum scelerisque.",
+  };
 
   return (
     <div>
-
       <div className="image-container-juniori">
-        <div className="imageIntro1-juniori">
-          <img src={intro1} alt="intro1" />
-        </div>
-        <div className="imageIntro2-juniori">
-          <img src={intro2} alt="intro2" />
-        </div>
+        <div className="imageIntro1-juniori"></div>
       </div>
 
-        <div className="details-container-juniori">
-        <div >
+      <div className="details-container-juniori">
+        <div>
           <div className="titleIntro-juniori">
             <h2>{textIntroJuniori.titlu}</h2>
           </div>
@@ -35,12 +27,11 @@ const IntroJuniori = () => {
         </div>
 
         <div className="imageIntro-juniori">
-          <img src={intro3} alt="" className='imagineIntro-juniori'/>
+          <img src={intro3} alt="" className="imagineIntro-juniori" />
         </div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default IntroJuniori
+export default IntroJuniori;

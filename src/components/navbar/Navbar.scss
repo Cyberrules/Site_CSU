@@ -1,116 +1,119 @@
- nav {
-    position: fixed;
-    top: 0px;
-    width: 100%;
-    height: 70px;
-    background: linear-gradient(270deg, #3F3F95 67.08%, rgb(255, 255, 255) 99.14%);
-    opacity: 1.0;
-    z-index: 999;
+nav {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(270deg, #155885 52.08%, rgb(255, 255, 255) 99.14%);
+  opacity: 1.0;
+  z-index: 999;
 }
 
-
-.meniu{
-    opacity: 0;
-    background-image: black; 
+.meniu {
+  opacity: 0;
+  background-image: black; 
 }
+
 .list {
-    margin-top: 10px;
-    list-style-type: none;
-    height: 100%;
-    align-items:normal;
-    position: relative;
+  margin-top: 10px;
+  list-style-type: none;
+  height: 100%;
+  align-items: normal;
+  position: relative;
 
-    
-}
-
-.list a {
-    display:block;
-    color: white;
+  a {
+    display: flex;
+    color: rgb(0, 0, 0);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     float: left;
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-weight: bold;
+    justify-content: center;
+    text-decoration: none;
+
+    &:hover {
+      color: rgb(41, 51, 56);
+      background-color: transparent;
+      text-decoration: underline;
+    }
   }
+}
 
 .items {
-    margin-right: 20px;
-    font-size: 22px;
-    color: #f1f1f1;
-    cursor: pointer;
-}
-.btn{
+  margin-right: 20px;
+  font-size: 22px;
+  color: #f1f1f1;
+  cursor: pointer;
+  .btn {
     top: 25px;
     color: rgba(36, 102, 235, 0.752);
     size: 20px;
-} 
-
-
-
-.logo{
-    height: 95px;
-    width: 95px;
-    margin-top: -35px;
-    margin-left: -50px;
-}
-.imagine{
-    height: 95px;
-    width: 95px;
-
+  } 
 }
 
+.logo {
+  height: 95px;
+  width: 95px;
+  margin-top: -35px;
+  margin-left: -50px;
+}
 
-
+.imagine {
+  height: 95px;
+  width: 95px;
+}
 
 /**/
 
 .searchBox {
-    margin-top:-22px;
-    position: fixed;
-    transform: translate(0%, 50%);
-    background: #2f3640;
-    border-radius: 40px;
-    padding: 3px;
-    right: 100px;
-}
+  margin-top: -22px;
+  position: fixed;
+  transform: translate(0%, 50%);
+  background: #2f3640;
+  border-radius: 40px;
+  padding: 3px;
+  right: 100px;
 
-.searchBox:hover > .searchInput {
+  &:hover > .searchInput {
     width: 240px;
     padding: 0 6px;
-}
+  }
 
-.searchBox:hover > .searchButton {
-  background: rgb(255, 244, 244);
-  color : #2f3640;
+  &:hover > .searchButton {
+    background: rgb(255, 244, 244);
+    color: #2f3640;
+  }
 }
 
 .searchButton {
-    color:  #2f3640;
-    float: right;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.4s;
+  color: #2f3640;
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
 }
 
 .searchInput {
-    border:none;
-    background: none;
-    outline:none;
-    float:left;
-    padding: 0;
-    color: white;
-    font-size: 16px;
-    transition: 0.4s;
-    line-height: 40px;
-    width: 0px;
-
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: white;
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 0px;
 }
 
-.search-data{
+.search-data {
   width: 100%;
   height: 100%;
   padding: 0 10px;
@@ -121,41 +124,29 @@
   background: none;
 }
 
-
-
 .login button {
-
-    margin-top:4px;
-    position: fixed;
-    background:#2f3640;
-    right: 50px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    border-radius: 50%;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-  }
-
-
+  margin-top: 4px;
+  position: fixed;
+  background: #2f3640;
+  right: 50px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media (max-width: 600px) {
-    .meniu {
-      opacity: 1;
-      
-    }
+  .meniu {
+    opacity: 1;
   }
-  
-  /* Desktop styles */
-  @media (max-width: 350px) {
-    .meniu {
-        opacity: 1;
-        
-      }
+}
+
+@media (max-width: 350px) {
+  .meniu {
+    opacity: 1;
   }
-
-
-
+}

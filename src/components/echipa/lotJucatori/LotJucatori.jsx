@@ -66,6 +66,17 @@ const LotJucatori = ({ editieSelectata }) => {
     }
   }, [editieSelectata]);
 
+  const [initialButtonSelected, setInitialButtonSelected] = useState(false);
+
+  useEffect(() => {
+    if (positions.length > 0 && !initialButtonSelected) {
+      const lastPosition = 'Extremă Dreapta';
+      toggleVisibility(lastPosition);
+      setInitialButtonSelected(true);
+    }
+  }, [positions, initialButtonSelected]);
+
+
   const toggleVisibility = (position) => {
     if (selectedPosition === position) {
       setSelectedPosition('');

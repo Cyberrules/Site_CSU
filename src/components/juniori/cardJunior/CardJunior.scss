@@ -1,0 +1,36 @@
+.card-junior {
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+  transition: transform 0.3s ease;
+
+  img {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 15px;
+  }
+
+  .text-container-junior {
+    h3 {
+      margin: 0;
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    p {
+      margin: 5px 0 0;
+      font-size: 1em;
+      color: #666;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}

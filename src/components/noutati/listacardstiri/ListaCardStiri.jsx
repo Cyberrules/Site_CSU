@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CardNumeStiri from '../cardnumestiri/CardNumeStiri';
+import CardNumeStiri from './cardnumestiri/CardNumeStiri';
 import './ListaCardStiri.scss';
 
 const ListaCardStiri = ({ selectedOption, selectedDate, onCardClick }) => {

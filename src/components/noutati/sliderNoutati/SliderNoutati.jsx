@@ -1,6 +1,6 @@
 import ScrollCarousel from "scroll-carousel-react";
 import React, { useState, useEffect } from "react";
-import CardStireNews from "../cardStireNews/CardStireNews";
+import CardStireNews from '../sliderNoutati/cardStireNews/CardStireNews'
 import './SliderNoutati.scss'
 
 const SliderNoutati = () => {

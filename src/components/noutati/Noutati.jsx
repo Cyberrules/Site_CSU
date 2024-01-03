@@ -51,6 +51,7 @@ const Noutati = () => {
             />
           )}
         </div>
+
         <div className="coloanadreapta ">
           <div className="calendarstire">
             <Select
@@ -64,6 +65,7 @@ const Noutati = () => {
               <DatePicker className='stire-Dropdown' selected={selectedDate} onChange={(date) => setSelectedDate(date)} />
             )}
           </div>
+          
           <div className="separatorListaStiri"></div>
           <div className='carduri-lista-stiri'>
             <ListaCardStiri

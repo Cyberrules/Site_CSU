@@ -1,22 +1,43 @@
 
 .container-juniori{
-  padding-top: 60px;
+  margin-top: 2%;
+  width: 100%;
+
+  .container-echipe{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color:white;
+    font-size: 20px;
+    margin-top:3%;
+    margin-bottom: 2%;
+
+    .nume-echipe{
+      color:  #020101;
+      font-family: Electrolize;
+      font-size: 30px;
+      line-height: normal;
+      letter-spacing: 1.5px;
+    }
+  }
+
+  .container-lot-echipe {
+    width: 90%;
+
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; 
+    justify-content: center;
+    gap: 20px;
+  }
 }
 
-.cadeti{
-  background-color: #242466;
-  height: 50px;
-  color:white;
-  font-size: 20px;
-  padding-top:6px;
-  display: flex;
-  justify-content: center;
-}
 
-.headerCadeti{
-  color:  #FFF;
-  font-family: Electrolize;
-  font-size: 30px;
-  line-height: normal;
-  letter-spacing: 1.5px;
-}
+
+    
+
+
+

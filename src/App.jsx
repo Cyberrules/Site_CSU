@@ -10,6 +10,8 @@ import Noutati from './components/noutati/Noutati';
 import Echipa from './components/echipa/Echipa';
 import Juniori from './components/juniori/Juniori';
 import PrezentareJucator from './components/home/prezentareJucator/PrezentareJucator';
+import CardLotEchipe from './components/juniori/cardLotEchipe/CardLotEchipe'
+import ListaCarduriJuniori from './components/juniori/listaCarduriJuniori/ListaCarduriJuniori'
 
 function App() {
   return (
@@ -35,6 +37,9 @@ const AppContent = () => {
         <Route path="/echipa" element={<Echipa />} />
         <Route path="/juniori" element={<Juniori />} />
         <Route path="/prezentareJucator/:playerId" element={<PrezentareJucator />} />
+
+        <Route path="/" element={<CardLotEchipe />} />
+        <Route path="/lista-juniori/:termen" element={<ListaCarduriJuniori />} />
       </Routes>
       {!isPrezentareJucatorRoute && <Footer />}
     </div>
