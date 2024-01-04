@@ -4,15 +4,27 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
     @Id
     @Column(name = "username")
     private String username;
@@ -24,7 +36,7 @@ public class User {
     private String Prenume;
 
     @Column(name = "passwordhash")
-    private String Passwordhash;
+    private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles",
@@ -32,17 +44,13 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
 
-    public User() {
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toList());
     }
 
-    public User(String username, String nume, String prenume, String passwordhash) {
-        this.username = username;   // Use 'this' to refer to the instance variable
-        Nume = nume;
-        Prenume = prenume;
-        Passwordhash = passwordhash;
-    }
-
-    @JsonProperty("username")
     public String getUsername() {
         return username;
     }
@@ -51,7 +59,6 @@ public class User {
         this.username = username;   // Use 'this' to refer to the instance variable
     }
 
-    @JsonProperty("nume")
     public String getNume() {
         return Nume;
     }
@@ -60,7 +67,6 @@ public class User {
         Nume = nume;
     }
 
-    @JsonProperty("prenume")
     public String getPrenume() {
         return Prenume;
     }
@@ -69,12 +75,30 @@ public class User {
         Prenume = prenume;
     }
 
-    @JsonProperty("password")
     public String getPasswordhash() {
-        return Passwordhash;
+        return password;
     }
 
-    public void setPasswordhash(String passwordhash) {
-        Passwordhash = passwordhash;
+    public void setPasswordhash(String password) {
+        this.password = password;
+    }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
