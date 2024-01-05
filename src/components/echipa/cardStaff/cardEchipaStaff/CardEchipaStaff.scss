@@ -1,0 +1,40 @@
+.card-staff {
+  width: 350px;
+  max-height: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  background-color: #D9D9D9;
+  margin-right: 1%;
+  margin-left: 1%;
+  margin-top: 8%;
+  margin-bottom: 2%;
+
+  img {
+    width: 80%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .text-container-staff {
+    background-color: #D9D9D9;
+    border-radius: 0 0 10px 10px;
+
+    h3 {
+      margin-top: 3%;
+      font-size: 22px;
+      color: #000;
+    }
+
+    p {
+      color: #666464;
+      font-size: 18px; 
+    }
+  }
+
+  &:hover {
+    transform: scale(1.1);
+}
+}
