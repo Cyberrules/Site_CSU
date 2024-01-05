@@ -54,7 +54,7 @@ const Sponsori = () => {
   return (
     <div>
       <div className="dropdown-container">
-        <select value={selectedEdition} onChange={(e) => handleEditionChange(e.target.value)}>
+        <select  className='select-sponsori' value={selectedEdition} onChange={(e) => handleEditionChange(e.target.value)}>
             {editions.map((edition, index) => (
               <option key={index} value={edition}>
                 {editieText} {edition}

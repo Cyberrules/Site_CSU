@@ -4,6 +4,7 @@ import Logo from '../assets/logo.png';
 import { FaSearch, FaUser, FaBars } from 'react-icons/fa';
 import Login from './loginmodal/Login';
 
+
 const textNavbar = {
   paginaAcasa: 'ACASA',
   paginaDespre: 'DESPRE',
@@ -73,6 +74,10 @@ const Navbar = () => {
           </li>
           <li>
             <a href="/juniori">{textNavbar.paginaJuniori}</a>
+          </li>
+
+          <li>
+            <a href="/administrator">ADMIN</a>
           </li>
           <li>
           <div className="searchBox">

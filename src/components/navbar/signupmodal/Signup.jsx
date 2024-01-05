@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import '../signupmodal/Signup.scss'
 
-const SignUp = ({ handleSignUp, handleSwitchToLogin }) => {
+const SignUp = ({ handleSwitchToLogin }) => {
     const [username, setUsername] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [nume, setFirstName] = useState('');
+    const [prenume, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -20,13 +20,70 @@ const SignUp = ({ handleSignUp, handleSwitchToLogin }) => {
         placeholderpassword: 'Introdu parola',
     };
 
+
+
+    const resetForm = () => {
+        setUsername('');
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setPassword('');
+      };
+      
+/*
+
+  <div className="email-container">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            placeholder={textSignUp.placeholderemail}
+                        />
+                    </div>
+
+                    */
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+          const userData = {
+            nume,
+            prenume,
+            username,
+            password
+          };
+
+    
+          const response = await fetch("http://localhost:5050/api/auth/signup", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userData),
+          });
+    
+          if (!response.ok) {
+            throw new Error("Network response was not ok.");
+          }
+          const data = await response.text();
+          console.log("Răspuns de la server:", data);
+          resetForm();
+        } catch (error) {
+          console.error("Eroare în timpul cererii:", error);
+        }
+      };
+
     return (
         <div className="modal-signup">
             <div className="modal-content-signup">
                 <span className="close" onClick={() => handleSwitchToLogin()}>
                     &times;
                 </span>
-                <form onSubmit={(e) => { e.preventDefault(); handleSignUp(username, firstName, lastName, email, password); }}>
+                <form onSubmit={handleSubmit}>
                     <div className="input-container">
                     <div className="username-container">
                         <label htmlFor="username">Username</label>
@@ -40,38 +97,28 @@ const SignUp = ({ handleSignUp, handleSwitchToLogin }) => {
                         />
                     </div>
                     <div className="firstname-container">
-                        <label htmlFor="firstname">Nume</label>
+                        <label htmlFor="nume">Nume</label>
                         <input
                             type="text"
-                            id="firstname"
-                            value={firstName}
+                            id="nume"
+                            value={nume}
                             onChange={(e) => setFirstName(e.target.value)}
                             required
                             placeholder={textSignUp.placeholderfirstname}
                         />
                     </div>
                     <div className="lastname-container">
-                        <label htmlFor="lastname">Prenume</label>
+                        <label htmlFor="prenume">Prenume</label>
                         <input
                             type="text"
-                            id="lastname"
-                            value={lastName}
+                            id="prenume"
+                            value={prenume}
                             onChange={(e) => setLastName(e.target.value)}
                             required
                             placeholder={textSignUp.placeholderlastname}
                         />
                     </div>
-                    <div className="email-container">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            placeholder={textSignUp.placeholderemail}
-                        />
-                    </div>
+                  
                     <div className="password-container">
                         <label htmlFor="password">Parolă</label>
                         <input
