@@ -22,6 +22,9 @@ const ListaCardStiri = ({ selectedOption, selectedDate, onCardClick }) => {
       const formattedStiri = data.map((stire) => ({
         ...stire,
         datapublicarii: formatDate(stire.datapublicarii),
+        imaginestire1:stire.imagine1,
+        imaginestire2:stire.imagine2,
+        imaginestir3:stire.imagine3
       }));
 
       setStiri(formattedStiri);

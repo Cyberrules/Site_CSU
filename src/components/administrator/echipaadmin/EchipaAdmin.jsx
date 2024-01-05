@@ -132,11 +132,7 @@ const EchipaAdmin = () => {
   };
   
   
-  
 
-  
-  
-  
 
   return (
     <div className="container-echipe-admin">
