@@ -4,8 +4,7 @@ import CategoriiEchipe from "../echipaadmin/categoriiEchipe/CategoriiEchipe";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ModalJucatorAdmin from "./modalJucator/ModalJucatorAdmin";
-import Modal from 'react-modal';
-
+import Modal from "react-modal";
 
 const JucatoriAdmin = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -14,6 +13,17 @@ const JucatoriAdmin = () => {
   const [jucatori, setJucatori] = useState([]);
   const [selectedJucatorId, setSelectedJucatorId] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const textJucatoriAdmin = {
+    textSelectatiEchipa: " Selectati echipa:",
+    textBtnAdaugaJucator: "Adaugă jucător",
+    textNume: "Nume",
+    textPrenume: "Prenume",
+    textIdJucator: "Id jucator",
+    textPozitie: "Pozitie",
+    textDataNasterii: "Data nasterii",
+    textActiuni: "Actiuni",
+  };
 
   const handleDropdownChange = (selectedValue) => {
     setSelectedOption(selectedValue);
@@ -57,7 +67,21 @@ const JucatoriAdmin = () => {
   };
 
   const handleDelete = (id) => {
-    console.log(`Stergere jucator cu ID: ${id}`);
+    console.log(`Jucatorul cu ID: ${id} a fost sters`);
+    fetch(`http://localhost:5050/api/jucator/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.ok) {
+          return fetch(
+            `http://localhost:5050/api/jucator/echipa/CSU%20Suceava/editia/${editie}/categoria/${categorie}`
+          );
+        }
+        throw new Error("Ștergerea a eșuat.");
+      })
+      .then((response) => response.json())
+      .then((data) => setJucatori(data))
+      .catch((error) => console.error("Eroare:", error));
   };
 
   const closeModal = () => {
@@ -65,61 +89,103 @@ const JucatoriAdmin = () => {
   };
 
   useEffect(() => {
-    Modal.setAppElement('#root'); 
+    Modal.setAppElement("#root");
   }, []);
+
+  const handleAddJucator = (jucatorData) => {
+    fetch(`http://localhost:5050/api/jucator/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(jucatorData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Adăugarea jucătorului a eșuat.");
+      })
+      .then((data) => {
+        setJucatori([...jucatori, data]);
+        closeModal();
+      })
+      .catch((error) => {
+        console.error("Eroare:", error);
+      });
+  };
+
+  const handleOpenAddModal = () => {
+    setModalIsOpen(true);
+    setSelectedJucatorId(null);
+  };
 
   return (
     <div className="container-echipa-admin">
       <div className="lista-echipe">
-        Selectati echipa:
+        {textJucatoriAdmin.textSelectatiEchipa}
         <CategoriiEchipe onChange={handleDropdownChange} />
       </div>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th className="hidden">Id jucator</th>
-              <th>Nume</th>
-              <th>Prenume</th>
-              <th>Pozitie</th>
-              <th>Data nasterii</th>
-              <th>Actiuni</th>
-            </tr>
-          </thead>
-          <tbody>
-            {jucatori.map((jucator, index) => (
-              <tr key={index}>
-                <td className="hidden">{jucator.jucatorID}</td>
-                <td>{jucator.nume}</td>
-                <td>{jucator.prenume}</td>
-                <td>{jucator.pozitie}</td>
-                <td>{formatDate(jucator.dataNasterii)}</td>
-                <td>
-                  <button
-                    className="edit-button"
-                    onClick={() => handleEdit(jucator.jucatorID)}
-                  >
-                    <FontAwesomeIcon icon={faEdit} />
-                  </button>
-                  <button
-                    className="delete-button"
-                    onClick={() => handleDelete(jucator.jucatorID)}
-                  >
-                    <FontAwesomeIcon icon={faTrash} />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
 
-      {modalIsOpen && (
-        <ModalJucatorAdmin
-          isOpen={modalIsOpen}
-          closeModal={closeModal}
-          jucatorId={selectedJucatorId}
-        />
+      {selectedOption && (
+        <div id="tabel-jucatori-admin">
+          <table>
+            <thead>
+              <tr>
+                <th className="hidden">{textJucatoriAdmin.textIdJucator}</th>
+                <th>{textJucatoriAdmin.textNume}</th>
+                <th>{textJucatoriAdmin.textPrenume}</th>
+                <th>{textJucatoriAdmin.textPozitie}</th>
+                <th>{textJucatoriAdmin.textDataNasterii}</th>
+                <th>{textJucatoriAdmin.textActiuni}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {jucatori.map((jucator, index) => (
+                <tr key={index}>
+                  <td className="hidden">{jucator.jucatorID}</td>
+                  <td>{jucator.nume}</td>
+                  <td>{jucator.prenume}</td>
+                  <td>{jucator.pozitie}</td>
+                  <td>{formatDate(jucator.dataNasterii)}</td>
+                  <td>
+                    <button
+                      className="edit-button"
+                      title="Editeaza"
+                      onClick={() => handleEdit(jucator.jucatorID)}
+                    >
+                      <FontAwesomeIcon icon={faEdit} />
+                    </button>
+                    <button
+                      className="delete-button"
+                      title="Sterge"
+                      onClick={() => handleDelete(jucator.jucatorID)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <div>
+            <button
+              className="adauga-jucator-button"
+              onClick={handleOpenAddModal}
+            >
+              {textJucatoriAdmin.textBtnAdaugaJucator}
+            </button>
+            {modalIsOpen && (
+              <ModalJucatorAdmin
+                isOpen={modalIsOpen}
+                closeModal={closeModal}
+                jucatorId={selectedJucatorId}
+                onAddJucator={handleAddJucator}
+              />
+            )}
+          </div>
+        </div>
       )}
     </div>
   );

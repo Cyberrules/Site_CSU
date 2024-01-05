@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import './CategoriiEchipe.scss'
+import './CategoriiEchipe.scss';
 
 const CategoriiEchipe = ({ onChange }) => {
   const [echipe, setEchipe] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [subcategories, setSubcategories] = useState([]);
+  const defaultValue = ' echipe';
+  const [defaultSelected, setDefaultSelected] = useState(defaultValue);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,15 +36,20 @@ const CategoriiEchipe = ({ onChange }) => {
     onChange(selectedValue); 
   };
 
-  const categoriiOptions = subcategories.map((subcategory, index) => (
-    <option key={index} value={subcategory}>
-      {subcategory}
-    </option>
-  ));
+  const selectedValue = selectedCategory || defaultSelected;
+
+  const categoriiOptions = [
+    <option key="default" value={defaultValue} disabled>{defaultValue}</option>,
+    ...subcategories.map((subcategory, index) => (
+      <option key={index} value={subcategory}>
+        {subcategory}
+      </option>
+    ))
+  ];
 
   return (
     <div>
-      <select value={selectedCategory} onChange={handleDropdownChange}>
+      <select value={selectedValue} onChange={handleDropdownChange}>
         {categoriiOptions}
       </select>
     </div>

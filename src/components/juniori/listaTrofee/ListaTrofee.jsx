@@ -13,28 +13,28 @@ const ListaTrofee = () => {
       id: 1,
       imagine: trofeu1,
       denumire: 'Denumire trofeu 1',
-      pozitie: 'Pozitie 1',
+      numeEchipa: 'Nume Echipa',
       an: 'Anul', 
     },
     {
         id: 2,
         imagine: trofeu1,
         denumire: 'Denumire trofeu 2',
-        pozitie: 'Pozitie 2',
+        numeEchipa: 'Nume Echipa',
         an: 'Anul', 
       },
       {
         id: 3,
         imagine: trofeu1,
         denumire: 'Denumire trofeu 1',
-        pozitie: 'Pozitie 1',
+        numeEchipa: 'Nume Echipa',
         an: 'Anul', 
       },
       {
           id: 4,
           imagine: trofeu1,
           denumire: 'Denumire trofeu 2',
-          pozitie: 'Pozitie 2',
+          numeEchipa: 'Nume Echipa',
           an: 'Anul', 
         },
   ];
@@ -48,7 +48,7 @@ const ListaTrofee = () => {
                     key={trofeu.id}
                     imagine={trofeu.imagine}
                     denumire={trofeu.denumire}
-                    pozitie={trofeu.pozitie}
+                    numeEchipa={trofeu.numeEchipa}
                     an={trofeu.an}
                 />
             ))}
