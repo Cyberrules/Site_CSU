@@ -8,7 +8,6 @@ import java.util.function.Function;
 
 import Cyberrules.demo.model.User;
 import Cyberrules.demo.security.JwtService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 

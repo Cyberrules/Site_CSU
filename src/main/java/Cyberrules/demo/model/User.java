@@ -14,6 +14,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -56,7 +57,7 @@ public class User implements UserDetails {
     }
 
     public void setUsername(String username) {
-        this.username = username;   // Use 'this' to refer to the instance variable
+        this.username = username;
     }
 
     public String getNume() {
@@ -73,14 +74,6 @@ public class User implements UserDetails {
 
     public void setPrenume(String prenume) {
         Prenume = prenume;
-    }
-
-    public String getPasswordhash() {
-        return password;
-    }
-
-    public void setPasswordhash(String password) {
-        this.password = password;
     }
     @Override
     public boolean isAccountNonExpired() {
