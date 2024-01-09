@@ -7,21 +7,17 @@ public class Trofee {
     private String nume;
     private Integer an;
     private Long echipaid;
-    private Long meciid;
     private byte[] imagine;
-    private boolean isdeleted;
 
     public Trofee() {
     }
 
-    public Trofee(Long trofeeid, String nume, Integer an, Long echipaid, Long meciid, byte[] imagine, boolean isdeleted) {
+    public Trofee(Long trofeeid, String nume, Integer an, Long echipaid, byte[] imagine) {
         this.trofeeid = trofeeid;
         this.nume = nume;
         this.an = an;
         this.echipaid = echipaid;
-        this.meciid = meciid;
         this.imagine = imagine;
-        this.isdeleted = isdeleted;
     }
 
     @JsonProperty("trofeeid")
@@ -60,15 +56,6 @@ public class Trofee {
         this.echipaid = echipaid;
     }
 
-    @JsonProperty("meciid")
-    public Long getMecid() {
-        return meciid;
-    }
-
-    public void setMecid(Long mecid) {
-        this.meciid = mecid;
-    }
-
     @JsonProperty("imagine")
     public byte[] getImagine() {
         return imagine;
@@ -76,14 +63,5 @@ public class Trofee {
 
     public void setImagine(byte[] imagine) {
         this.imagine = imagine;
-    }
-
-    @JsonProperty("isdeleted")
-    public boolean isIsdeleted() {
-        return isdeleted;
-    }
-
-    public void setIsdeleted(boolean isdeleted) {
-        this.isdeleted = isdeleted;
     }
 }

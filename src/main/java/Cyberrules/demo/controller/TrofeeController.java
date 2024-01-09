@@ -54,8 +54,8 @@ public class TrofeeController {
         return trofeeService.getTrofeuNume(nume);
     }
     @PutMapping("/{trofeeid}")
-    public String updateTrofeu(@PathVariable Long trofeuID,@RequestBody Trofee trofeu){
-        return trofeeService.updateTrofeu(trofeuID,trofeu);
+    public String updateTrofeu(@PathVariable Long trofeeid,@RequestBody Trofee trofeu){
+        return trofeeService.updateTrofeu(trofeeid,trofeu);
     }
 
 }

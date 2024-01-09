@@ -25,12 +25,8 @@ public class TrofeeService {
                         rs.getString("nume"),
                         rs.getInt("an"),
                         rs.getLong("echipaid"),
-                        rs.getLong("meciid"),
-                        rs.getBytes("imagine"),
-                        rs.getBoolean("isdeleted")
-
+                        rs.getBytes("imagine")
                 );
-
                 trofee.add(trofeu);
             }
         } catch (SQLException e) {
@@ -42,16 +38,13 @@ public class TrofeeService {
     {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement(
-                     "INSERT INTO trofee(nume, an,echipaid, meciid, imagine, isdeleted)VALUES (?, ?, ?, ?, ?, ?)",
+                     "INSERT INTO trofee(nume, an, echipaid, imagine) VALUES (?, ?, ?, ?)",
                      Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1,trofeu.getNume());
             ps.setInt(2,trofeu.getAn());
             ps.setLong(3,trofeu.getEchipaid());
-            ps.setLong(4,trofeu.getMecid());
-            ps.setBytes(5, trofeu.getImagine());
-            ps.setBoolean(6, trofeu.isIsdeleted());
-
+            ps.setBytes(4, trofeu.getImagine());
 
             int affectedRows = ps.executeUpdate();
 
@@ -77,12 +70,8 @@ public class TrofeeService {
                             rs.getString("nume"),
                             rs.getInt("an"),
                             rs.getLong("echipaid"),
-                            rs.getLong("meciid"),
-                            rs.getBytes("imagine"),
-                            rs.getBoolean("isdeleted")
-
+                            rs.getBytes("imagine")
                     );
-
                    return trofeu;
                 }
         } catch (SQLException e) {
@@ -102,12 +91,8 @@ public class TrofeeService {
                         rs.getString("nume"),
                         rs.getInt("an"),
                         rs.getLong("echipaid"),
-                        rs.getLong("meciid"),
-                        rs.getBytes("imagine"),
-                        rs.getBoolean("isdeleted")
-
+                        rs.getBytes("imagine")
                 );
-
                 trofee.add(trofeu);
             }
         } catch (SQLException e) {
@@ -128,10 +113,7 @@ public class TrofeeService {
                         rs.getString("nume"),
                         rs.getInt("an"),
                         rs.getLong("echipaid"),
-                        rs.getLong("meciid"),
-                        rs.getBytes("imagine"),
-                        rs.getBoolean("isdeleted")
-
+                        rs.getBytes("imagine")
                 );
 
                trofee.add(trofeu);
@@ -153,10 +135,7 @@ public class TrofeeService {
                         rs.getString("nume"),
                         rs.getInt("an"),
                         rs.getLong("echipaid"),
-                        rs.getLong("meciid"),
-                        rs.getBytes("imagine"),
-                        rs.getBoolean("isdeleted")
-
+                        rs.getBytes("imagine")
                 );
 
                 trofee.add(trofeu);
@@ -173,7 +152,6 @@ public class TrofeeService {
 
             ps.setLong(1, trofeeid);
 
-
             int affectedRows = ps.executeUpdate();
 
             if (affectedRows == 0) {
@@ -188,11 +166,11 @@ public class TrofeeService {
         }
     }
 
-    public String updateTrofeu(Long trofeuID, Trofee trofeu) {
+    public String updateTrofeu(Long trofeeid, Trofee trofeu) {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
 
             String updateQuery = "UPDATE trofee\n" +
-                    "\tSET nume=?,an=?, echipaid=?, meciid=?, imagine=?, isdeleted=?\n" +
+                    "\tSET nume=?,an=?, echipaid=?, imagine=?\n" +
                     "\t WHERE trofeeid=?";
 
             try (PreparedStatement ps = conn.prepareStatement(updateQuery)) {
@@ -201,17 +179,15 @@ public class TrofeeService {
                 ps.setString(1, trofeu.getNume());
                 ps.setInt(2, trofeu.getAn());
                 ps.setLong(3,trofeu.getEchipaid());
-                ps.setLong(4,trofeu.getMecid());
-                ps.setBytes(5,trofeu.getImagine());
-                ps.setBoolean(6, trofeu.isIsdeleted());
-                ps.setLong(7, trofeuID);
+                ps.setBytes(4,trofeu.getImagine());
+                ps.setLong(5, trofeeid);
 
                 int affectedRows = ps.executeUpdate();
 
                 if (affectedRows == 0) {
-                    return "No trofeu found with ID: " + trofeuID;
+                    return "No trofeu found with ID: " + trofeeid;
                 } else {
-                    return "Trofeu with ID " + trofeuID + " updated successfully";
+                    return "Trofeu with ID " + trofeeid + " updated successfully";
                 }
             }
         } catch (SQLException e) {
