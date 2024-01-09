@@ -18,6 +18,7 @@ import MeciuriAdmin from './components/administrator/meciuriadmin/MeciuriAdmin';
 import Utilizatori from './components/administrator/utilizatori/Utilizatori';
 import EchipaAdmin from './components/administrator/echipaadmin/EchipaAdmin';
 import JucatoriAdmin from './components/administrator/jucatoriadmin/JucatoriAdmin';
+import NoutatiAdmin from './components/administrator/noutatiadmin/NoutatiAdmin';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ const AppContent = () => {
         <Route path="/utilizatori" element={<Utilizatori />} />
         <Route path="/echipaadmin" element={<EchipaAdmin />} />
         <Route path="/jucatoriadmin" element={<JucatoriAdmin />} />
+        <Route path="/noutatiadmin" element={<NoutatiAdmin />} />
       </Routes>
       {!isPrezentareJucatorRoute && <Footer />}
     </div>
