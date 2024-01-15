@@ -7,6 +7,9 @@ import "./ModalJucatorAdmin.scss";
 const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
   const [jucatorData, setJucatorData] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({ username: "", role: "" });
+
 
   const textModalJucatorAdmin = {
     textButonSalveaza: "Salveaza datele",
@@ -57,6 +60,14 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
   };
 
   const handleSave = async () => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if (token) {
+      setIsLoggedIn(true);
+      setUser({ username: "Sorin29", role: "ROLE_ADMIN" });
+    } else {
+      setIsLoggedIn(false);
+    }
     try {
       const response = await fetch(
         `http://localhost:5050/api/jucator/${jucatorId}`,
@@ -64,6 +75,7 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
           },
           body: JSON.stringify(jucatorData),
         }
@@ -78,7 +90,6 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
       console.log("PUT: " + jucatorId);
     }
   };
-
 
   const pozitiiJucator = [
     "Portar",
