@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./SliderEchipa.scss";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const SliderEchipa = ({ slides, onPlayerSelect }) => {
+  const [currentPozitie, setCurrentPozitie] = useState("extrema-dreapta");
+
   const pozitii = {
     portar: "P",
     pivot: "Pi",
@@ -13,6 +15,11 @@ const SliderEchipa = ({ slides, onPlayerSelect }) => {
     "extrema-stanga": "ES",
     "extrema-dreapta": "ED",
   };
+
+  useEffect(() => {
+    const ultimaPozitie = Object.keys(pozitii).pop();
+    setCurrentPozitie(ultimaPozitie);
+  }, []);
 
   const slideLeft = () => {
     const slider = document.getElementById("slider");
@@ -38,6 +45,10 @@ const SliderEchipa = ({ slides, onPlayerSelect }) => {
       .replace(/â/g, "a")
       .replace(/ /g, "-");
     return pozitii[pozitieNoua];
+  };
+
+  const handleDropdownChange = (event) => {
+    setCurrentPozitie(event.target.value);
   };
 
   return (

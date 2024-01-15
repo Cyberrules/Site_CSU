@@ -5,6 +5,7 @@ import MeciuriAdmin from './meciuriadmin/MeciuriAdmin';
 import Utilizatori from './utilizatori/Utilizatori'
 import EchipaAdmin from './echipaadmin/EchipaAdmin';
 import JucatoriAdmin from './jucatoriadmin/JucatoriAdmin';
+import NoutatiAdmin from './noutatiadmin/NoutatiAdmin';
 
 
 const Administrator = () => {
@@ -17,6 +18,7 @@ const Administrator = () => {
             <Link to='/administrator/echipaadmin'>Echipe</Link>
             <Link to='/administrator/jucatoriadmin'>Jucatori</Link>
             <Link to='/administrator/meciuriadmin'>Meciuri</Link>
+            <Link to='/administrator/noutatiadmin'>Noutati</Link>
             
           </li>
         </ul>
@@ -27,6 +29,7 @@ const Administrator = () => {
           <Route path="/meciuriadmin" element={<MeciuriAdmin />} />
           <Route path="/echipaadmin" element={<EchipaAdmin />} />
           <Route path="/jucatoriadmin" element={<JucatoriAdmin />} />
+          <Route path="/noutatiadmin" element={<NoutatiAdmin />} />
         </Routes>
       </div>
     </div>

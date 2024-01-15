@@ -9,25 +9,25 @@ import tineret from "../../assets/juniori/imagini-lot-echipe/tineret-transparent
 const CardLotEchipe = () => {
   const echipe = [
     {
-      nume: "JUNIORI I",
+      nume: "JUNIORI I (2023)",
       imagine: junioriUnu,
       ruta: "/detalii-echipa/0",
       termen: "Juniori 1",
     },
     {
-      nume: "JUNIORI II",
+      nume: "JUNIORI II (2023)",
       imagine: junioriDoi,
       ruta: "/detalii-echipa/1",
       termen: "Juniori 2"
     },
     {
-      nume: "JUNIORI III",
+      nume: "JUNIORI III (2023)",
       imagine: junioriTrei,
       ruta: "/detalii-echipa/2",
       termen: "Juniori 3"
     },
     {
-      nume: "TINERET",
+      nume: "TINERET (2023)",
       imagine: tineret,
       ruta: "/detalii-echipa/3",
       termen: "Tineret"

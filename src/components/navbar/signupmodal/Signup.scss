@@ -60,6 +60,19 @@
       .password-container {
         margin-left: 0;
         margin-bottom: 8%;
+
+        .parola-buton {
+          position: absolute;
+          top: 59.5%;
+          right: 24px;
+          color: black;
+          transform: translateY(-50%);
+          background: transparent;
+          border: none;
+          padding: 4px;
+          cursor: pointer;
+          outline: none;
+        }
   
       }
   

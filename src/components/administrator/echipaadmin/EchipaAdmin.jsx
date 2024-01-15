@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const EchipaAdmin = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null); // Informații despre utilizator (poate fi extinsă în funcție de necesități)
   const [echipe, setEchipe] = useState([]);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [editEchipa, setEditEchipa] = useState(null);
@@ -24,49 +26,74 @@ const EchipaAdmin = () => {
     textEditareEditie: "EDITIE:",
     textPlaceholderCategorie: "Introduceți categoria aici",
     textPlaceholderEditie: "Introduceți ediția aici",
-    textAdaugaEchipa: 'Adaugă echipă',
+    textAdaugaEchipa: "Adaugă echipă",
   };
 
+
   useEffect(() => {
+ 
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if (token) {
+      setIsLoggedIn(true);
+      setUser({ username: "Sorin29", role: "ROLE_ADMIN" });
+    } else {
+      setIsLoggedIn(false);
+    }
     fetch("http://localhost:5050/api/echipa")
       .then((response) => response.json())
       .then((data) => {
-        const echipeCSU = data.filter(
-          (echipa) => echipa.nume === "CSU Suceava"
-        );
+        const echipeCSU = data.filter((echipa) => echipa.nume === "CSU Suceava");
         setEchipe(echipeCSU);
       })
       .catch((error) => console.error("Eroare:", error));
-  }, []);
+  }, []); 
 
- const handleEdit = (echipaId) => {
-  const selectedEchipa = echipe.find(
-    (echipa) => echipa.echipaId === echipaId
-  );
+  const handleEdit = (echipaId) => {
+    const selectedEchipa = echipe.find(
+      (echipa) => echipa.echipaId === echipaId
+    );
 
-  if (selectedEchipa) {
-    if (showEditSection && editEchipa && editEchipa.echipaId === echipaId) {
-      setShowEditSection(false);
-    } else {
-      setEditEchipa(selectedEchipa);
-      setUploadedImage(`data:image/png;base64,${selectedEchipa.imagine}`);
+    if (selectedEchipa) {
+      if (showEditSection && editEchipa && editEchipa.echipaId === echipaId) {
+        setShowEditSection(false);
+      } else {
+        setEditEchipa(selectedEchipa);
+        setUploadedImage(`data:image/png;base64,${selectedEchipa.imagine}`);
 
-      const inputCategorie = document.getElementById("input-categorie");
-      const inputEditie = document.getElementById("input-editie");
+        const inputCategorie = document.getElementById("input-categorie");
+        const inputEditie = document.getElementById("input-editie");
 
-      if (inputCategorie && inputEditie) {
-        inputCategorie.value = selectedEchipa.categorie || "";
-        inputEditie.value = selectedEchipa.editia || "";
+        if (inputCategorie && inputEditie) {
+          inputCategorie.value = selectedEchipa.categorie || "";
+          inputEditie.value = selectedEchipa.editia || "";
+        }
+
+        setShowEditSection(true);
       }
-
-      setShowEditSection(true);
     }
-  }
-};
-
+  };
 
   const handleDelete = (echipaId) => {
-    console.log(`Ștergere echipă cu ID: ${echipaId}`);
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+      setUser({ username: "Sorin29", role: "ROLE_ADMIN" });
+    } else {
+      setIsLoggedIn(false);
+    }
+    fetch(`http://localhost:5050/api/echipa/${echipaId}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Echipa ștearsă cu succes!", data);
+        const updatedEchipe = echipe.filter(
+          (echipa) => echipa.echipaId !== echipaId
+        );
+        setEchipe(updatedEchipe);
+      })
+      .catch((error) => console.error("Eroare:", error));
   };
 
   const handleImageUpload = (event) => {
@@ -96,12 +123,19 @@ const EchipaAdmin = () => {
   };
 
   const handleSalveaza = () => {
-    console.log(uploadedImage);
+    const token = localStorage.getItem("token");
+  
+    if (!token) {
+      console.error("Token lipsă. Utilizatorul nu este autentificat.");
+      return;
+    }
+  
     if (editEchipa && uploadedImage) {
       fetch(`http://localhost:5050/api/echipa/${editEchipa.echipaId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
           categorie: editEchipa.categorie,
@@ -109,14 +143,20 @@ const EchipaAdmin = () => {
           imagine: uploadedImage,
         }),
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok.");
+          }
+          return response.json();
+        })
         .then((data) => {
           console.log("Modificări salvate cu succes!", data);
         })
-        .catch((error) => console.error("Eroare:", error));
+        .catch((error) => console.error("Eroare la salvare:", error));
     }
   };
-
+  
+  
 
   const [resetState, setResetState] = useState(false);
 
@@ -130,19 +170,14 @@ const EchipaAdmin = () => {
       setShowEditSection(true);
     }
   };
-  
-  
-  
-
-  
-  
-  
 
   return (
     <div className="container-echipe-admin">
       <div>
         <h4>{textEchipaAdmin.textTitluEchipaAdmin}</h4>
-        <button onClick={handleAdaugaEchipa} className="button-adauga-echipa">{textEchipaAdmin.textAdaugaEchipa}</button>
+        <button onClick={handleAdaugaEchipa} className="button-adauga-echipa">
+          {textEchipaAdmin.textAdaugaEchipa}
+        </button>
       </div>
       <div id="tabel-echipe-admin">
         <table>
