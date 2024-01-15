@@ -2,13 +2,15 @@ package Cyberrules.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.sql.Date;
+
 public class Jucator {
     private Long JucatorID;
     private String Nume;
     private String Prenume;
     private String Pozitie;
     private Integer Numar;
-    private String DataNasterii;
+    private Date DataNasterii;
     private String Nationalitate;
     private Double Inaltime;
     private String Descriere;
@@ -19,7 +21,7 @@ public class Jucator {
     public Jucator() {
     }
 
-    public Jucator(Long jucatorID, String nume, String prenume, String pozitie, Integer numar, String dataNasterii, String nationalitate, Double inaltime, String descriere, byte[] imagine, Long echipaID, boolean isDeleted) {
+    public Jucator(Long jucatorID, String nume, String prenume, String pozitie, Integer numar, Date dataNasterii, String nationalitate, Double inaltime, String descriere, byte[] imagine, Long echipaID, boolean isDeleted) {
         JucatorID = jucatorID;
         Nume = nume;
         Prenume = prenume;
@@ -73,11 +75,11 @@ public class Jucator {
         Numar = numar;
     }
     @JsonProperty("dataNasterii")
-    public String getDataNasterii() {
+    public Date getDataNasterii() {
         return DataNasterii;
     }
 
-    public void setDataNasterii(String dataNasterii) {
+    public void setDataNasterii(Date dataNasterii) {
         DataNasterii = dataNasterii;
     }
     @JsonProperty("nationalitate")

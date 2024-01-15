@@ -20,7 +20,7 @@ public class JucatorService {
                 rs.getString("Prenume"),
                 rs.getString("Post"),
                 rs.getInt("Numar"),
-                rs.getString("DataNasterii"),
+                rs.getDate("DataNasterii"),
                 rs.getString("Nationalitate"),
                 rs.getDouble("Inaltime"),
                 rs.getString("Descriere"),
@@ -99,20 +99,17 @@ public class JucatorService {
         return jucatori;
     }
 
-    public String addJucator(Jucator jucator) throws SQLException, ParseException{
+    public String addJucator(Jucator jucator) throws SQLException{
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement(
                      "INSERT INTO Jucatori (Nume, Prenume, Post, Numar, DataNasterii, Nationalitate, Inaltime, Descriere, imagine, EchipaID, isDeleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                      Statement.RETURN_GENERATED_KEYS)){
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            java.util.Date parsedDate = dateFormat.parse(jucator.getDataNasterii());
-            Date sqlDate = new Date(parsedDate.getTime());
             System.out.println(jucator.getNationaliate());
             ps.setString(1,jucator.getNume());
             ps.setString(2,jucator.getPrenume());
             ps.setString(3,jucator.getPozitie());
             ps.setInt(4,jucator.getNumar());
-            ps.setDate(5,sqlDate);
+            ps.setDate(5,jucator.getDataNasterii());
             ps.setString(6,jucator.getNationaliate());
             ps.setDouble(7,jucator.getInaltime());
             ps.setString(8,jucator.getDescriere());
@@ -145,19 +142,16 @@ public class JucatorService {
         }
     }
 
-    public String putJucator(Jucator jucator) throws SQLException, ParseException{
+    public String putJucator(Jucator jucator) throws SQLException{
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement ps = conn.prepareStatement("UPDATE Jucatori SET Nume = ?, Prenume = ?, Post = ?, Numar = ?, DataNasterii = ?, Nationalitate = ?, Inaltime = ?, Descriere = ?, imagine = ?, EchipaID = ?, isDeleted = ? " +
                      "WHERE JucatorID = ?")){
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            java.util.Date parsedDate = dateFormat.parse(jucator.getDataNasterii());
-            Date sqlDate = new Date(parsedDate.getTime());
 
             ps.setString(1,jucator.getNume());
             ps.setString(2,jucator.getPrenume());
             ps.setString(3,jucator.getPozitie());
             ps.setInt(4,jucator.getNumar());
-            ps.setDate(5,sqlDate);
+            ps.setDate(5,jucator.getDataNasterii());
             ps.setString(6,jucator.getNationaliate());
             ps.setDouble(7,jucator.getInaltime());
             ps.setString(8,jucator.getDescriere());

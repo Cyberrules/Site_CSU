@@ -95,8 +95,6 @@ public class JucatorController {
                 return new ResponseEntity<>(result, HttpStatus.CREATED);
         } catch (SQLException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (ParseException e) {
-            return new ResponseEntity<>("Failed to convert the birth date provided. Make sure the date is in format dd/mm/yyyy.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>("Creating jucator failed, no rows affected.", HttpStatus.BAD_REQUEST);
     }
@@ -120,11 +118,9 @@ public class JucatorController {
             String result = jucatorService.putJucator(jucator);
             String update_message = "Jucator with ID " + jucator.getJucatorID() + " updated successfully";
             if(result.equals(update_message))
-                return new ResponseEntity<>(result, HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (SQLException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (ParseException e) {
-            return new ResponseEntity<>("Failed to convert the birth date provided. Make sure the date is in format dd/mm/yyyy.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>("No jucator found with ID: "+jucator.getJucatorID(), HttpStatus.NOT_FOUND);
     }
