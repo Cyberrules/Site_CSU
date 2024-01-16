@@ -43,6 +43,7 @@ public class EchipaController {
         return echipaService.getEchipa(echipaID);
     }
 
+
     @GetMapping("/categorie/{categorie}")
     public List<Echipa> getEchipaCategorie(@PathVariable String categorie){
         return echipaService.getEchipaCategorie(categorie);

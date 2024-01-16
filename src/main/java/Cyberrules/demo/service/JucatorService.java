@@ -55,6 +55,20 @@ public class JucatorService {
         }
         return null;
     }
+    public List<Jucator> getJucatoriEchipa(Long EchipaID) throws SQLException {
+        List<Jucator> jucatori = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement("SELECT * FROM Jucatori WHERE EchipaID = ?")){
+            ps.setLong(1,EchipaID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                Jucator jucator = buildJucatorFromResultSet(rs);
+                jucatori.add(jucator);
+            }
+        }
+        return jucatori;
+    }
+
     public List<Jucator> getJucatoriEchipaEditie(String numeEchipa,String editia, String categoria) throws SQLException {
         List<Jucator> jucatori = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -138,6 +152,20 @@ public class JucatorService {
             }
             else{
                 return "Jucator with ID " + jucatorID + " deleted successfully";
+            }
+        }
+    }
+    public String deleteJucatorEchipa(Long echipaID) throws SQLException{
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement ps = conn.prepareStatement("DELETE FROM Jucatori WHERE EchipaID = ?")) {
+            ps.setLong(1, echipaID);
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                return "No jucator found with echipa ID: "+echipaID;
+            }
+            else{
+                return "Jucator with echipa ID " + echipaID + " deleted successfully";
             }
         }
     }

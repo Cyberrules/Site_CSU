@@ -44,6 +44,19 @@ public class JucatorController {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/echipa/{echipaID}")
+    public ResponseEntity<?> getJucatorEchipa(@PathVariable Long EchipaID) {
+        try {
+            List<Jucator> jucatori = jucatorService.getJucatoriEchipa(EchipaID);
+            if (jucatori.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(jucatori, HttpStatus.OK);
+            }
+        } catch (SQLException e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/echipa/{numeEchipa}/editia/{editia}/categoria/{categoria}")
     public ResponseEntity<?> getJucatoriEchipaEditie(@PathVariable String numeEchipa, @PathVariable String editia, @PathVariable String categoria) {
@@ -110,6 +123,19 @@ public class JucatorController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>("No jucator found with ID: "+jucatorID, HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("/echipa/{echipaID}")
+    public ResponseEntity<String> deleteJucatorEchipa(@PathVariable Long echipaID) {
+        try {
+            String result = jucatorService.deleteJucatorEchipa(echipaID);
+            String deleted_message = "Jucator with echipa ID " + echipaID + " deleted successfully";
+            if(result.equals(deleted_message))
+                return new ResponseEntity<>(result, HttpStatus.NO_CONTENT);
+        } catch (SQLException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new ResponseEntity<>("No jucator found with echipa ID: "+echipaID, HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/{jucatorID}")
