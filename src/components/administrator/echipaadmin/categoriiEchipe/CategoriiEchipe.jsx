@@ -8,6 +8,7 @@ const CategoriiEchipe = ({ onChange }) => {
   const defaultValue = ' echipe';
   const [defaultSelected, setDefaultSelected] = useState(defaultValue);
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {

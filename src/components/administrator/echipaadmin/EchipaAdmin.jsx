@@ -5,7 +5,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const EchipaAdmin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null); // Informații despre utilizator (poate fi extinsă în funcție de necesități)
+  const [user, setUser] = useState(null);
   const [echipe, setEchipe] = useState([]);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [editEchipa, setEditEchipa] = useState(null);
@@ -29,17 +29,10 @@ const EchipaAdmin = () => {
     textAdaugaEchipa: "Adaugă echipă",
   };
 
-
   useEffect(() => {
- 
     const token = localStorage.getItem("token");
-    console.log(token);
-    if (token) {
-      setIsLoggedIn(true);
-      setUser({ username: "Sorin29", role: "ROLE_ADMIN" });
-    } else {
-      setIsLoggedIn(false);
-    }
+    setIsLoggedIn(!!token);
+
     fetch("http://localhost:5050/api/echipa")
       .then((response) => response.json())
       .then((data) => {
@@ -47,12 +40,10 @@ const EchipaAdmin = () => {
         setEchipe(echipeCSU);
       })
       .catch((error) => console.error("Eroare:", error));
-  }, []); 
+  }, []);
 
   const handleEdit = (echipaId) => {
-    const selectedEchipa = echipe.find(
-      (echipa) => echipa.echipaId === echipaId
-    );
+    const selectedEchipa = echipe.find((echipa) => echipa.echipaId === echipaId);
 
     if (selectedEchipa) {
       if (showEditSection && editEchipa && editEchipa.echipaId === echipaId) {
@@ -76,74 +67,93 @@ const EchipaAdmin = () => {
 
   const handleDelete = (echipaId) => {
     const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-      setUser({ username: "Sorin29", role: "ROLE_ADMIN" });
-    } else {
-      setIsLoggedIn(false);
-    }
-    fetch(`http://localhost:5050/api/echipa/${echipaId}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Echipa ștearsă cu succes!", data);
-        const updatedEchipe = echipe.filter(
-          (echipa) => echipa.echipaId !== echipaId
-        );
-        setEchipe(updatedEchipe);
-      })
-      .catch((error) => console.error("Eroare:", error));
-  };
-
-  const handleImageUpload = (event) => {
-    const image = event.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      const base64Image = reader.result;
-      setUploadedImage(base64Image);
-    };
-
-    reader.readAsDataURL(image);
-  };
-
-  const handleCategorieChange = (event) => {
-    setEditEchipa({
-      ...editEchipa,
-      categorie: event.target.value,
-    });
-  };
-
-  const handleEditieChange = (event) => {
-    setEditEchipa({
-      ...editEchipa,
-      editia: event.target.value,
-    });
-  };
-
-  const handleSalveaza = () => {
-    const token = localStorage.getItem("token");
   
     if (!token) {
       console.error("Token lipsă. Utilizatorul nu este autentificat.");
       return;
     }
   
-    if (editEchipa && uploadedImage) {
+    fetch(`http://localhost:5050/api/jucator`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((jucatori) => {
+        const echipaSelectataId = echipaId;
+        const jucatoriEchipaSelectata = jucatori.filter((jucator) => jucator.echipaID === echipaSelectataId);
+  
+        const jucatoriToDelete = jucatoriEchipaSelectata.map((jucator) => jucator.jucatorId);
+  
+        if (jucatoriToDelete.length > 0) {
+          fetch(`http://localhost:5050/api/jucatori`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ jucatoriIds: jucatoriToDelete }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Jucători șterși cu succes!", data);
+            })
+            .catch((error) => console.error("Eroare la ștergerea jucătorilor:", error));
+        }
+      })
+      .catch((error) => console.error("Eroare la obținerea jucătorilor:", error));
+  
+    fetch(`http://localhost:5050/api/echipa/${encodeURIComponent(echipaId)}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Echipa ștearsă cu succes!", data);
+        const updatedEchipe = echipe.filter((echipa) => echipa.echipaId !== echipaId);
+        setEchipe(updatedEchipe);
+        window.location.reload();
+      })
+      .catch((error) => console.error("Eroare la ștergerea echipei:", error));
+  };
+  
+  
+  
+
+  const handleImageUpload = (event) => {
+    const image = event.target.files[0];
+
+    const reader = new FileReader();
+    reader.onload = () => setUploadedImage(reader.result);
+    reader.readAsDataURL(image);
+  };
+
+  const handleInputChange = (event, field) => {
+    setEditEchipa({
+      ...editEchipa,
+      [field]: event.target.value,
+    });
+  };
+
+
+  const sendRequest = (requestBody) => {
+    const token = localStorage.getItem("token");
+    console.log("Authorization Token:", token);
+  
+    try {
       fetch(`http://localhost:5050/api/echipa/${editEchipa.echipaId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          categorie: editEchipa.categorie,
-          editia: editEchipa.editia,
-          imagine: uploadedImage,
-        }),
+        body: JSON.stringify(requestBody),
       })
         .then((response) => {
+          console.log("Response Headers:", response.headers);
           if (!response.ok) {
             throw new Error("Network response was not ok.");
           }
@@ -153,22 +163,49 @@ const EchipaAdmin = () => {
           console.log("Modificări salvate cu succes!", data);
         })
         .catch((error) => console.error("Eroare la salvare:", error));
+    } catch (error) {
+      console.error("Eroare la construirea cererii JSON:", error);
     }
   };
   
   
 
-  const [resetState, setResetState] = useState(false);
+  const handleSalveaza = () => {
+    if (!editEchipa) {
+      console.error("Nu există echipă pentru a salva.");
+      return;
+    }
+  
+    const requestBody = {
+      echipaId: editEchipa.echipaId,
+      nume: editEchipa.nume,
+      categorie: editEchipa.categorie, 
+      editia: editEchipa.editia, 
+      imagine: uploadedImage ? uploadedImage.split("base64,")[1] : null,
+    };
+  
+    sendRequest(requestBody);
+    window.location.reload();
+  };
+  
+  
 
   const handleAdaugaEchipa = () => {
     if (showEditSection) {
-      setResetState(true);
       setEditEchipa(null);
       setUploadedImage(null);
     } else {
-      setResetState(false);
       setShowEditSection(true);
     }
+  };
+
+
+  const handleCategorieChange = (event) => {
+    handleInputChange(event, 'categorie');
+  };
+  
+  const handleEditieChange = (event) => {
+    handleInputChange(event, 'editia');
   };
 
   return (

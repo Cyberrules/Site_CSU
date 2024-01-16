@@ -44,7 +44,14 @@ const JucatoriAdmin = () => {
         `http://localhost:5050/api/jucator/echipa/CSU%20Suceava/editia/${editie}/categoria/${categorie}`
       )
         .then((response) => response.json())
-        .then((data) => setJucatori(data))
+        .then((data) => {
+          setJucatori(data);
+          if (data.length > 0) {
+            console.log("Id-ul echipei:", data[0].echipaID);
+          } else {
+            console.log("Nu există date pentru echipă.");
+          }
+        })
         .catch((error) => console.error("Eroare:", error));
     }
   }, [categorie, editie]);
@@ -67,12 +74,17 @@ const JucatoriAdmin = () => {
   };
 
   const handleDelete = (id) => {
-    console.log(`Jucatorul cu ID: ${id} a fost sters`);
+    const token = localStorage.getItem("token");
+
     fetch(`http://localhost:5050/api/jucator/${id}`, {
       method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      },
     })
       .then((response) => {
         if (response.ok) {
+          console.log(`Jucatorul cu ID ${id} a fost șters cu succes.`);
           return fetch(
             `http://localhost:5050/api/jucator/echipa/CSU%20Suceava/editia/${editie}/categoria/${categorie}`
           );
@@ -80,7 +92,9 @@ const JucatoriAdmin = () => {
         throw new Error("Ștergerea a eșuat.");
       })
       .then((response) => response.json())
-      .then((data) => setJucatori(data))
+      .then((data) => {
+        setJucatori(data);
+      })
       .catch((error) => console.error("Eroare:", error));
   };
 
@@ -92,28 +106,68 @@ const JucatoriAdmin = () => {
     Modal.setAppElement("#root");
   }, []);
 
+  const [echipaId, setEchipaId] = useState(null); // Adăugată stare pentru echipaId
+
+  useEffect(() => {
+    if (categorie !== "" && editie !== "") {
+      fetch(
+        `http://localhost:5050/api/jucator/echipa/CSU%20Suceava/editia/${editie}/categoria/${categorie}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setJucatori(data);
+          if (data.length > 0) {
+            const primaEchipa = data[0];
+            console.log("Id-ul echipei:", primaEchipa.echipaID);
+            setEchipaId(primaEchipa.echipaID); // Actualizează echipaId
+          } else {
+            console.log("Nu există date pentru echipă.");
+          }
+        })
+        .catch((error) => console.error("Eroare:", error));
+    }
+  }, [categorie, editie]);
+
   const handleAddJucator = (jucatorData) => {
-    fetch(`http://localhost:5050/api/jucator/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(jucatorData),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Adăugarea jucătorului a eșuat.");
+    const token = localStorage.getItem("token");
+
+    if (echipaId) { // Verifică dacă echipaId este disponibil
+      jucatorData = {
+        ...jucatorData,
+        echipaID: echipaId,
+        dataNasterii: formatDate(jucatorData.dataNasterii),
+      };
+
+      fetch(`http://localhost:5050/api/jucator`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(jucatorData),
       })
-      .then((data) => {
-        setJucatori([...jucatori, data]);
-        closeModal();
-      })
-      .catch((error) => {
-        console.error("Eroare:", error);
-      });
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Adăugarea jucătorului a eșuat.");
+        })
+        .then((data) => {
+          setJucatori([...jucatori, data]);
+          closeModal();
+        })
+        .catch((error) => {
+          console.error("Eroare:", error);
+        });
+    } else {
+      console.error("EchipaID lipsă. Nu se poate adăuga jucătorul.");
+    }
   };
+  
+  
+  
+  
+  
 
   const handleOpenAddModal = () => {
     setModalIsOpen(true);

@@ -5,8 +5,19 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./ModalJucatorAdmin.scss";
 
 const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
-  const [jucatorData, setJucatorData] = useState(null);
+  const [jucatorData, setJucatorData] = useState({
+    nume: "",
+    prenume: "",
+    dataNasterii: null,
+    nationalitate: "",
+    descriere: "",
+    inaltime: "",
+    numar: "",
+    pozitie: "",
+    imagine: "",
+  });
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const textModalJucatorAdmin = {
     textButonSalveaza: "Salveaza datele",
@@ -25,17 +36,19 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:5050/api/jucator/${jucatorId}`
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok.");
+      if (jucatorId) {
+        try {
+          const response = await fetch(
+            `http://localhost:5050/api/jucator/${jucatorId}`
+          );
+          if (!response.ok) {
+            throw new Error("Network response was not ok.");
+          }
+          const data = await response.json();
+          setJucatorData(data);
+        } catch (error) {
+          console.error("Error fetching data:", error);
         }
-        const data = await response.json();
-        setJucatorData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
       }
     };
 
@@ -57,28 +70,55 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
   };
 
   const handleSave = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  
     try {
-      const response = await fetch(
-        `http://localhost:5050/api/jucator/${jucatorId}`,
-        {
+      const requestData = {
+        ...jucatorData,
+        imagine: uploadedImage ? uploadedImage.split(",")[1] : jucatorData.imagine,
+      };
+  
+      if (!jucatorId) {
+        const response = await fetch("http://localhost:5050/api/jucator", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(requestData),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Network response was not ok.");
+        }
+      } else {
+        const response = await fetch(`http://localhost:5050/api/jucator/${jucatorId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(jucatorData),
+          body: JSON.stringify(requestData),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Network response was not ok.");
         }
-      );
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok.");
       }
+  
       closeModal();
+      window.location.reload();
     } catch (error) {
       console.error("Error saving data:", error);
-      console.log("PUT: " + jucatorId);
+      console.log("PUT/POST: " + jucatorId);
     }
   };
-
+  
 
   const pozitiiJucator = [
     "Portar",
@@ -87,9 +127,8 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
     "Inter Dreapta",
     "Inter Stânga",
     "Extremă Stânga",
-    "Extremă Dreapta"
+    "Extremă Dreapta",
   ];
-  
 
   return (
     <Modal
@@ -102,7 +141,7 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
       <button className="close-button" onClick={closeModal}>
         X
       </button>
-
+  
       {jucatorData && (
         <div className="modal-content">
           <div className="left-column">
@@ -118,7 +157,7 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
               ) : (
                 <p>{textModalJucatorAdmin.textLipsaImagine}</p>
               )}
-
+  
               <div>
                 <label className="button-incarca-imagine">
                   {textModalJucatorAdmin.textIncarcaImagine}
@@ -147,7 +186,10 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
                   type="text"
                   value={jucatorData.prenume || ""}
                   onChange={(e) =>
-                    setJucatorData({ ...jucatorData, prenume: e.target.value })
+                    setJucatorData({
+                      ...jucatorData,
+                      prenume: e.target.value,
+                    })
                   }
                 />
               </label>
@@ -173,12 +215,13 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
                 <input
                   type="text"
                   value={jucatorData.nationalitate || ""}
-                  onChange={(e) =>
+                  onChange={(e) => {
+                    console.log("Nationalitate changed:", e.target.value);
                     setJucatorData({
                       ...jucatorData,
                       nationalitate: e.target.value,
-                    })
-                  }
+                    });
+                  }}
                 />
               </label>
             </div>
@@ -225,7 +268,7 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
               <label>
                 {textModalJucatorAdmin.textPozitie}
                 <select
-                    className="select-pozitie-jucator"
+                  className="select-pozitie-jucator"
                   value={jucatorData.pozitie || ""}
                   onChange={(e) =>
                     setJucatorData({ ...jucatorData, pozitie: e.target.value })
@@ -248,6 +291,7 @@ const ModalJucatorAdmin = ({ isOpen, closeModal, jucatorId }) => {
       )}
     </Modal>
   );
+  
 };
 
 export default ModalJucatorAdmin;
