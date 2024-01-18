@@ -15,8 +15,8 @@ const SponsoriAdmin = () => {
   const textSponsoriAdmin = {
     textTitluSponsoriAdmin: "Sponsori",
     textSponsorId: "Sponsor ID",
-    textNumeComplet: "Nume Complet",
-    textLinkSiteExtern: "Link Site Extern",
+    textNumeComplet: "Nume",
+    textLinkSiteExtern: "Link",
     textEditie: "Editie",
     textEditareNume: "NUME:",
     textEditareLink: "LINK:",
