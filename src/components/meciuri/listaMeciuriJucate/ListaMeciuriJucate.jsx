@@ -85,7 +85,7 @@ const ListaMeciuriJucate = () => {
           <MeciuriJucate
             key={index}
             etapa={meci.tipcampionat}
-            locatia={meci.locatie}
+            locatia={meci.locatie !== "N/A" ? meci.locatie : "lipsește momentan"}
             data={formatDate(meci.datameci)}
             logoEchipa1={echipaImages[`${meci.echipaid}_logo`]}
             numeEchipa1={echipeDetails[`${meci.echipaid}_nume`]}

@@ -4,7 +4,6 @@
   max-width: 480px;
   max-height: 350px;
   color: white;
-  border-radius: 10px;
   display: flex;
   justify-content: center;
   margin-bottom: 1%;
@@ -15,10 +14,8 @@
 
     img {
       max-width: 100%; 
-      max-height: 200px; 
+      max-height: 185px; 
       object-fit: fill; 
-      border-top-left-radius: 10px; 
-      border-top-right-radius: 10px; 
     }
   }
 
@@ -49,5 +46,4 @@
     border-radius: 9px;
     cursor: pointer;
   }
-
 }

@@ -16,10 +16,12 @@ const CardStireNews = ({ titluStire, data, descriere, imagine }) => {
 
   return (
     <div className="card-stire">
-      <h3>{titluStire}</h3>
+      <h3>{limitaDescriere(titluStire, 50)}</h3>
       <p>Data publicării: {formateazaData(data)}</p>
-      <p>{limitaDescriere(descriere, 250)}</p>
-      <img src={`data:image/png;base64, ${imagine}`} alt="Imagine stire" />
+      <p>{limitaDescriere(descriere, 50)}</p>
+      {imagine && <img src={`data:image/png;base64, ${imagine}`} alt="Imagine stire" />}
+
+
     </div>
   );
 };

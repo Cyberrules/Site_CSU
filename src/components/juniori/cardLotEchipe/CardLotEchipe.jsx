@@ -5,6 +5,7 @@ import junioriUnu from "../../assets/juniori/imagini-lot-echipe/juniori1-transpa
 import junioriDoi from "../../assets/juniori/imagini-lot-echipe/juniori2-transparent.png";
 import junioriTrei from "../../assets/juniori/imagini-lot-echipe/juniori3-transparent.png";
 import tineret from "../../assets/juniori/imagini-lot-echipe/tineret-transparent.png";
+import juniori2024 from "../../assets/juniori/imagini-lot-echipe/juniori2024.png";
 
 const CardLotEchipe = () => {
   const echipe = [
@@ -31,6 +32,13 @@ const CardLotEchipe = () => {
       imagine: tineret,
       ruta: "/detalii-echipa/3",
       termen: "Tineret"
+    },
+
+    {
+      nume: "JUNIORI (2024)",
+      imagine: juniori2024,
+      ruta: "/detalii-echipa/4",
+      termen: "Juniori 2024"
     },
   ];
   const link='Vezi echipa →';

@@ -6,15 +6,14 @@
   align-items: center;
   background-image: url('../assets/bg.jpg');
   background-size: cover;
-  background-position:top;
+  background-position: top;
   background-repeat: no-repeat;
 }
 
 .despre_noi {
   margin: 50px;
   height: 100%;
-  background-color: rgb(235, 235, 239);
-  border: 2px outset #155885;;
+  background: radial-gradient(circle, rgba(188, 215, 231, 1) 70%, rgba(188, 215, 231, 0) 97%);
   border-radius: 10x;
 
   .despre_text {
@@ -130,10 +129,8 @@
   }
 }
 
-
-
 @media screen and (max-width: 1550px) {
-  
+
   .imaginePrezentare {
     height: 450px;
     background-position: center calc(30% + 170px);
@@ -190,8 +187,8 @@
   }
 
   .titluJucatori {
-    margin-left: 0; 
-    margin: 0 auto; 
+    margin-left: 0;
+    margin: 0 auto;
   }
 
   .dropdownEditie {

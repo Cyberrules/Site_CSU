@@ -35,11 +35,9 @@ const Noutati = () => {
 
   return (
     <div>
-      <div>
         <div className="container-stiri-slider">
          <SliderNoutati/>
         </div>
-      </div>
 
       <div className="container-stiri">
         <div className="coloanastanga">
@@ -76,6 +74,7 @@ const Noutati = () => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

@@ -1,8 +1,7 @@
-/* MAP cu JSON */
 import React from 'react';
 import './ListaTrofee.scss';
 import Trofee from '../trofee/Trofee'; 
-import trofeu1 from "../../assets/juniori/trofee/trofeu1.jpg";
+import trofeu1 from "../../assets/juniori/trofee/trofeu.png";
 
 const ListaTrofee = () => {
 
