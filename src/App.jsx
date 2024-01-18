@@ -18,6 +18,7 @@ import Utilizatori from './components/administrator/utilizatori/Utilizatori';
 import EchipaAdmin from './components/administrator/echipaadmin/EchipaAdmin';
 import JucatoriAdmin from './components/administrator/jucatoriadmin/JucatoriAdmin';
 import NoutatiAdmin from './components/administrator/noutatiadmin/NoutatiAdmin';
+import SponsoriAdmin from './components/administrator/sponsoriadmin/SponsoriAdmin'
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -64,6 +65,8 @@ const AppContent = ({ loggedIn }) => {
             <Route path="/echipaadmin" element={<EchipaAdmin />} />
             <Route path="/jucatoriadmin" element={<JucatoriAdmin />} />
             <Route path="/noutatiadmin" element={<NoutatiAdmin />} />
+            <Route path="/sponsoriadmin" element={<SponsoriAdmin />} />
+            SponsoriAdmin
           </>
         ) : null}
       </Routes>
