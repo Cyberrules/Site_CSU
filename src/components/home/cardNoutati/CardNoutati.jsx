@@ -4,7 +4,7 @@ import lipsaImagine from '../../assets/lipsaImagine.png';
 
 const CardNoutati = ({ stire }) => {
   const { imagine1, titlu, continut } = stire;
-  const textLink = 'Afla mai multe →';
+  const textLink = 'Află mai multe →';
 
   const handleRedirect = () => {
     window.location.href = '/';

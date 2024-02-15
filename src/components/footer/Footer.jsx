@@ -16,9 +16,9 @@ const Footer = () => {
     instagram: "Instagram",
     youtube: "YouTube",
     titluContact: "Contact",
-    locatie: "Suceava, Romania",
+    locatie: "Suceava, România",
     telefon: "0230522819",
-    adresa: 'Adresa',
+    adresa: 'Adresă',
     telefonText: 'Mobil'
   };
   return (

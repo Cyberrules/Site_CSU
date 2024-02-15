@@ -7,7 +7,7 @@ const IntroJuniori = () => {
   const textIntroJuniori = {
     titlu: "Handbal juvenil",
     continut:
-      "Mauris sollicitudin tempus purus sit amet sollicitudin. Curabitur ac nulla libero. Proin pretium augue a arcu congue blandit. Maecenas ut risus eleifend nibh vestibulum ultricies. Duis vitae dui lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi facilisis mattis metus a fringilla. Mauris laoreet elementum scelerisque. Mauris sollicitudin tempus purus sit amet sollicitudin. Curabitur ac nulla libero. Proin pretium augue a arcu congue blandit. Maecenas ut risus eleifend nibh vestibulum ultricies. Duis vitae dui lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi facilisis mattis metus a fringilla. Mauris laoreet elementum scelerisque.",
+      "Juniorii de la CSU Suceava au avut un an remarcabil în 2023, în special echipele de handbal la categoriile J1, J2 și J3. Echipa J1 a obținut locul al doilea la Campionatul Național din Bacău, iar Daniel Stanciuc a fost desemnat cel mai valoros jucător al turneului. În timp ce echipa J2 a devenit campioană națională la Moreni, cu mai mulți jucători evidențiați pentru performanțele lor. Patru jucători au fost convocați la naționala de juniori a României și au jucat împotriva echipelor din Spania, Franța și Portugalia în decembrie 2022.",
   };
 
   return (

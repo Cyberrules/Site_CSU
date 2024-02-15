@@ -18,9 +18,9 @@ const Administrator = () => {
           <li>
             <Link to='/administrator/utilizatori'>Utilizatori</Link>
             <Link to='/administrator/echipaadmin'>Echipe</Link>
-            <Link to='/administrator/jucatoriadmin'>Jucatori</Link>
+            <Link to='/administrator/jucatoriadmin'>Jucători</Link>
             <Link to='/administrator/meciuriadmin'>Meciuri</Link>
-            <Link to='/administrator/noutatiadmin'>Noutati</Link>
+            <Link to='/administrator/noutatiadmin'>Noutăți</Link>
             <Link to='/administrator/sponsoriadmin'>Sponsori</Link>
             <Link to='/administrator/trofeeadmin'>Trofee</Link>
             

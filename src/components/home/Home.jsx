@@ -11,14 +11,14 @@ import PrezentareJucator from "./prezentareJucator/PrezentareJucator";
 const Home = () => {
   const textHome = {
     titluDespre: "Despre Noi",
-    titluNoutati: "Noutati",
-    titluJucatori: "JUCATORI",
+    titluNoutati: "Noutăți",
+    titluJucatori: "JUCĂTORI",
     titluSponsori: "SPONSORI",
     editia: "Ediția:",
     subtitluDespre: "Clubul Sportiv Universitatea Suceava",
     descriereDespre:
       "Suntem o echipă de handbal din municipiul Suceava, România. Cea mai mare performanță a echipei este accederea în finala Cupei Challenge, pierdută în fața echipei CS UCM Reșița. În competițiile interne, CSU Suceava a câștigat medalia de bronz în Liga Națională, în sezonul 2010-2011, s-a clasat pe locul III în Cupa României, în sezonul 2022-2023.",
-    textLink: "Afla mai multe →",
+    textLink: "Află mai multe →",
   };
 
   /*

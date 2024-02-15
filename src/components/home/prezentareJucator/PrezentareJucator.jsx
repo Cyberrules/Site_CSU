@@ -30,12 +30,12 @@ const PrezentareJucator = () => {
 
   const tabs = [
     {
-      label: 'Intro',
+      label: 'Jucător',
       content: playerDetails && <Intro playerDetails={playerDetails} />,
       closable: true
     },
     {
-      label: 'Informatii',
+      label: 'Informații',
       content: playerDetails && <InformatiiJucator playerDetails={playerDetails} />,
       closable: false
     },

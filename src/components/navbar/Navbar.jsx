@@ -4,11 +4,11 @@ import Logo from "../assets/logo.png";
 import { FaSearch, FaBars, FaUser, FaSignOutAlt } from "react-icons/fa";
 import Login from "./loginmodal/Login";
 const textNavbar = {
-  paginaAcasa: "ACASA",
+  paginaAcasa: "ACASĂ",
   paginaDespre: "DESPRE",
   paginaMeciuri: "MECIURI",
   paginaNoutati: "NOUTĂȚI",
-  paginaEchipa: "ECHIPA",
+  paginaEchipa: "ECHIPĂ",
   paginaJuniori: "JUNIORI",
   placeholderSearch: "Căutați",
 };
@@ -90,16 +90,16 @@ const Navbar = () => {
             <a href="/despre">{textNavbar.paginaDespre}</a>
           </li>
           <li>
+          <a href="/echipa">{textNavbar.paginaEchipa}</a>
+          </li>
+          <li>
+            <a href="/juniori">{textNavbar.paginaJuniori}</a>
+          </li>
+          <li>
             <a href="/meciuri">{textNavbar.paginaMeciuri}</a>
           </li>
           <li>
             <a href="/noutati">{textNavbar.paginaNoutati}</a>
-          </li>
-          <li>
-            <a href="/echipa">{textNavbar.paginaEchipa}</a>
-          </li>
-          <li>
-            <a href="/juniori">{textNavbar.paginaJuniori}</a>
           </li>
           {isAdmin && (
             <li>

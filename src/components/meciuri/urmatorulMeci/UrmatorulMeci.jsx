@@ -13,8 +13,8 @@ const UrmatorulMeci = () => {
     liga: "Liga Națională de handbal masculin",
     locatia: "Locație:",
     etapaMeciului: "Etapa:",
-    loading: "Se incarca...",
-    descriereLink: "URMARESTE MECIUL LIVE →",
+    loading: "Se incarcă...",
+    descriereLink: "URMĂREȘTE MECIUL LIVE →",
     lipsaLocatie: " lipsește momentan",
   };
 

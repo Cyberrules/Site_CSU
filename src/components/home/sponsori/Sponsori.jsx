@@ -6,7 +6,7 @@ const Sponsori = () => {
   const [selectedEdition, setSelectedEdition] = useState('');
   const [editions, setEditions] = useState([]);
 
-  const editieText= 'Editia:';
+  const editieText= 'Ediția:';
 
   useEffect(() => {
     fetch('http://localhost:5050/api/sponsor')

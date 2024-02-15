@@ -6,8 +6,8 @@ import ligaLogo from "../../assets/logoLiga.png";
 
 const TabelClasament = ({ data }) => {
   const textTabelClasament = {
-    pozitia: "Pozitia",
-    echipa: "Echipa",
+    pozitia: "Poziția",
+    echipa: "Echipă",
     meciuriJucate: "Juc",
     victorii: "V",
     egaluri: "E",

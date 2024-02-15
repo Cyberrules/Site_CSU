@@ -8,34 +8,7 @@ const ListaTrofee = () => {
   const titlu= 'PALMARES';
 
   const trofeeData = [
-    {
-      id: 1,
-      imagine: trofeu1,
-      denumire: 'Denumire trofeu 1',
-      numeEchipa: 'Nume Echipa',
-      an: 'Anul', 
-    },
-    {
-        id: 2,
-        imagine: trofeu1,
-        denumire: 'Denumire trofeu 2',
-        numeEchipa: 'Nume Echipa',
-        an: 'Anul', 
-      },
-      {
-        id: 3,
-        imagine: trofeu1,
-        denumire: 'Denumire trofeu 1',
-        numeEchipa: 'Nume Echipa',
-        an: 'Anul', 
-      },
-      {
-          id: 4,
-          imagine: trofeu1,
-          denumire: 'Denumire trofeu 2',
-          numeEchipa: 'Nume Echipa',
-          an: 'Anul', 
-        },
+    
   ];
 
   return (

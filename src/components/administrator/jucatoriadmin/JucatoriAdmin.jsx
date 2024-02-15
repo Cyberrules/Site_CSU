@@ -15,14 +15,14 @@ const JucatoriAdmin = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const textJucatoriAdmin = {
-    textSelectatiEchipa: " Selectati echipa:",
+    textSelectatiEchipa: " Selectați echipa:",
     textBtnAdaugaJucator: "Adaugă jucător",
     textNume: "Nume",
     textPrenume: "Prenume",
-    textIdJucator: "Id jucator",
-    textPozitie: "Pozitie",
-    textDataNasterii: "Data nasterii",
-    textActiuni: "Actiuni",
+    textIdJucator: "Id jucător",
+    textPozitie: "Poziție",
+    textDataNasterii: "Data nașterii",
+    textActiuni: "Acțiuni",
   };
 
   const handleDropdownChange = (selectedValue) => {
